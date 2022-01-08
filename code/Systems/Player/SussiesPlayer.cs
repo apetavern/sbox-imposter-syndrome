@@ -9,7 +9,7 @@ namespace Sussies.Systems.Player
 			SetModel( "models/playermodel/terrysus.vmdl" );
 
 			Controller = new WalkController();
-			Animator = new StandardPlayerAnimator();
+			Animator = new SussiesAnimator();
 			Camera = new SussiesCamera();
 
 			EnableAllCollisions = true;
