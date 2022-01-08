@@ -1,16 +1,16 @@
 ﻿using Sandbox;
 
-namespace Sussies
+namespace Sussies.Systems.Player
 {
-	public partial class SussiesPlayer : Player
+	public partial class SussiesPlayer : Sandbox.Player
 	{
 		public override void Respawn()
 		{
-			SetModel( "models/citizen/citizen.vmdl" );
+			SetModel( "models/playermodel/terrysus.vmdl" );
 
 			Controller = new WalkController();
 			Animator = new StandardPlayerAnimator();
-			Camera = new ThirdPersonCamera();
+			Camera = new SussiesCamera();
 
 			EnableAllCollisions = true;
 			EnableDrawing = true;
