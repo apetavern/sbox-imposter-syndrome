@@ -1,8 +1,8 @@
 ﻿using Sandbox;
 
-namespace Sussies.Systems.Player
+namespace ImposterSyndrome.Systems.Players
 {
-	public partial class SussiesPlayer : Sandbox.Player
+	public partial class ISPlayer : Sandbox.Player
 	{
 		public AnimEntity backpack;
 
@@ -11,8 +11,8 @@ namespace Sussies.Systems.Player
 			SetModel( "models/playermodel/terrysus.vmdl" );
 
 			Controller = new WalkController();
-			Animator = new SussiesAnimator();
-			Camera = new SussiesCamera();
+			Animator = new ISAnimator();
+			Camera = new ISCamera();
 
 			backpack = new AnimEntity();
 			backpack.SetModel( "models/backpacks/business/susbusinessbackpack.vmdl" );

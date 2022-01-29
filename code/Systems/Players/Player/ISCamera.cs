@@ -1,8 +1,8 @@
 ﻿using Sandbox;
 
-namespace Sussies.Systems.Player
+namespace ImposterSyndrome.Systems.Players
 {
-	public partial class SussiesCamera : Camera
+	public partial class ISCamera : Camera
 	{
 		private Angles orbitAngles;
 		private float orbitDistance = 200;

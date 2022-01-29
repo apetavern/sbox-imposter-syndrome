@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sandbox;
+﻿using Sandbox;
 
-namespace Sussies.Systems.Player
+namespace ImposterSyndrome.Systems.Players
 {
-	public partial class SussiesAnimator : PawnAnimator
+	public partial class ISAnimator : PawnAnimator
 	{
 		Rotation idealRotation;
 		bool IsTouchingLadder;
@@ -61,7 +56,7 @@ namespace Sussies.Systems.Player
 			var start = Position;
 			Vector3 end = start + (IsTouchingLadder ? (LadderNormal * -1.0f) : wishvel) * ladderDistance;
 
-			WalkController controller = (AnimPawn as SussiesPlayer).Controller as WalkController;
+			WalkController controller = (AnimPawn as ISSpectator).Controller as WalkController;
 
 			var girth = controller.BodyGirth * 0.5f;
 			var mins = new Vector3( -girth, -girth, 0 );
@@ -82,14 +77,14 @@ namespace Sussies.Systems.Player
 				LadderNormal = pm.Normal;
 			}
 
-			
+
 		}
 
 		public virtual void DoRotation( Rotation idealRotation )
 		{
 			float turnSpeed = 0.05f;
 
-			if ( IsTouchingLadder ) 
+			if ( IsTouchingLadder )
 			{
 				idealRotation = Rotation.LookAt( -LadderNormal, Vector3.Up );
 			}
