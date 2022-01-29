@@ -7,11 +7,10 @@ namespace ImposterSyndrome
 	public partial class Game : Sandbox.Game
 	{
 		public static Game Instance => Current as Game;
-		[Net] public BaseState CurrentState { get; set; }
 
 		public Game()
 		{
-
+			UpdateState( new WaitingState() );
 		}
 
 		public override void ClientJoined( Client client )

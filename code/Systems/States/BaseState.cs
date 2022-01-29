@@ -10,9 +10,13 @@ namespace ImposterSyndrome.Systems.States
 
 		public virtual void OnStateStarted()
 		{
+			Log.Info( $"🏝️ Round {StateName} started." );
 			StateEndTime = Time.Now + StateDuration;
 		}
 
-		public virtual void OnStateEnded() { }
+		public virtual void OnStateEnded()
+		{
+			Log.Info( $"🏝️ Round {StateName} ended." );
+		}
 	}
 }
