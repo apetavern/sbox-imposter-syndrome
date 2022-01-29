@@ -1,11 +1,13 @@
 using Sandbox;
-using Sussies.Systems.Player;
+using ImposterSyndrome.Systems.Players;
+using ImposterSyndrome.Systems.States;
 
-namespace Sussies
+namespace ImposterSyndrome
 {
 	public partial class Game : Sandbox.Game
 	{
 		public static Game Instance => Current as Game;
+		[Net] public BaseState CurrentState { get; set; }
 
 		public Game()
 		{
@@ -16,10 +18,10 @@ namespace Sussies
 		{
 			base.ClientJoined( client );
 
-			var player = new SussiesPlayer();
-			client.Pawn = player;
-
+			var player = new ISSpectator();
 			player.Respawn();
+
+			client.Pawn = player;
 		}
 	}
 }
