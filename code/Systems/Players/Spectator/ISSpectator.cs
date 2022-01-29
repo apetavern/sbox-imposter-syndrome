@@ -10,7 +10,8 @@ namespace ImposterSyndrome.Systems.Players
 			RenderColor = Color.White.WithAlpha( 0.4f );
 
 			Controller = new WalkController();
-			Camera = new ThirdPersonCamera();
+			Camera = new ISCamera();
+			Animator = new ISAnimator();
 
 			EnableAllCollisions = false;
 			EnableDrawing = true;
