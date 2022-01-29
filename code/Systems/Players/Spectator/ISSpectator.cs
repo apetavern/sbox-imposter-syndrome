@@ -6,7 +6,11 @@ namespace ImposterSyndrome.Systems.Players
 	{
 		public override void Respawn()
 		{
-			Controller = new NoclipController();
+			SetModel( "models/playermodel/terrysus.vmdl" );
+			RenderColor = Color.White.WithAlpha( 0.4f );
+
+			Controller = new WalkController();
+			Camera = new ThirdPersonCamera();
 
 			EnableAllCollisions = false;
 			EnableDrawing = true;
