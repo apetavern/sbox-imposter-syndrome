@@ -18,5 +18,10 @@ namespace ImposterSyndrome.Systems.States
 		{
 			Log.Info( $"🏝️ Round {StateName} ended." );
 		}
+
+		public virtual void OnSecond()
+		{
+
+		}
 	}
 }
