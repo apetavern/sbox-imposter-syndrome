@@ -1,6 +1,14 @@
 {
-	"sharedassets": "*.*",
-	"type": "game",
-	"ident": "apetavern.sussies",
-	"rootnamespace": "Sussies"
+  "SharedAssets": "*.*",
+  "Title": "Sbox Sussies",
+  "Type": "game",
+  "Org": "local",
+  "Ident": "sbox-sussies",
+  "Schema": 1,
+  "HasAssets": true,
+  "AssetsPath": "",
+  "ResourcePaths": null,
+  "HasCode": true,
+  "CodePath": "code",
+  "RootNamespace": "ImposterSyndrome"
 }
