@@ -1,5 +1,4 @@
 Properties
-*.csproj
 .intermediate
 .vs
 *.los
@@ -10,3 +9,15 @@ Properties/launchSettings.json
 tools_thumbnail_cache.bin
 maps/_bakeresourcecache/
 *_bakeresourcecache.vpk
+*.csproj
+*.bat
+*.vanmgrph_c
+*.vmat_c
+*.vmdl_c
+*.vsnd_c
+*.vtex_c
+*.zip
+*.vpk
+*.vpcf_c
+*.fgd
+*.vpost_c
