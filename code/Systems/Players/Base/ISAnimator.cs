@@ -56,7 +56,7 @@ namespace ImposterSyndrome.Systems.Players
 			var start = Position;
 			Vector3 end = start + (IsTouchingLadder ? (LadderNormal * -1.0f) : wishvel) * ladderDistance;
 
-			WalkController controller = (AnimPawn as ISSpectator).Controller as WalkController;
+			WalkController controller = (AnimPawn as Player).Controller as WalkController;
 
 			var girth = controller.BodyGirth * 0.5f;
 			var mins = new Vector3( -girth, -girth, 0 );
