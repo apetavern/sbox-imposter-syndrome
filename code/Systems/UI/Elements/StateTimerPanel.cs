@@ -10,7 +10,7 @@ namespace ImposterSyndrome.Systems.UI
 
 		public StateTimerPanel()
 		{
-			StyleSheet.Load( "/Systems/UI/StateInfoPanel.scss" );
+			StyleSheet.Load( "/Systems/UI/GameInfoPanel.scss" );
 		}
 
 		public override void Tick()

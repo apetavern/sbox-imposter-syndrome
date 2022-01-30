@@ -12,10 +12,10 @@ namespace ImposterSyndrome.Systems.UI
 		{
 			base.Tick();
 
-			if ( Game.Instance.PlayingClients is null )
+			if ( Game.Instance.Players is null )
 				return;
 
-			ActivePlayerCountLabel.Text = Game.Instance.PlayingClients.Count.ToString();
+			ActivePlayerCountLabel.Text = Game.Instance.Players.Count.ToString();
 		}
 	}
 }
