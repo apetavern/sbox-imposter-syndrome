@@ -10,7 +10,7 @@ namespace ImposterSyndrome.Systems.Tasks
 	{
 		public GatherFirewood()
 		{
-			TaskName = "Gather firewood.";
+			TaskName = "Gather some firewood.";
 		}
 	}
 }

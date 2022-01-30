@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ImposterSyndrome.Systems.Tasks
 {
-	public class FindWilson : BaseTask
+	public class RepairSatellite : BaseTask
 	{
-		public FindWilson()
+		public RepairSatellite()
 		{
-			TaskName = "Find Wilson.";
+			TaskName = "Repair the satellite.";
 		}
 	}
 }
