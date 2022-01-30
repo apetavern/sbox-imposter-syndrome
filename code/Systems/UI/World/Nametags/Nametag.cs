@@ -13,9 +13,9 @@ namespace ImposterSyndrome.Systems.UI
 
 		public Nametag()
 		{
-			StyleSheet.Load( "/Systems/UI/World/Nametag.scss" );
+			StyleSheet.Load( "/Systems/UI/World/Nametags/Nametag.scss" );
 
-			Name = Add.Label( "Name", "worm-name" );
+			Name = Add.Label( "Name" );
 
 			float width = 1000;
 			float height = 250;
