@@ -4,7 +4,7 @@ namespace ImposterSyndrome.Systems.States
 {
 	public partial class VotingState : BaseState
 	{
-		[Net] public override string StateName => "VotingState";
+		[Net] public override string StateName => "Voting";
 		public override float StateDuration { get; set; } = 30;
 	}
 }

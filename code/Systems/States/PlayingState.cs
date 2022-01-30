@@ -6,7 +6,7 @@ namespace ImposterSyndrome.Systems.States
 {
 	public partial class PlayingState : BaseState
 	{
-		[Net] public override string StateName => "PlayingState";
+		[Net] public override string StateName => "Playing";
 		public override float StateDuration { get; set; } = 30;
 
 		public override void OnStateStarted()
@@ -16,7 +16,7 @@ namespace ImposterSyndrome.Systems.States
 			foreach ( var player in Client.All.Select( cl => cl.Pawn as ISBasePlayer ) )
 			{
 				player.UpdatePawn( new ISPlayer() );
-				Game.PlayingClients.Add( player.Client );
+				Game.Instance?.PlayingClients.Add( player.Client );
 			}
 		}
 
