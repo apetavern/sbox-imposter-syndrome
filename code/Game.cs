@@ -30,7 +30,7 @@ namespace ImposterSyndrome
 		{
 			base.ClientDisconnect( cl, reason );
 
-			PlayingClients.Remove( cl );
+			Players.Remove( cl.Pawn as ISPlayer );
 		}
 	}
 }

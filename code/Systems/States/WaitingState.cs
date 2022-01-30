@@ -15,7 +15,7 @@ namespace ImposterSyndrome.Systems.States
 		{
 			base.OnStateStarted();
 
-			Game.Instance?.PlayingClients?.Clear();
+			Game.Instance?.Players?.Clear();
 
 			foreach ( var player in Client.All.Select( cl => cl.Pawn as ISBasePlayer ) )
 				player.UpdatePawn( new ISSpectator() );
