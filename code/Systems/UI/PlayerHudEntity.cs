@@ -22,6 +22,7 @@ namespace ImposterSyndrome.Systems.UI
 		public static void RebuildFromImposterStatus( bool isImposter )
 		{
 			InteractionButtonsPanel.Instance?.RebuildFromImposterStatus( isImposter );
+			TaskListPanel.Instance?.RebuildFromImposterStatus( isImposter );
 		}
 	}
 }
