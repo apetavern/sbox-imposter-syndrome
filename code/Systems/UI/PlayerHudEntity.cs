@@ -13,6 +13,8 @@ namespace ImposterSyndrome.Systems.UI
 
 			Instance = this;
 			RootPanel.SetTemplate( "/Systems/UI/PlayerHudEntity.html" );
+
+			_ = new Nametags();
 		}
 	}
 }

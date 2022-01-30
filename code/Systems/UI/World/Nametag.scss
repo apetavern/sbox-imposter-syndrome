@@ -1,0 +1,17 @@
+﻿@import "/Systems/UI/_Globals.scss";
+
+Nametag {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+label {
+    font-size: 64px;
+    font-family: $font;
+    text-shadow: 2px 2px 0px rgba( black, 0.75 );
+    text-align: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+}
