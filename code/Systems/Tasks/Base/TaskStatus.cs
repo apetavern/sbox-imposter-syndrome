@@ -3,6 +3,7 @@
 	public enum TaskStatus
 	{
 		Incomplete,
-		Complete
+		Complete,
+		Fake
 	}
 }
