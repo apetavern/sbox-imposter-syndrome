@@ -28,9 +28,9 @@ namespace ImposterSyndrome
 
 		public override void ClientDisconnect( Client cl, NetworkDisconnectionReason reason )
 		{
-			base.ClientDisconnect( cl, reason );
-
 			Players.Remove( cl.Pawn as ISPlayer );
+
+			base.ClientDisconnect( cl, reason );
 		}
 	}
 }
