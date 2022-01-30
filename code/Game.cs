@@ -22,5 +22,12 @@ namespace ImposterSyndrome
 
 			client.Pawn = player;
 		}
+
+		public override void ClientDisconnect( Client cl, NetworkDisconnectionReason reason )
+		{
+			base.ClientDisconnect( cl, reason );
+
+			PlayingClients.Remove( cl );
+		}
 	}
 }
