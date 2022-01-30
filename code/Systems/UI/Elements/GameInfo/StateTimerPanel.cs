@@ -20,7 +20,7 @@ namespace ImposterSyndrome.Systems.UI
 			if ( Game.Instance.CurrentState is null )
 				return;
 
-			StateTimerLabel.Text = $"{(Game.Instance.CurrentState.StateEndTime - Time.Now).ToString()}s";
+			StateTimerLabel.Text = $"{MathX.Clamp( (int)(Game.Instance.CurrentState.StateEndTime - Time.Now), 0, 500 ).ToString()}s";
 		}
 	}
 }
