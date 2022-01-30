@@ -14,12 +14,16 @@ namespace ImposterSyndrome.Systems.States
 			base.OnStateStarted();
 
 			foreach ( var player in Client.All.Select( cl => cl.Pawn as ISBasePlayer ) )
+			{
 				player.UpdatePawn( new ISPlayer() );
+				Game.PlayingClients.Add( player.Client );
+			}
 		}
 
 		public override void OnStateEnded()
 		{
 			base.OnStateEnded();
+
 			Game.UpdateState( new GameEndState() );
 		}
 	}

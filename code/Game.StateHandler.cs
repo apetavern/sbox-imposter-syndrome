@@ -1,10 +1,13 @@
 using Sandbox;
 using ImposterSyndrome.Systems.States;
+using System.Collections.Generic;
+using ImposterSyndrome.Systems.Players;
 
 namespace ImposterSyndrome
 {
 	public partial class Game : Sandbox.Game
 	{
+		[Net] public static List<Client> PlayingClients { get; set; } = new();
 		[Net] public BaseState CurrentState { get; set; }
 		private TimeSince TimeSinceLastSecond { get; set; }
 
