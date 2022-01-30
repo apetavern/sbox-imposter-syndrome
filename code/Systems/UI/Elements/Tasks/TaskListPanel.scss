@@ -1,0 +1,12 @@
+﻿@import "/Systems/UI/_Globals.scss";
+
+TaskListPanel {
+    flex-direction: column;
+}
+
+label {
+    font-size: 24px;
+    font-family: $font;
+    color: white;
+    text-shadow: 2px 2px 0px rgba( black, 0.75 );
+}

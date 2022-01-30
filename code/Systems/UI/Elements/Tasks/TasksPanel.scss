@@ -1,0 +1,19 @@
+﻿@import "/Systems/UI/_Globals.scss";
+
+TasksPanel {
+    position: absolute;
+    width: 430px;
+    height: 430px;
+    top: 0px;
+    right: 0px;
+    padding: 5px;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+text {
+    font-size: 24px;
+    font-family: $font;
+    color: white;
+    text-shadow: 2px 2px 0px rgba( black, 0.75 );
+}
