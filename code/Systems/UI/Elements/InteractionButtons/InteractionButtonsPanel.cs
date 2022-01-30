@@ -1,4 +1,6 @@
-﻿using Sandbox.UI;
+﻿using ImposterSyndrome.Systems.Players;
+using Sandbox;
+using Sandbox.UI;
 using Sandbox.UI.Construct;
 
 namespace ImposterSyndrome.Systems.UI
@@ -7,6 +9,7 @@ namespace ImposterSyndrome.Systems.UI
 	public class InteractionButtonsPanel : Panel
 	{
 		public static InteractionButtonsPanel Instance { get; set; }
+
 		public InteractionButtonsPanel()
 		{
 			Instance = this;
@@ -17,15 +20,19 @@ namespace ImposterSyndrome.Systems.UI
 		{
 			DeleteChildren();
 
+			var useButton = Add.Button( "Use" );
+			useButton.BindClass( "enabled", () => (Local.Pawn as ISBasePlayer).LocateUsable() is not null );
+			useButton.AddEventListener( "onclick", _ => Log.Info( "Use" ) );
+
 			// Imposter
 			if ( isImposter )
 			{
-				Add.Button( "Imposter" );
+				// Add.Button( "Imposter" );
 				return;
 			}
 
 			// Not imposter.
-			Add.Button( "Not imposter" );
+			// Add.Button( "Not imposter" );
 		}
 	}
 }
