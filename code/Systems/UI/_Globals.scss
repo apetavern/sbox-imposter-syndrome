@@ -1,0 +1,29 @@
+﻿//
+// UI colors
+//
+$accent: red;
+$background-lighter: #19E6D1;
+$background-light: #1ACBF0;
+$background: #228bd9;
+$background-dark: #1A5BF0;
+$background-darker: #1921E6;
+
+//
+// Fonts
+//
+$font: Poppins;
+
+//
+// Menu colors
+//
+$menu-dark: #462255;
+$menu-light: #AA4465;
+$menu-accent: #FDE74C;
+
+icon, iconpanel {
+    font-family: MaterialIcons;
+}
+
+button {
+    align-items: center;
+}
