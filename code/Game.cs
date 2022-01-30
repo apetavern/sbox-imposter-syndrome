@@ -1,6 +1,7 @@
 using Sandbox;
 using ImposterSyndrome.Systems.Players;
 using ImposterSyndrome.Systems.States;
+using ImposterSyndrome.Systems.UI;
 
 namespace ImposterSyndrome
 {
@@ -10,6 +11,8 @@ namespace ImposterSyndrome
 
 		public Game()
 		{
+			_ = new PlayerHudEntity();
+
 			UpdateState( new WaitingState() );
 		}
 
