@@ -21,6 +21,9 @@ namespace ImposterSyndrome.Systems.States
 
 		public virtual void OnSecond()
 		{
+			if ( !Host.IsServer )
+				return;
+
 			if ( Time.Now >= StateEndTime )
 				OnStateEnded();
 		}
