@@ -4,6 +4,7 @@ using ImposterSyndrome.Systems.Players;
 using System.Collections.Generic;
 using System;
 using ImposterSyndrome.Systems.UI;
+using ImposterSyndrome.Systems.Tasks;
 
 namespace ImposterSyndrome.Systems.States
 {
@@ -26,6 +27,19 @@ namespace ImposterSyndrome.Systems.States
 			}
 
 			AssignImposters();
+			AssignTasks();
+
+			// Update HUD on clients
+			foreach ( var player in Game.Instance.Players )
+				PlayerHudEntity.RebuildFromImposterStatus( player.IsImposter );
+		}
+
+		private void AssignTasks()
+		{
+			foreach ( var player in Game.Instance.Players )
+			{
+				player.AssignedTasks.Add( new Firewood().FlagAsFake( player.IsImposter ) );
+			}
 		}
 
 		private void AssignImposters()
@@ -36,9 +50,6 @@ namespace ImposterSyndrome.Systems.States
 			{
 				var player = Game.Instance.Players.OrderBy( _ => new Guid() ).Cast<ISPlayer>().Where( player => !player.IsImposter ).First();
 				player.IsImposter = true;
-
-				// Let this players HUD know they're imposter.
-				PlayerHudEntity.RebuildFromImposterStatus( player.IsImposter );
 
 				Imposters.Add( player );
 
