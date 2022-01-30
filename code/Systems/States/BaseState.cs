@@ -24,8 +24,20 @@ namespace ImposterSyndrome.Systems.States
 			if ( !Host.IsServer )
 				return;
 
+			if ( Game.Instance.CurrentState is not WaitingState && !CheckMinimumPlayers() )
+			{
+				OnStateEnded();
+				Game.UpdateState( new WaitingState() );
+			}
+
+
 			if ( Time.Now >= StateEndTime )
 				OnStateEnded();
+		}
+
+		protected bool CheckMinimumPlayers()
+		{
+			return Game.Instance.Players.Count >= GameConfig.MinimumPlayers;
 		}
 	}
 }
