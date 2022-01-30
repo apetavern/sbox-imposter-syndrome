@@ -7,7 +7,7 @@ namespace ImposterSyndrome
 {
 	public partial class Game : Sandbox.Game
 	{
-		[Net] public static List<Client> PlayingClients { get; set; } = new();
+		[Net] public List<Client> PlayingClients { get; set; }
 		[Net] public BaseState CurrentState { get; set; }
 		private TimeSince TimeSinceLastSecond { get; set; }
 
