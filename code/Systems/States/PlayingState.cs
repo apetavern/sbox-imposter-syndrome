@@ -38,7 +38,9 @@ namespace ImposterSyndrome.Systems.States
 		{
 			foreach ( var player in Game.Instance.Players )
 			{
-				player.AssignedTasks.Add( new Firewood().FlagAsFake( player.IsImposter ) );
+				// Temporarily add all tasks. We can add a random selection of tasks later instead.
+				foreach ( var task in Library.GetAll<BaseTask>().Where( x => !x.IsAbstract ) )
+					player.AssignedTasks.Add( Library.Create<BaseTask>( task ).FlagAsFake( player.IsImposter ) );
 			}
 		}
 
