@@ -6,7 +6,7 @@ namespace ImposterSyndrome.Systems.States
 	{
 		[Net] public virtual string StateName => "Default";
 		public virtual float StateDuration { get; set; }
-		[Net] protected float StateEndTime { get; set; }
+		[Net] public float StateEndTime { get; set; }
 
 		public virtual void OnStateStarted()
 		{
@@ -21,7 +21,8 @@ namespace ImposterSyndrome.Systems.States
 
 		public virtual void OnSecond()
 		{
-
+			if ( Time.Now >= StateEndTime )
+				OnStateEnded();
 		}
 	}
 }
