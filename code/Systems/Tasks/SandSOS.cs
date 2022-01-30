@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ImposterSyndrome.Systems.Tasks
 {
-	public class BuildBed : BaseTask
+	public class SandSOS : BaseTask
 	{
-		public BuildBed()
+		public SandSOS()
 		{
-			TaskName = "Build a bed.";
+			TaskName = "Draw a dick in the sand.";
 		}
 	}
 }
