@@ -9,7 +9,8 @@ namespace ImposterSyndrome.Systems.States
 	public partial class WaitingState : BaseState
 	{
 		[Net] public override string StateName => "Waiting";
-		public override float StateDuration { get; set; } = 30;
+		public override float StateDuration { get; set; } = 5;
+		private bool HasPrematchStarted { get; set; }
 
 		public override void OnStateStarted()
 		{
@@ -26,6 +27,27 @@ namespace ImposterSyndrome.Systems.States
 			base.OnStateEnded();
 
 			Game.UpdateState( new PlayingState() );
+		}
+
+		public override void OnSecond()
+		{
+			if ( Host.IsClient )
+				return;
+
+			if ( Client.All.Count < GameConfig.MinimumPlayers )
+			{
+				HasPrematchStarted = false;
+				return;
+			}
+
+			if ( !HasPrematchStarted )
+			{
+				StateEndTime = Time.Now + StateDuration;
+				HasPrematchStarted = true;
+			}
+
+			if ( Time.Now > StateEndTime )
+				OnStateEnded();
 		}
 	}
 }
