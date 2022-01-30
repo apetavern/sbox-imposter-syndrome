@@ -25,7 +25,7 @@ namespace ImposterSyndrome.Systems.Players
 
 			SetParam( "onladder", IsTouchingLadder );
 
-			SetParam( "walking", Velocity.Length > 1.5f );
+			SetParam( "walking", Velocity.WithZ( 0 ).Length > 1.5f );
 		}
 
 		public void CheckLadder()
