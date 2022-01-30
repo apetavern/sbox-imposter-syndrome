@@ -3,9 +3,9 @@
 namespace ImposterSyndrome.Systems.UI
 {
 	[UseTemplate]
-	public class StateInfoPanel : Panel
+	public class GameInfoPanel : Panel
 	{
-		public StateInfoPanel()
+		public GameInfoPanel()
 		{
 			StyleSheet.Load( "/Systems/UI/StateInfoPanel.scss" );
 		}
