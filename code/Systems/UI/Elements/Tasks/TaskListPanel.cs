@@ -1,7 +1,9 @@
 ﻿using ImposterSyndrome.Systems.Players;
+using ImposterSyndrome.Systems.Tasks;
 using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
+using System.Collections.Generic;
 
 namespace ImposterSyndrome.Systems.UI
 {
@@ -21,7 +23,6 @@ namespace ImposterSyndrome.Systems.UI
 
 			var player = (Local.Pawn as ISPlayer);
 
-			// Imposter
 			if ( isImposter )
 			{
 				Add.Label( "Kill people" );
@@ -29,9 +30,7 @@ namespace ImposterSyndrome.Systems.UI
 			}
 
 			foreach ( var task in player.AssignedTasks )
-			{
-				Add.Label( task.GetTaskName() );
-			}
+				AddChild( new Task( task ) );
 		}
 	}
 }
