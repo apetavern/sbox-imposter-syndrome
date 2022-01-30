@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ImposterSyndrome.Systems.Tasks
 {
-	public class Firewood : BaseTask
+	public class GatherFirewood : BaseTask
 	{
-		public Firewood()
+		public GatherFirewood()
 		{
 			TaskName = "Gather firewood.";
 		}
