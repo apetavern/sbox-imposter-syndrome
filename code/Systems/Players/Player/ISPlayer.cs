@@ -13,9 +13,6 @@ namespace ImposterSyndrome.Systems.Players
 		public override void Respawn()
 		{
 			base.Respawn();
-
-			// Update the HUD based on imposter status
-			PlayerHudEntity.RebuildFromImposterStatus( IsImposter );
 		}
 	}
 }

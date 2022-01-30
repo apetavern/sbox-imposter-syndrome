@@ -31,7 +31,7 @@ namespace ImposterSyndrome.Systems.States
 
 			// Update HUD on clients
 			foreach ( var player in Game.Instance.Players )
-				PlayerHudEntity.RebuildFromImposterStatus( player.IsImposter );
+				PlayerHudEntity.RebuildFromImposterStatus( To.Single( player ), player.IsImposter );
 		}
 
 		private void AssignTasks()
