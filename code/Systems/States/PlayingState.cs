@@ -3,6 +3,7 @@ using Sandbox;
 using ImposterSyndrome.Systems.Players;
 using System.Collections.Generic;
 using System;
+using ImposterSyndrome.Systems.UI;
 
 namespace ImposterSyndrome.Systems.States
 {
@@ -35,6 +36,9 @@ namespace ImposterSyndrome.Systems.States
 			{
 				var player = Game.Instance.Players.OrderBy( _ => new Guid() ).Cast<ISPlayer>().Where( player => !player.IsImposter ).First();
 				player.IsImposter = true;
+
+				// Let this players HUD know they're imposter.
+				PlayerHudEntity.RebuildFromImposterStatus( player.IsImposter );
 
 				Imposters.Add( player );
 

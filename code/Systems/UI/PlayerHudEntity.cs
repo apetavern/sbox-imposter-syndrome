@@ -1,4 +1,5 @@
-﻿using Sandbox.UI;
+﻿using Sandbox;
+using Sandbox.UI;
 
 namespace ImposterSyndrome.Systems.UI
 {
@@ -15,6 +16,12 @@ namespace ImposterSyndrome.Systems.UI
 			RootPanel.SetTemplate( "/Systems/UI/PlayerHudEntity.html" );
 
 			_ = new Nametags();
+		}
+
+		[ClientRpc]
+		public static void RebuildFromImposterStatus( bool isImposter )
+		{
+			InteractionButtonsPanel.Instance?.RebuildFromImposterStatus( isImposter );
 		}
 	}
 }
