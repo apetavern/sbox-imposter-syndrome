@@ -1,5 +1,4 @@
-﻿using Sandbox;
-using Sandbox.UI;
+﻿using Sandbox.UI;
 
 namespace ImposterSyndrome.Systems.UI
 {
@@ -19,12 +18,11 @@ namespace ImposterSyndrome.Systems.UI
 			_ = new Nametags();
 		}
 
+		[ServerCmd]
 		public static void Rebuild()
 		{
 			Instance?.Delete();
-
-			if ( Host.IsServer )
-				Instance = new();
+			Instance = new PlayerHudEntity();
 		}
 	}
 }
