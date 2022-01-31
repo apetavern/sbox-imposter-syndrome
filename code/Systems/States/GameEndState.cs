@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using ImposterSyndrome.Systems.UI;
+using Sandbox;
 
 namespace ImposterSyndrome.Systems.States
 {
@@ -25,6 +26,9 @@ namespace ImposterSyndrome.Systems.States
 			base.OnStateStarted();
 
 			Log.Info( $"Game ended. Reason {EndReason}." );
+
+			// Remove the HUD. Replace it with a game end HUD later.
+			PlayerHudEntity.Destroy();
 		}
 
 		public override void OnStateEnded()
