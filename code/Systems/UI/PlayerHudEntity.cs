@@ -18,7 +18,6 @@ namespace ImposterSyndrome.Systems.UI
 			_ = new Nametags();
 		}
 
-		[ClientRpc]
 		public static void RebuildFromImposterStatus( bool isImposter )
 		{
 			InteractionButtonsPanel.Instance?.RebuildFromImposterStatus( isImposter );
