@@ -19,24 +19,23 @@ namespace ImposterSyndrome.Systems.UI
 			if ( Local.Pawn is not ISPlayer player )
 				return;
 
-			AddChild( new InteractionButton( "Use", "waving_hand", () => (Local.Pawn as ISPlayer).LocateUsable() != null, () => UseClick( player ) ) );
-
 			if ( player.IsImposter )
 			{
-				AddImposterButtons();
+				AddImposterButtons( player );
 				return;
 			}
 
-			AddPlayerButtons();
+			AddPlayerButtons( player );
 		}
 
-		private void AddImposterButtons()
+		private void AddImposterButtons( ISPlayer player )
 		{
 			AddChild( new InteractionButton( "Kill", "bloodtype", () => false, () => Log.Info( "click kill" ) ) );
 		}
 
-		private void AddPlayerButtons()
+		private void AddPlayerButtons( ISPlayer player )
 		{
+			AddChild( new InteractionButton( "Use", "waving_hand", () => (Local.Pawn as ISPlayer).LocateUsable() != null, () => UseClick( player ) ) );
 			AddChild( new InteractionButton( "Report", "report", () => false, () => Log.Info( "click report" ) ) );
 		}
 
