@@ -1,11 +1,15 @@
-﻿using Sandbox;
+﻿using ImposterSyndrome.Systems.Players;
+using ImposterSyndrome.Systems.Tasks;
+using Sandbox;
+using System.ComponentModel;
+using System.Linq;
 
 namespace ImposterSyndrome.Systems.Entities
 {
 	[Library( "is_task_wilson" )]
 	[Hammer.EntityTool( "Wilson", "ImposterSyndrome", "The entity for the 'Find Wilson' task." )]
 	[Hammer.EditorModel( "models/citizen_props/beachball.vmdl" )]
-	public class WilsonEntity : AnimEntity, IUse
+	public class WilsonEntity : AnimEntity, IEntityUse
 	{
 		public override void Spawn()
 		{
@@ -15,14 +19,19 @@ namespace ImposterSyndrome.Systems.Entities
 			SetupPhysicsFromModel( PhysicsMotionType.Static );
 		}
 
-		public bool OnUse( Entity user )
+		public bool IsUsable( ISPlayer user )
 		{
-			return false;
+			var task = user.AssignedTasks.OfType<FindWilson>().FirstOrDefault( task => task.Status == TaskStatus.Incomplete );
+
+			return task != null;
 		}
 
-		public bool IsUsable( Entity user )
+		public bool OnUse( ISPlayer user )
 		{
-			return true;
+			var task = user.AssignedTasks.OfType<FindWilson>().FirstOrDefault( task => task.Status == TaskStatus.Incomplete );
+			task.MarkAsCompleted();
+
+			return false;
 		}
 	}
 }
