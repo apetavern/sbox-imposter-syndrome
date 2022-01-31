@@ -5,7 +5,7 @@ namespace ImposterSyndrome.Systems.Tasks
 	public abstract partial class BaseTask : BaseNetworkable
 	{
 		protected virtual string TaskName { get; set; } = "BaseTask";
-		[Net] public TaskStatus Status { get; set; }
+		[Net] public TaskStatus Status { get; private set; }
 
 		public BaseTask FlagAsFake( bool isFakeTask )
 		{
@@ -20,6 +20,15 @@ namespace ImposterSyndrome.Systems.Tasks
 			return Status == TaskStatus.Fake ? $"{TaskName} (fake)" : TaskName;
 		}
 
-		public virtual void OnTaskCompleted() { }
+		public void MarkAsCompleted()
+		{
+			Log.Info( "task says completed m8" );
+			Status = TaskStatus.Complete;
+		}
+
+		public virtual void OnTaskCompleted()
+		{
+			Log.Info( "Task completed." );
+		}
 	}
 }
