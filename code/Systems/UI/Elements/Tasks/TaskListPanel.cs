@@ -15,13 +15,11 @@ namespace ImposterSyndrome.Systems.UI
 		{
 			Instance = this;
 			StyleSheet.Load( "/Systems/UI/Elements/Tasks/TaskListPanel.scss" );
-		}
 
-		public void RebuildFromImposterStatus( bool isImposter )
-		{
-			DeleteChildren();
+			if ( Local.Pawn is not ISPlayer player )
+				return;
 
-			if ( isImposter )
+			if ( player.IsImposter )
 			{
 				Add.Label( "Kill people" );
 				Add.Label( "Fake Tasks:" );

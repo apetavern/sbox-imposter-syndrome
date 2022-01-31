@@ -14,22 +14,28 @@ namespace ImposterSyndrome.Systems.UI
 		{
 			Instance = this;
 			StyleSheet.Load( "/Systems/UI/Elements/InteractionButtons/InteractionButtonsPanel.scss" );
-		}
-
-		public void RebuildFromImposterStatus( bool isImposter )
-		{
-			DeleteChildren( true );
 
 			AddChild( new InteractionButton( "Use", () => (Local.Pawn as ISBasePlayer).LocateUsable() != null, () => Log.Info( "click" ) ) );
 
-			// Imposter
-			if ( isImposter )
+			if ( Local.Pawn is not ISPlayer player )
+				return;
+
+			if ( player.IsImposter )
 			{
-				AddChild( new InteractionButton( "Kill", () => true, () => Log.Info( "click kill" ) ) );
+				AddImposterButtons();
 				return;
 			}
 
-			// Not imposter.
+			AddPlayerButtons();
+		}
+
+		private void AddImposterButtons()
+		{
+			AddChild( new InteractionButton( "Kill", () => true, () => Log.Info( "click kill" ) ) );
+		}
+
+		private void AddPlayerButtons()
+		{
 			AddChild( new InteractionButton( "Report", () => true, () => Log.Info( "click report" ) ) );
 		}
 	}
