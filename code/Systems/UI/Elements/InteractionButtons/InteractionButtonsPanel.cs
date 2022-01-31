@@ -2,6 +2,7 @@
 using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
+using System.Linq;
 
 namespace ImposterSyndrome.Systems.UI
 {
@@ -18,21 +19,19 @@ namespace ImposterSyndrome.Systems.UI
 
 		public void RebuildFromImposterStatus( bool isImposter )
 		{
-			DeleteChildren();
+			DeleteChildren( true );
 
-			var useButton = Add.Button( "Use" );
-			useButton.BindClass( "enabled", () => (Local.Pawn as ISBasePlayer).LocateUsable() is not null );
-			useButton.AddEventListener( "onclick", _ => Log.Info( "Use" ) );
+			AddChild( new InteractionButton( "Use", () => (Local.Pawn as ISBasePlayer).LocateUsable() != null, () => Log.Info( "click" ) ) );
 
 			// Imposter
 			if ( isImposter )
 			{
-				// Add.Button( "Imposter" );
+				AddChild( new InteractionButton( "Kill", () => true, () => Log.Info( "click kill" ) ) );
 				return;
 			}
 
 			// Not imposter.
-			// Add.Button( "Not imposter" );
+			AddChild( new InteractionButton( "Report", () => true, () => Log.Info( "click report" ) ) );
 		}
 	}
 }
