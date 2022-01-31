@@ -9,7 +9,7 @@ namespace ImposterSyndrome.Systems.Players
 		{
 			var ents = Physics.GetEntitiesInSphere( Position, GameConfig.InteractionRadius ).OfType<IUse>().ToList();
 
-			return ents.FirstOrDefault() as Entity;
+			return ents.FirstOrDefault( ent => ent.IsUsable( this ) ) as Entity;
 		}
 	}
 }
