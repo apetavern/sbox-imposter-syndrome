@@ -17,7 +17,7 @@ namespace ImposterSyndrome.Systems.Players
 
 		public void OnIsImposterChanged()
 		{
-			PlayerHudEntity.RebuildFromImposterStatus( IsImposter );
+			PlayerHudEntity.Rebuild();
 		}
 	}
 }
