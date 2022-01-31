@@ -5,8 +5,10 @@ task {
     font-family: $font;
     color: lightcoral;
     text-shadow: 2px 2px 0px rgba( black, 0.75 );
+    transition: all 0.5s ease;
 
     &.completed {
+        left: 20px;
         color: lightgreen;
     }
 }
