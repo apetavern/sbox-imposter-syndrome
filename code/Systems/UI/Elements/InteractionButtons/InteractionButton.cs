@@ -1,15 +1,18 @@
 ﻿using Sandbox.UI;
+using Sandbox.UI.Construct;
 using System;
 
 namespace ImposterSyndrome.Systems.UI
 {
-	public class InteractionButton : Button
+	public class InteractionButton : Panel
 	{
-		public InteractionButton( string buttonText, System.Func<bool> enabledFunc, Action onClick )
+		public InteractionButton( string buttonText, string icon, Func<bool> enabledFunc, Action onClick )
 		{
 			StyleSheet.Load( "/Systems/UI/Elements/InteractionButtons/InteractionButton.scss" );
 
-			Text = buttonText;
+			Add.Label( buttonText );
+			Add.Label( icon, "icon" );
+
 			AddEventListener( "onclick", onClick );
 			BindClass( "enabled", enabledFunc );
 		}

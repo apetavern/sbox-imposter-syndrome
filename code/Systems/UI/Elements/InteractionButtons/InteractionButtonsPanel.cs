@@ -15,7 +15,7 @@ namespace ImposterSyndrome.Systems.UI
 			Instance = this;
 			StyleSheet.Load( "/Systems/UI/Elements/InteractionButtons/InteractionButtonsPanel.scss" );
 
-			AddChild( new InteractionButton( "Use", () => (Local.Pawn as ISBasePlayer).LocateUsable() != null, () => Log.Info( "click" ) ) );
+			AddChild( new InteractionButton( "Use", "waving_hand", () => (Local.Pawn as ISBasePlayer).LocateUsable() != null, () => Log.Info( "click" ) ) );
 
 			if ( Local.Pawn is not ISPlayer player )
 				return;
@@ -31,12 +31,12 @@ namespace ImposterSyndrome.Systems.UI
 
 		private void AddImposterButtons()
 		{
-			AddChild( new InteractionButton( "Kill", () => false, () => Log.Info( "click kill" ) ) );
+			AddChild( new InteractionButton( "Kill", "bloodtype", () => false, () => Log.Info( "click kill" ) ) );
 		}
 
 		private void AddPlayerButtons()
 		{
-			AddChild( new InteractionButton( "Report", () => false, () => Log.Info( "click report" ) ) );
+			AddChild( new InteractionButton( "Report", "report", () => false, () => Log.Info( "click report" ) ) );
 		}
 	}
 }
