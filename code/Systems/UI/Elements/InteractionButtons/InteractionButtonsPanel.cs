@@ -31,12 +31,12 @@ namespace ImposterSyndrome.Systems.UI
 
 		private void AddImposterButtons()
 		{
-			AddChild( new InteractionButton( "Kill", () => true, () => Log.Info( "click kill" ) ) );
+			AddChild( new InteractionButton( "Kill", () => false, () => Log.Info( "click kill" ) ) );
 		}
 
 		private void AddPlayerButtons()
 		{
-			AddChild( new InteractionButton( "Report", () => true, () => Log.Info( "click report" ) ) );
+			AddChild( new InteractionButton( "Report", () => false, () => Log.Info( "click report" ) ) );
 		}
 	}
 }
