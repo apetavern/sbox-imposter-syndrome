@@ -22,7 +22,6 @@ namespace ImposterSyndrome.Systems.Tasks
 
 		public void MarkAsCompleted()
 		{
-			Log.Info( "task says completed m8" );
 			Status = TaskStatus.Complete;
 		}
 
