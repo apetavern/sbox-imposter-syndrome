@@ -9,19 +9,22 @@ namespace ImposterSyndrome.Systems.UI
 
 		public PlayerHudEntity()
 		{
+			Instance = this;
+
 			if ( !IsClient )
 				return;
 
-			Instance = this;
 			RootPanel.SetTemplate( "/Systems/UI/PlayerHudEntity.html" );
 
 			_ = new Nametags();
 		}
 
-		public static void RebuildFromImposterStatus( bool isImposter )
+		public static void Rebuild()
 		{
-			InteractionButtonsPanel.Instance?.RebuildFromImposterStatus( isImposter );
-			TaskListPanel.Instance?.RebuildFromImposterStatus( isImposter );
+			Instance?.Delete();
+
+			if ( Host.IsServer )
+				Instance = new();
 		}
 	}
 }
