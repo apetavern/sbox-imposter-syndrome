@@ -6,7 +6,6 @@ using System.Linq;
 
 namespace ImposterSyndrome.Systems.UI
 {
-	[UseTemplate]
 	public class InteractionButtonsPanel : Panel
 	{
 		public static InteractionButtonsPanel Instance { get; set; }
