@@ -19,6 +19,12 @@ namespace ImposterSyndrome.Systems.UI
 		}
 
 		[ServerCmd]
+		public static void Destroy()
+		{
+			Instance?.Delete();
+		}
+
+		[ServerCmd]
 		public static void Rebuild()
 		{
 			Instance?.Delete();
