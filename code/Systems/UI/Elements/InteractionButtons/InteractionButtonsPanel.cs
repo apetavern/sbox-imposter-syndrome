@@ -1,4 +1,5 @@
-﻿using ImposterSyndrome.Systems.Players;
+﻿using ImposterSyndrome.Systems.Entities;
+using ImposterSyndrome.Systems.Players;
 using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
@@ -15,10 +16,10 @@ namespace ImposterSyndrome.Systems.UI
 			Instance = this;
 			StyleSheet.Load( "/Systems/UI/Elements/InteractionButtons/InteractionButtonsPanel.scss" );
 
-			AddChild( new InteractionButton( "Use", "waving_hand", () => (Local.Pawn as ISBasePlayer).LocateUsable() != null, () => Log.Info( "click" ) ) );
-
 			if ( Local.Pawn is not ISPlayer player )
 				return;
+
+			AddChild( new InteractionButton( "Use", "waving_hand", () => (Local.Pawn as ISPlayer).LocateUsable() != null, () => UseClick( player ) ) );
 
 			if ( player.IsImposter )
 			{
@@ -37,6 +38,11 @@ namespace ImposterSyndrome.Systems.UI
 		private void AddPlayerButtons()
 		{
 			AddChild( new InteractionButton( "Report", "report", () => false, () => Log.Info( "click report" ) ) );
+		}
+
+		private void UseClick( ISPlayer player )
+		{
+			ISPlayer.UseNearestEntity();
 		}
 	}
 }
