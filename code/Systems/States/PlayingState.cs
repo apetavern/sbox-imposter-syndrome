@@ -28,10 +28,6 @@ namespace ImposterSyndrome.Systems.States
 
 			AssignImposters();
 			AssignTasks();
-
-			// Update HUD on clients
-			foreach ( var player in Game.Instance.Players )
-				PlayerHudEntity.RebuildFromImposterStatus( To.Single( player ), player.IsImposter );
 		}
 
 		private void AssignTasks()
