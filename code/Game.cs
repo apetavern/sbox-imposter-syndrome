@@ -11,7 +11,8 @@ namespace ImposterSyndrome
 
 		public Game()
 		{
-			_ = new PlayerHudEntity();
+			if ( !Host.IsServer )
+				return;
 
 			UpdateState( new WaitingState() );
 		}
