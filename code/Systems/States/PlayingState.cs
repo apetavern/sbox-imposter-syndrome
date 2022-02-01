@@ -3,7 +3,6 @@ using Sandbox;
 using ImposterSyndrome.Systems.Players;
 using System.Collections.Generic;
 using System;
-using ImposterSyndrome.Systems.UI;
 using ImposterSyndrome.Systems.Tasks;
 
 namespace ImposterSyndrome.Systems.States
