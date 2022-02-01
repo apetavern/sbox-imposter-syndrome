@@ -42,9 +42,6 @@ namespace ImposterSyndrome.Systems.Players
 			input.ViewAngles.yaw = orbitAngles.yaw;
 			input.ViewAngles.pitch = 10f;
 
-			input.Clear();
-			input.StopProcessing = true;
-
 			base.BuildInput( input );
 		}
 	}
