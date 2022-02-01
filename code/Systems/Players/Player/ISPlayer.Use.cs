@@ -1,26 +1,27 @@
 ﻿using ImposterSyndrome.Systems.Entities;
 using Sandbox;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ImposterSyndrome.Systems.Players
 {
 	public partial class ISPlayer
 	{
-		public IEntityUse LocateUsable()
+		public IEntityUse GetNearestUsable()
 		{
 			var ents = Physics.GetEntitiesInSphere( Position, GameConfig.InteractionRadius ).OfType<IEntityUse>().ToList();
 
 			return ents.FirstOrDefault( ent => ent.IsUsable( this ) );
 		}
 
-		public IEntityUse LocateUsable<T>()
+		public IEntityUse GetNearestUsable<T>() where T : IEntityUse
 		{
-			if ( typeof( T ) is not IEntityUse )
-				return null;
+			var ent = Physics.GetEntitiesInSphere( Position, GameConfig.InteractionRadius )
+				.OfType<T>()
+				.Where( ent => ent.IsUsable( this ) )
+				.FirstOrDefault( ent => (ent as Entity).Owner != Owner );
 
-			var ents = Physics.GetEntitiesInSphere( Position, GameConfig.InteractionRadius ).OfType<T>().ToList();
-
-			return ents.Cast<IEntityUse>().FirstOrDefault( ent => ent.IsUsable( this ) );
+			return ent;
 		}
 
 		[ServerCmd]
@@ -32,7 +33,7 @@ namespace ImposterSyndrome.Systems.Players
 			if ( ConsoleSystem.Caller.Pawn is not ISPlayer player )
 				return;
 
-			var usingEnt = player.LocateUsable();
+			var usingEnt = player.GetNearestUsable();
 			usingEnt?.OnUse( player );
 		}
 	}
