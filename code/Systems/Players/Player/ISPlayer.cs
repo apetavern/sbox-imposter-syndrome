@@ -38,11 +38,6 @@ namespace ImposterSyndrome.Systems.Players
 			controller?.Simulate( cl, this, GetActiveAnimator() );
 		}
 
-		public override void Respawn()
-		{
-			base.Respawn();
-		}
-
 		public bool IsUsable( ISPlayer user, UseType useType )
 		{
 			// Imposter killing
@@ -58,7 +53,15 @@ namespace ImposterSyndrome.Systems.Players
 
 		public bool OnUse( ISPlayer user, UseType useType )
 		{
-			Log.Info( $"{user} wants to do {useType} on {this}" );
+			switch ( useType )
+			{
+				case UseType.Kill:
+					OnKilled();
+					break;
+				case UseType.Report:
+					Log.Info( "DEAD BODY REPORTED" );
+					break;
+			}
 
 			return false;
 		}
