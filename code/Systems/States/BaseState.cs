@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using ImposterSyndrome.Systems.UI;
+using Sandbox;
 
 namespace ImposterSyndrome.Systems.States
 {
@@ -10,14 +11,10 @@ namespace ImposterSyndrome.Systems.States
 
 		public virtual void OnStateStarted()
 		{
-			Log.Info( $"🏝️ Round {StateName} started." );
 			StateEndTime = Time.Now + StateDuration;
 		}
 
-		public virtual void OnStateEnded()
-		{
-			Log.Info( $"🏝️ Round {StateName} ended." );
-		}
+		public virtual void OnStateEnded() { }
 
 		public virtual void OnSecond()
 		{
@@ -48,6 +45,16 @@ namespace ImposterSyndrome.Systems.States
 					ImposterSyndrome.UpdateState( new WaitingState() );
 					break;
 				case "playing":
+					// Meet min player requirement.
+					if ( Client.All.Count < GameConfig.MinimumPlayers )
+					{
+						var difference = GameConfig.MinimumPlayers - Client.All.Count;
+
+						for ( int i = 0; i < difference; i++ )
+						{
+							new Bot();
+						}
+					}
 					ImposterSyndrome.UpdateState( new PlayingState() );
 					break;
 				case "end":
