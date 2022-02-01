@@ -31,8 +31,6 @@ namespace ImposterSyndrome.Systems.Players
 					cl.Pawn = newPawn;
 				}
 
-				base.Simulate( cl );
-
 				return;
 			}
 
