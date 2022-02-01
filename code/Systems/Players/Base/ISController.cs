@@ -4,8 +4,6 @@ namespace ImposterSyndrome.Systems.Players
 {
 	public partial class ISController : BasePlayerController
 	{
-		[Net] public float SprintSpeed { get; set; } = 320.0f;
-		[Net] public float WalkSpeed { get; set; } = 150.0f;
 		[Net] public float DefaultSpeed { get; set; } = 190.0f;
 		[Net] public float Acceleration { get; set; } = 10.0f;
 		[Net] public float AirAcceleration { get; set; } = 50.0f;
@@ -18,22 +16,18 @@ namespace ImposterSyndrome.Systems.Players
 		[Net] public float Bounce { get; set; } = 0.0f;
 		[Net] public float MoveFriction { get; set; } = 1.0f;
 		[Net] public float StepSize { get; set; } = 18.0f;
-		[Net] public float MaxNonJumpVelocity { get; set; } = 140.0f;
-		[Net] public float BodyGirth { get; set; } = 32.0f;
-		[Net] public float BodyHeight { get; set; } = 72.0f;
-		[Net] public float EyeHeight { get; set; } = 64.0f;
+		[Net] public float BodyGirth { get; set; } = 16.0f;
+		[Net] public float BodyHeight { get; set; } = 30.0f;
+		[Net] public float EyeHeight { get; set; } = 24.0f;
 		[Net] public float Gravity { get; set; } = 800.0f;
 		[Net] public float AirControl { get; set; } = 30.0f;
 		public bool Swimming { get; set; } = false;
-		[Net] public bool AutoJump { get; set; } = false;
 
-		public Duck Duck;
 		public Unstuck Unstuck;
 
 
 		public ISController()
 		{
-			Duck = new Duck( this );
 			Unstuck = new Unstuck( this );
 		}
 
@@ -48,11 +42,6 @@ namespace ImposterSyndrome.Systems.Players
 
 			return new BBox( mins, maxs );
 		}
-
-
-		// Duck body height 32
-		// Eye Height 64
-		// Duck Eye Height 28
 
 		protected Vector3 mins;
 		protected Vector3 maxs;
@@ -75,8 +64,6 @@ namespace ImposterSyndrome.Systems.Players
 
 			var mins = new Vector3( -girth, -girth, 0 ) * Pawn.Scale;
 			var maxs = new Vector3( +girth, +girth, BodyHeight ) * Pawn.Scale;
-
-			Duck.UpdateBBox( ref mins, ref maxs, Pawn.Scale );
 
 			SetBBox( mins, maxs );
 		}
@@ -101,27 +88,8 @@ namespace ImposterSyndrome.Systems.Players
 
 			RestoreGroundPos();
 
-			//Velocity += BaseVelocity * ( 1 + Time.Delta * 0.5f );
-			//BaseVelocity = Vector3.Zero;
-
-			//Rot = Rotation.LookAt( Input.Rotation.Forward.WithZ( 0 ), Vector3.Up );
-
 			if ( Unstuck.TestAndFix() )
 				return;
-
-			// Check Stuck
-			// Unstuck - or return if stuck
-
-			// Set Ground Entity to null if  falling faster then 250
-
-			// store water level to compare later
-
-			// if not on ground, store fall velocity
-
-			// player->UpdateStepSound( player->m_pSurfaceData, mv->GetAbsOrigin(), mv->m_vecVelocity )
-
-
-			// RunLadderMode
 
 			CheckLadder();
 			Swimming = Pawn.WaterLevel.Fraction > 0.6f;
@@ -137,35 +105,12 @@ namespace ImposterSyndrome.Systems.Players
 				BaseVelocity = BaseVelocity.WithZ( 0 );
 			}
 
-
-			/*
-             if (player->m_flWaterJumpTime)
-	            {
-		            WaterJump();
-		            TryPlayerMove();
-		            // See if we are still in water?
-		            CheckWater();
-		            return;
-	            }
-            */
-
-			// if ( underwater ) do underwater movement
-
-			if ( AutoJump ? Input.Down( InputButton.Jump ) : Input.Pressed( InputButton.Jump ) )
-			{
-				CheckJumpButton();
-			}
-
-			// Fricion is handled before we add in any base velocity. That way, if we are on a conveyor,
+			// Friction is handled before we add in any base velocity. That way, if we are on a conveyor,
 			//  we don't slow when standing still, relative to the conveyor.
 			bool bStartOnGround = GroundEntity != null;
-			//bool bDropSound = false;
 			if ( bStartOnGround )
 			{
-				//if ( Velocity.z < FallSoundZ ) bDropSound = true;
-
 				Velocity = Velocity.WithZ( 0 );
-				//player->m_Local.m_flFallVelocity = 0.0f;
 
 				if ( GroundEntity != null )
 				{
@@ -187,8 +132,6 @@ namespace ImposterSyndrome.Systems.Players
 
 			WishVelocity = WishVelocity.Normal * inSpeed;
 			WishVelocity *= GetWishSpeed();
-
-			Duck.PreTick();
 
 			bool bStayOnGround = false;
 			if ( Swimming )
@@ -251,12 +194,6 @@ namespace ImposterSyndrome.Systems.Players
 
 		public virtual float GetWishSpeed()
 		{
-			var ws = Duck.GetWishSpeed();
-			if ( ws >= 0 ) return ws;
-
-			if ( Input.Down( InputButton.Run ) ) return SprintSpeed;
-			if ( Input.Down( InputButton.Walk ) ) return WalkSpeed;
-
 			return DefaultSpeed;
 		}
 
@@ -271,14 +208,6 @@ namespace ImposterSyndrome.Systems.Players
 			Velocity = Velocity.WithZ( 0 );
 			Accelerate( wishdir, wishspeed, 0, Acceleration );
 			Velocity = Velocity.WithZ( 0 );
-
-			//   Player.SetAnimParam( "forward", Input.Forward );
-			//   Player.SetAnimParam( "sideward", Input.Right );
-			//   Player.SetAnimParam( "wishspeed", wishspeed );
-			//    Player.SetAnimParam( "walkspeed_scale", 2.0f / 190.0f );
-			//   Player.SetAnimParam( "runspeed_scale", 2.0f / 320.0f );
-
-			//  DebugOverlay.Text( 0, Pos + Vector3.Up * 100, $"forward: {Input.Forward}\nsideward: {Input.Right}" );
 
 			// Add in any base velocity to the current velocity.
 			Velocity += BaseVelocity;
@@ -377,13 +306,6 @@ namespace ImposterSyndrome.Systems.Players
 		/// </summary>
 		public virtual void ApplyFriction( float frictionAmount = 1.0f )
 		{
-			// If we are in water jump cycle, don't apply friction
-			//if ( player->m_flWaterJumpTime )
-			//   return;
-
-			// Not on ground - no friction
-
-
 			// Calculate speed
 			var speed = Velocity.Length;
 			if ( speed < 0.1f ) return;
@@ -406,90 +328,6 @@ namespace ImposterSyndrome.Systems.Players
 			}
 
 			// mv->m_outWishVel -= (1.f-newspeed) * mv->m_vecVelocity;
-		}
-
-		public virtual void CheckJumpButton()
-		{
-			//if ( !player->CanJump() )
-			//    return false;
-
-
-			/*
-            if ( player->m_flWaterJumpTime )
-            {
-                player->m_flWaterJumpTime -= gpGlobals->frametime();
-                if ( player->m_flWaterJumpTime < 0 )
-                    player->m_flWaterJumpTime = 0;
-
-                return false;
-            }*/
-
-
-
-			// If we are in the water most of the way...
-			if ( Swimming )
-			{
-				// swimming, not jumping
-				ClearGroundEntity();
-
-				Velocity = Velocity.WithZ( 100 );
-
-				// play swimming sound
-				//  if ( player->m_flSwimSoundTime <= 0 )
-				{
-					// Don't play sound again for 1 second
-					//   player->m_flSwimSoundTime = 1000;
-					//   PlaySwimSound();
-				}
-
-				return;
-			}
-
-			if ( GroundEntity == null )
-				return;
-
-			/*
-            if ( player->m_Local.m_bDucking && (player->GetFlags() & FL_DUCKING) )
-                return false;
-            */
-
-			/*
-            // Still updating the eye position.
-            if ( player->m_Local.m_nDuckJumpTimeMsecs > 0u )
-                return false;
-            */
-
-			ClearGroundEntity();
-
-			// player->PlayStepSound( (Vector &)mv->GetAbsOrigin(), player->m_pSurfaceData, 1.0, true );
-
-			// MoveHelper()->PlayerSetAnimation( PLAYER_JUMP );
-
-			float flGroundFactor = 1.0f;
-			//if ( player->m_pSurfaceData )
-			{
-				//   flGroundFactor = g_pPhysicsQuery->GetGameSurfaceproperties( player->m_pSurfaceData )->m_flJumpFactor;
-			}
-
-			float flMul = 268.3281572999747f * 1.2f;
-
-			float startz = Velocity.z;
-
-			if ( Duck.IsActive )
-				flMul *= 0.8f;
-
-			Velocity = Velocity.WithZ( startz + flMul * flGroundFactor );
-
-			Velocity -= new Vector3( 0, 0, Gravity * 0.5f ) * Time.Delta;
-
-			// mv->m_outJumpVel.z += mv->m_vecVelocity[2] - startz;
-			// mv->m_outStepHeight += 0.15f;
-
-			// don't jump again until released
-			//mv->m_nOldButtons |= IN_JUMP;
-
-			AddEvent( "jump" );
-
 		}
 
 		public virtual void AirMove()
@@ -539,7 +377,6 @@ namespace ImposterSyndrome.Systems.Players
 					IsTouchingLadder = false;
 
 					return;
-
 				}
 				else if ( GroundEntity != null && LadderNormal.Dot( wishvel ) > 0 )
 				{
@@ -597,9 +434,6 @@ namespace ImposterSyndrome.Systems.Players
 			//
 			//  Shooting up really fast.  Definitely not on ground trimed until ladder shit
 			//
-			bool bMovingUpRapidly = Velocity.z > MaxNonJumpVelocity;
-			bool bMovingUp = Velocity.z > 0;
-
 			bool bMoveToEndPos = false;
 
 			if ( GroundEntity != null ) // and not underwater
@@ -613,7 +447,7 @@ namespace ImposterSyndrome.Systems.Players
 				point.z -= StepSize;
 			}
 
-			if ( bMovingUpRapidly || Swimming ) // or ladder and moving up
+			if ( Swimming ) // or ladder and moving up
 			{
 				ClearGroundEntity();
 				return;
