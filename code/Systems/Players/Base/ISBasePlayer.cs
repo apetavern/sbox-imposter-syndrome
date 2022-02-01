@@ -10,7 +10,7 @@ namespace ImposterSyndrome.Systems.Players
 		{
 			SetModel( "models/playermodel/terrysus.vmdl" );
 
-			Controller = new WalkController();
+			Controller = new ISController();
 			Animator = new ISAnimator();
 			Camera = new ISCamera();
 
