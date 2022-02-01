@@ -23,7 +23,7 @@ namespace ImposterSyndrome.Systems.States
 				var newPawn = new ISPlayer();
 				player.UpdatePawn( newPawn );
 
-				Game.Instance.Players.Add( newPawn );
+				ImposterSyndrome.Instance.Players.Add( newPawn );
 			}
 
 			AssignImposters();
@@ -32,7 +32,7 @@ namespace ImposterSyndrome.Systems.States
 
 		private void AssignTasks()
 		{
-			foreach ( var player in Game.Instance.Players )
+			foreach ( var player in ImposterSyndrome.Instance.Players )
 			{
 				// Temporarily add all tasks. We can add a random selection of tasks later instead.
 				foreach ( var task in Library.GetAll<BaseTask>().Where( x => !x.IsAbstract ) )
@@ -42,11 +42,11 @@ namespace ImposterSyndrome.Systems.States
 
 		private void AssignImposters()
 		{
-			var imposterCount = MathX.CeilToInt( Game.Instance.Players.Count * 0.25f );
+			var imposterCount = MathX.CeilToInt( ImposterSyndrome.Instance.Players.Count * 0.25f );
 
 			for ( int i = 0; i < imposterCount; i++ )
 			{
-				var player = Game.Instance.Players.Where( player => !player.IsImposter ).OrderBy( _ => Guid.NewGuid() ).First();
+				var player = ImposterSyndrome.Instance.Players.Where( player => !player.IsImposter ).OrderBy( _ => Guid.NewGuid() ).First();
 				player.IsImposter = true;
 
 				Imposters.Add( player );
@@ -59,7 +59,7 @@ namespace ImposterSyndrome.Systems.States
 		{
 			base.OnStateEnded();
 
-			Game.UpdateState( new GameEndState() );
+			ImposterSyndrome.UpdateState( new GameEndState() );
 		}
 	}
 }

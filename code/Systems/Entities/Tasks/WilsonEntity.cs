@@ -19,14 +19,17 @@ namespace ImposterSyndrome.Systems.Entities
 			SetupPhysicsFromModel( PhysicsMotionType.Static );
 		}
 
-		public bool IsUsable( ISPlayer user )
+		public bool IsUsable( ISPlayer user, UseType useType )
 		{
+			if ( useType != UseType.Use )
+				return false;
+
 			var task = user.AssignedTasks.OfType<FindWilson>().FirstOrDefault( task => task.Status == TaskStatus.Incomplete );
 
 			return task != null;
 		}
 
-		public bool OnUse( ISPlayer user )
+		public bool OnUse( ISPlayer user, UseType useType )
 		{
 			var task = user.AssignedTasks.OfType<FindWilson>().FirstOrDefault( task => task.Status == TaskStatus.Incomplete );
 			task.MarkAsCompleted();

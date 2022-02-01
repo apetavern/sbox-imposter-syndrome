@@ -16,7 +16,7 @@ namespace ImposterSyndrome.Systems.States
 		{
 			base.OnStateStarted();
 
-			Game.Instance?.Players?.Clear();
+			ImposterSyndrome.Instance?.Players?.Clear();
 
 			foreach ( var player in Client.All.Select( cl => cl.Pawn as ISBasePlayer ) )
 				player.UpdatePawn( new ISSpectator() );
@@ -26,7 +26,7 @@ namespace ImposterSyndrome.Systems.States
 		{
 			base.OnStateEnded();
 
-			Game.UpdateState( new PlayingState() );
+			ImposterSyndrome.UpdateState( new PlayingState() );
 		}
 
 		public override void OnSecond()

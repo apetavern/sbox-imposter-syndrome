@@ -1,8 +1,10 @@
-﻿using Sandbox.UI;
+﻿using Sandbox;
+using Sandbox.UI;
 
 namespace ImposterSyndrome.Systems.UI
 {
-	public partial class PlayerHudEntity : Sandbox.HudEntity<RootPanel>
+	[Library]
+	public partial class PlayerHudEntity : HudEntity<RootPanel>
 	{
 		public static PlayerHudEntity Instance { get; set; }
 
@@ -13,9 +15,15 @@ namespace ImposterSyndrome.Systems.UI
 			if ( !IsClient )
 				return;
 
-			RootPanel.SetTemplate( "/Systems/UI/PlayerHudEntity.html" );
+			RootPanel.StyleSheet.Load( "/Systems/UI/PlayerHudEntity.scss" );
 
-			_ = new Nametags();
+			RootPanel.AddChild<DevMenu>();
+			RootPanel.AddChild<ChatBox>();
+			RootPanel.AddChild<GameInfoPanel>();
+			RootPanel.AddChild<TasksPanel>();
+			RootPanel.AddChild<InteractionButtonsPanel>();
+
+			//_ = new Nametags();
 		}
 
 		[ServerCmd]

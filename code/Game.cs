@@ -5,14 +5,16 @@ using ImposterSyndrome.Systems.UI;
 
 namespace ImposterSyndrome
 {
-	public partial class Game : Sandbox.Game
+	public partial class ImposterSyndrome : Game
 	{
-		public static Game Instance => Current as Game;
+		public static ImposterSyndrome Instance => Current as ImposterSyndrome;
 
-		public Game()
+		public ImposterSyndrome()
 		{
 			if ( !Host.IsServer )
 				return;
+
+			_ = new PlayerHudEntity();
 
 			UpdateState( new WaitingState() );
 		}

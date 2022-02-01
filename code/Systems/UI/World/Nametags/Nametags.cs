@@ -17,7 +17,7 @@ namespace ImposterSyndrome.Systems.UI
 		{
 			if ( Host.IsClient )
 			{
-				foreach ( var player in Game.Instance.Players )
+				foreach ( var player in ImposterSyndrome.Instance.Players )
 				{
 					if ( !Tags.ContainsKey( player ) )
 					{

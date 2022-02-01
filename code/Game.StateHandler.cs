@@ -5,7 +5,7 @@ using ImposterSyndrome.Systems.Players;
 
 namespace ImposterSyndrome
 {
-	public partial class Game : Sandbox.Game
+	public partial class ImposterSyndrome
 	{
 		[Net] public List<ISPlayer> Players { get; set; }
 		[Net] public BaseState CurrentState { get; set; }
@@ -23,7 +23,7 @@ namespace ImposterSyndrome
 		[ServerCmd( "is_nextstate" )]
 		public static void EndCurrentState()
 		{
-			Game.Instance?.CurrentState?.OnStateEnded();
+			ImposterSyndrome.Instance?.CurrentState?.OnStateEnded();
 		}
 
 		[Event.Tick]

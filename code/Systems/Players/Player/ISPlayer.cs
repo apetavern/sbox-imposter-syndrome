@@ -1,7 +1,6 @@
 ﻿using ImposterSyndrome.Systems.Entities;
 using ImposterSyndrome.Systems.UI;
 using Sandbox;
-using Sandbox.Internal;
 
 namespace ImposterSyndrome.Systems.Players
 {
@@ -32,6 +31,8 @@ namespace ImposterSyndrome.Systems.Players
 					cl.Pawn = newPawn;
 				}
 
+				base.Simulate( cl );
+
 				return;
 			}
 
@@ -44,22 +45,22 @@ namespace ImposterSyndrome.Systems.Players
 			base.Respawn();
 		}
 
-		public bool IsUsable( ISPlayer user )
+		public bool IsUsable( ISPlayer user, UseType useType )
 		{
-			if ( user.IsImposter == true )
-			{
-				if ( LifeState == LifeState.Alive )
-					return true;
+			// Imposter killing
+			if ( useType == UseType.Kill && user.IsImposter && LifeState == LifeState.Alive )
+				return true;
 
+			if ( useType != UseType.Report )
 				return false;
-			}
 
+			// Player reporting
 			return LifeState == LifeState.Dead;
 		}
 
-		public bool OnUse( ISPlayer user )
+		public bool OnUse( ISPlayer user, UseType useType )
 		{
-			Log.Info( $"Report death of {user}" );
+			Log.Info( $"{user} wants to do {useType} on {this}" );
 
 			return false;
 		}

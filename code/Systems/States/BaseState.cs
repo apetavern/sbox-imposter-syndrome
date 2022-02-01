@@ -24,10 +24,10 @@ namespace ImposterSyndrome.Systems.States
 			if ( !Host.IsServer )
 				return;
 
-			if ( Game.Instance.CurrentState is PlayingState && !CheckMinimumPlayers() )
+			if ( ImposterSyndrome.Instance.CurrentState is PlayingState && !CheckMinimumPlayers() )
 			{
 				OnStateEnded();
-				Game.UpdateState( new GameEndState().SetReason( GameEndReason.NotEnoughPlayers ) );
+				ImposterSyndrome.UpdateState( new GameEndState().SetReason( GameEndReason.NotEnoughPlayers ) );
 			}
 
 			if ( Time.Now >= StateEndTime )
@@ -36,7 +36,7 @@ namespace ImposterSyndrome.Systems.States
 
 		protected bool CheckMinimumPlayers()
 		{
-			return Game.Instance.Players.Count >= GameConfig.MinimumPlayers;
+			return ImposterSyndrome.Instance.Players.Count >= GameConfig.MinimumPlayers;
 		}
 	}
 }

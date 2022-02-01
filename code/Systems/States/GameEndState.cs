@@ -35,7 +35,7 @@ namespace ImposterSyndrome.Systems.States
 		{
 			base.OnStateEnded();
 
-			Game.UpdateState( new WaitingState() );
+			ImposterSyndrome.UpdateState( new WaitingState() );
 		}
 	}
 }

@@ -17,10 +17,10 @@ namespace ImposterSyndrome.Systems.UI
 		{
 			base.Tick();
 
-			if ( Game.Instance.CurrentState is null )
+			if ( ImposterSyndrome.Instance.CurrentState is null )
 				return;
 
-			StateTimerLabel.Text = $"{MathX.Clamp( (int)(Game.Instance.CurrentState.StateEndTime - Time.Now), 0, 500 ).ToString()}s";
+			StateTimerLabel.Text = $"{MathX.Clamp( (int)(ImposterSyndrome.Instance.CurrentState.StateEndTime - Time.Now), 0, 500 ).ToString()}s";
 		}
 	}
 }

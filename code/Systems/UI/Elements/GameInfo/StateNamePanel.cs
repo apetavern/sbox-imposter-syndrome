@@ -16,7 +16,7 @@ namespace ImposterSyndrome.Systems.UI
 		{
 			base.Tick();
 
-			StateNameLabel.Text = Game.Instance.CurrentState?.StateName;
+			StateNameLabel.Text = ImposterSyndrome.Instance.CurrentState?.StateName;
 		}
 	}
 }
