@@ -21,10 +21,8 @@ namespace ImposterSyndrome.Systems.Players
 		[Net] public float EyeHeight { get; set; } = 24.0f;
 		[Net] public float Gravity { get; set; } = 800.0f;
 		[Net] public float AirControl { get; set; } = 30.0f;
-		public bool Swimming { get; set; } = false;
 
 		public Unstuck Unstuck;
-
 
 		public ISController()
 		{
@@ -92,10 +90,9 @@ namespace ImposterSyndrome.Systems.Players
 				return;
 
 			CheckLadder();
-			Swimming = Pawn.WaterLevel.Fraction > 0.6f;
 
 			// Start Gravity
-			if ( !Swimming && !IsTouchingLadder )
+			if ( !IsTouchingLadder )
 			{
 				Velocity -= new Vector3( 0, 0, Gravity * 0.5f ) * Time.Delta;
 				Velocity += new Vector3( 0, 0, BaseVelocity.z ) * Time.Delta;
@@ -121,7 +118,7 @@ namespace ImposterSyndrome.Systems.Players
 			var inSpeed = WishVelocity.Length.Clamp( 0, 1 );
 			WishVelocity *= Input.Rotation.Angles().WithPitch( 0 ).ToRotation();
 
-			if ( !Swimming && !IsTouchingLadder )
+			if ( !IsTouchingLadder )
 			{
 				WishVelocity = WishVelocity.WithZ( 0 );
 			}
@@ -130,12 +127,7 @@ namespace ImposterSyndrome.Systems.Players
 			WishVelocity *= GetWishSpeed();
 
 			bool bStayOnGround = false;
-			if ( Swimming )
-			{
-				ApplyFriction( 1 );
-				WaterMove();
-			}
-			else if ( IsTouchingLadder )
+			if ( IsTouchingLadder )
 			{
 				LadderMove();
 			}
@@ -152,7 +144,7 @@ namespace ImposterSyndrome.Systems.Players
 			CategorizePosition( bStayOnGround );
 
 			// FinishGravity
-			if ( !Swimming && !IsTouchingLadder )
+			if ( !IsTouchingLadder )
 			{
 				Velocity -= new Vector3( 0, 0, Gravity * 0.5f ) * Time.Delta;
 			}
@@ -417,12 +409,6 @@ namespace ImposterSyndrome.Systems.Players
 			{
 				bMoveToEndPos = true;
 				point.z -= StepSize;
-			}
-
-			if ( Swimming ) // or ladder and moving up
-			{
-				ClearGroundEntity();
-				return;
 			}
 
 			var pm = TraceBBox( vBumpOrigin, point, 4.0f );
