@@ -11,12 +11,12 @@ namespace ImposterSyndrome.Systems.Players
 
 		public float GetTotalTaskProgress()
 		{
-			var totalAmount = AssignedTasks.Count();
+			float totalAmount = AssignedTasks.Count();
 
 			if ( totalAmount <= 0 )
-				return 0;
+				totalAmount = 1;
 
-			var completedAmount = AssignedTasks.Where( task => task.Status == TaskStatus.Complete ).Count();
+			float completedAmount = AssignedTasks.Where( task => task.Status == TaskStatus.Complete ).Count();
 
 			return (completedAmount / totalAmount) * 100;
 		}
