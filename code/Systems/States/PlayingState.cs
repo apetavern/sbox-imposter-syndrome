@@ -55,6 +55,17 @@ namespace ImposterSyndrome.Systems.States
 			}
 		}
 
+		public override void OnSecond()
+		{
+			base.OnSecond();
+
+			var players = ImposterSyndrome.Instance.Players;
+			var alivePlayers = players.Where( player => !player.IsImposter && player.LifeState == LifeState.Alive );
+
+			if ( alivePlayers.Count() == 1 )
+				OnStateEnded();
+		}
+
 		public override void OnStateEnded()
 		{
 			base.OnStateEnded();
