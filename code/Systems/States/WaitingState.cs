@@ -16,10 +16,10 @@ namespace ImposterSyndrome.Systems.States
 		{
 			base.OnStateStarted();
 
-			ImposterSyndrome.Instance?.Players?.Clear();
-
 			foreach ( var player in Client.All.Select( cl => cl.Pawn as ISBasePlayer ) )
 				player.UpdatePawn( new ISSpectator() );
+
+			DoPostGameCleanup();
 		}
 
 		public override void OnStateEnded()
@@ -48,6 +48,15 @@ namespace ImposterSyndrome.Systems.States
 
 			if ( Time.Now > StateEndTime )
 				OnStateEnded();
+		}
+
+		private void DoPostGameCleanup()
+		{
+			// Clear player list.
+			ImposterSyndrome.Instance?.Players?.Clear();
+
+			// Cleanup bodies.
+			Entity.All.OfType<ISPlayer>().ToList().ForEach( player => player.Delete() );
 		}
 	}
 }
