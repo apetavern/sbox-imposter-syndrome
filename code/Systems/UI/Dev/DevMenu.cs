@@ -43,15 +43,10 @@ namespace ImposterSyndrome.Systems.UI
 				ConsoleSystem.Run( "updatestate playing" );
 			} );
 
-			buttons1.Add.ButtonWithIcon( "Playing", "close", "button", () =>
+			buttons1.Add.ButtonWithIcon( "End Game", "close", "button", () =>
 			{
 				ConsoleSystem.Run( "updatestate end" );
 			} );
-		}
-
-		public override void Tick()
-		{
-			base.Tick();
 		}
 	}
 }
