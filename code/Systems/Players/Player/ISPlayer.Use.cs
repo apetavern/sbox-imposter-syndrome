@@ -32,8 +32,6 @@ namespace ImposterSyndrome.Systems.Players
 
 			var usingEnt = player.GetNearestUsable( entityUseType );
 
-			Log.Info( $"{player} wants to use {usingEnt} with use type {entityUseType}" );
-
 			usingEnt?.OnUse( player, entityUseType );
 		}
 	}
