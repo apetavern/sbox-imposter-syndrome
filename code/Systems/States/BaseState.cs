@@ -38,5 +38,22 @@ namespace ImposterSyndrome.Systems.States
 		{
 			return ImposterSyndrome.Instance.Players.Count >= GameConfig.MinimumPlayers;
 		}
+
+		[ServerCmd]
+		public static void UpdateState( string statename )
+		{
+			switch ( statename )
+			{
+				case "waiting":
+					ImposterSyndrome.UpdateState( new WaitingState() );
+					break;
+				case "playing":
+					ImposterSyndrome.UpdateState( new PlayingState() );
+					break;
+				case "end":
+					ImposterSyndrome.UpdateState( new GameEndState() );
+					break;
+			}
+		}
 	}
 }
