@@ -2,4 +2,9 @@
 
 rootpanel {
     pointer-events: all;
+
+    &.devcamera {
+        opacity: 0;
+        pointer-events: none;
+    }
 }
