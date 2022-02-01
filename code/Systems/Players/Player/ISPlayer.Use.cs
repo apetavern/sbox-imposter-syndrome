@@ -21,16 +21,6 @@ namespace ImposterSyndrome.Systems.Players
 			return ents.FirstOrDefault( ent => ent.IsUsable( this, useType ) );
 		}
 
-		/*public IEntityUse GetNearestUsable<T>( UseType useType ) where T : IEntityUse
-		{
-			var ent = Physics.GetEntitiesInSphere( Position, GameConfig.InteractionRadius )
-				.OfType<T>()
-				.Where( ent => ent.IsUsable( this, useType ) )
-				.FirstOrDefault( ent => (ent as Entity).Owner != Owner );
-
-			return ent;
-		}*/
-
 		[ServerCmd]
 		public static void UseNearestEntity( UseType entityUseType )
 		{
