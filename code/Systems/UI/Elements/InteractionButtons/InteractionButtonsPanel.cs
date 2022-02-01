@@ -30,18 +30,13 @@ namespace ImposterSyndrome.Systems.UI
 
 		private void AddImposterButtons( ISPlayer player )
 		{
-			AddChild( new InteractionButton( "Kill", "bloodtype", () => false, () => Log.Info( "click kill" ) ) );
+			AddChild( new InteractionButton( "Kill", "bloodtype", () => (Local.Pawn as ISPlayer).GetNearestUsable<ISPlayer>() != null, () => Log.Info( "bla" ) ) );
 		}
 
 		private void AddPlayerButtons( ISPlayer player )
 		{
-			AddChild( new InteractionButton( "Use", "waving_hand", () => (Local.Pawn as ISPlayer).LocateUsable() != null, () => UseClick( player ) ) );
-			AddChild( new InteractionButton( "Report", "report", () => false, () => Log.Info( "click report" ) ) );
-		}
-
-		private void UseClick( ISPlayer player )
-		{
-			ISPlayer.UseNearestEntity();
+			AddChild( new InteractionButton( "Use", "waving_hand", () => (Local.Pawn as ISPlayer).GetNearestUsable() != null, () => ISPlayer.UseNearestEntity() ) );
+			AddChild( new InteractionButton( "Report", "report", () => (Local.Pawn as ISPlayer).GetNearestUsable<ISPlayer>() != null, () => Log.Info( "click report" ) ) );
 		}
 	}
 }
