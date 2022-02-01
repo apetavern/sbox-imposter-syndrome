@@ -1,10 +1,8 @@
-﻿using ImposterSyndrome.Systems.Tasks;
-using Sandbox;
-using System.Collections.Generic;
+﻿using Sandbox;
 
 namespace ImposterSyndrome.Systems.Players
 {
-	public partial class ISBasePlayer : Sandbox.Player
+	public partial class ISBasePlayer : Player
 	{
 		public AnimEntity backpack;
 
