@@ -13,6 +13,16 @@ namespace ImposterSyndrome.Systems.Players
 			return ents.FirstOrDefault( ent => ent.IsUsable( this ) );
 		}
 
+		public IEntityUse LocateUsable<T>()
+		{
+			if ( typeof( T ) is not IEntityUse )
+				return null;
+
+			var ents = Physics.GetEntitiesInSphere( Position, GameConfig.InteractionRadius ).OfType<T>().ToList();
+
+			return ents.Cast<IEntityUse>().FirstOrDefault( ent => ent.IsUsable( this ) );
+		}
+
 		[ServerCmd]
 		public static void UseNearestEntity()
 		{
