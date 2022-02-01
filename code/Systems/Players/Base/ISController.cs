@@ -94,9 +94,7 @@ namespace ImposterSyndrome.Systems.Players
 			CheckLadder();
 			Swimming = Pawn.WaterLevel.Fraction > 0.6f;
 
-			//
 			// Start Gravity
-			//
 			if ( !Swimming && !IsTouchingLadder )
 			{
 				Velocity -= new Vector3( 0, 0, Gravity * 0.5f ) * Time.Delta;
@@ -118,9 +116,7 @@ namespace ImposterSyndrome.Systems.Players
 				}
 			}
 
-			//
 			// Work out wish velocity.. just take input, rotate it to view, clamp to -1, 1
-			//
 			WishVelocity = new Vector3( Input.Forward, Input.Left, 0 );
 			var inSpeed = WishVelocity.Length.Clamp( 0, 1 );
 			WishVelocity *= Input.Rotation.Angles().WithPitch( 0 ).ToRotation();
@@ -161,16 +157,10 @@ namespace ImposterSyndrome.Systems.Players
 				Velocity -= new Vector3( 0, 0, Gravity * 0.5f ) * Time.Delta;
 			}
 
-
 			if ( GroundEntity != null )
 			{
 				Velocity = Velocity.WithZ( 0 );
 			}
-
-			// CheckFalling(); // fall damage etc
-
-			// Land Sound
-			// Swim Sounds
 
 			SaveGroundPos();
 
@@ -236,7 +226,6 @@ namespace ImposterSyndrome.Systems.Players
 			}
 			finally
 			{
-
 				// Now pull the base velocity back out.   Base velocity is set if you are on a moving object, like a conveyor (or maybe another monster?)
 				Velocity -= BaseVelocity;
 			}
@@ -273,11 +262,6 @@ namespace ImposterSyndrome.Systems.Players
 		/// </summary>
 		public virtual void Accelerate( Vector3 wishdir, float wishspeed, float speedLimit, float acceleration )
 		{
-			// This gets overridden because some games (CSPort) want to allow dead (observer) players
-			// to be able to move around.
-			// if ( !CanAccelerate() )
-			//     return;
-
 			if ( speedLimit > 0 && wishspeed > speedLimit )
 				wishspeed = speedLimit;
 
@@ -326,8 +310,6 @@ namespace ImposterSyndrome.Systems.Players
 				newspeed /= speed;
 				Velocity *= newspeed;
 			}
-
-			// mv->m_outWishVel -= (1.f-newspeed) * mv->m_vecVelocity;
 		}
 
 		public virtual void AirMove()
@@ -416,24 +398,14 @@ namespace ImposterSyndrome.Systems.Players
 			Move();
 		}
 
-
 		public virtual void CategorizePosition( bool bStayOnGround )
 		{
 			SurfaceFriction = 1.0f;
 
-			// Doing this before we move may introduce a potential latency in water detection, but
-			// doing it after can get us stuck on the bottom in water if the amount we move up
-			// is less than the 1 pixel 'threshold' we're about to snap to.	Also, we'll call
-			// this several times per frame, so we really need to avoid sticking to the bottom of
-			// water on each call, and the converse case will correct itself if called twice.
-			//CheckWater();
-
 			var point = Position - Vector3.Up * 2;
 			var vBumpOrigin = Position;
 
-			//
 			//  Shooting up really fast.  Definitely not on ground trimed until ladder shit
-			//
 			bool bMoveToEndPos = false;
 
 			if ( GroundEntity != null ) // and not underwater
@@ -488,10 +460,10 @@ namespace ImposterSyndrome.Systems.Players
 			SurfaceFriction = tr.Surface.Friction * 1.25f;
 			if ( SurfaceFriction > 1 ) SurfaceFriction = 1;
 
-			//if ( tr.Entity == GroundEntity ) return;
-
 			Vector3 oldGroundVelocity = default;
-			if ( GroundEntity != null ) oldGroundVelocity = GroundEntity.Velocity;
+
+			if ( GroundEntity != null )
+				oldGroundVelocity = GroundEntity.Velocity;
 
 			bool wasOffGround = GroundEntity == null;
 
@@ -501,16 +473,6 @@ namespace ImposterSyndrome.Systems.Players
 			{
 				BaseVelocity = GroundEntity.Velocity;
 			}
-
-			/*
-              	m_vecGroundUp = pm.m_vHitNormal;
-	            player->m_surfaceProps = pm.m_pSurfaceProperties->GetNameHash();
-	            player->m_pSurfaceData = pm.m_pSurfaceProperties;
-	            const CPhysSurfaceProperties *pProp = pm.m_pSurfaceProperties;
-
-	            const CGameSurfaceProperties *pGameProps = g_pPhysicsQuery->GetGameSurfaceproperties( pProp );
-	            player->m_chTextureType = (int8)pGameProps->m_nLegacyGameMaterial;
-            */
 		}
 
 		/// <summary>
@@ -555,10 +517,6 @@ namespace ImposterSyndrome.Systems.Players
 			if ( trace.StartedSolid ) return;
 			if ( Vector3.GetAngle( Vector3.Up, trace.Normal ) > GroundAngle ) return;
 
-			// This is incredibly hacky. The real problem is that trace returning that strange value we can't network over.
-			// float flDelta = fabs( mv->GetAbsOrigin().z - trace.m_vEndPos.z );
-			// if ( flDelta > 0.5f * DIST_EPSILON )
-
 			Position = trace.EndPos;
 		}
 
@@ -566,18 +524,12 @@ namespace ImposterSyndrome.Systems.Players
 		{
 			if ( GroundEntity == null || GroundEntity.IsWorld )
 				return;
-
-			//var Position = GroundEntity.Transform.ToWorld( GroundTransform );
-			//Pos = Position.Position;
 		}
 
 		void SaveGroundPos()
 		{
 			if ( GroundEntity == null || GroundEntity.IsWorld )
 				return;
-
-			//GroundTransform = GroundEntity.Transform.ToLocal( new Transform( Pos, Rot ) );
 		}
-
 	}
 }
