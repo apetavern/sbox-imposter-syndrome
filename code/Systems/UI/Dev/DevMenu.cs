@@ -9,18 +9,11 @@ namespace ImposterSyndrome.Systems.UI
 		public DevMenu()
 		{
 			StyleSheet.Load( "/Systems/UI/Dev/DevMenu.scss" );
-			BindClass( "visible", () => Input.Down( InputButton.Menu ) );
-
-			Add.Label( "Developer Menu", "title" );
+			BindClass( "visible", () => Input.Down( InputButton.Flashlight ) );
 
 			var buttons = Add.Panel( "buttons" );
 
-			//
-			// General
-			//
-			buttons.Add.Label( "General", "subtitle" );
-
-			buttons.Add.ButtonWithIcon( "Spawn a bot", "smart_toy", "button", () =>
+			buttons.Add.ButtonWithIcon( "Add a bot", "smart_toy", "button", () =>
 			{
 				ConsoleSystem.Run( "bot_add 0 0" );
 			} );
