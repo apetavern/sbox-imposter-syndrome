@@ -1,9 +1,11 @@
-﻿using ImposterSyndrome.Systems.UI;
+﻿using ImposterSyndrome.Systems.Entities;
+using ImposterSyndrome.Systems.UI;
 using Sandbox;
+using Sandbox.Internal;
 
 namespace ImposterSyndrome.Systems.Players
 {
-	public partial class ISPlayer : ISBasePlayer
+	public partial class ISPlayer : ISBasePlayer, IEntityUse
 	{
 		[Net, Local, Change] public bool IsImposter { get; set; }
 		private TimeSince TimeSinceKilled { get; set; }
@@ -13,7 +15,6 @@ namespace ImposterSyndrome.Systems.Players
 			base.OnKilled();
 
 			TimeSinceKilled = 0;
-			// Log this as a new death.
 		}
 
 		public override void Simulate( Client cl )
@@ -39,6 +40,18 @@ namespace ImposterSyndrome.Systems.Players
 		public override void Respawn()
 		{
 			base.Respawn();
+		}
+
+		public bool IsUsable( ISPlayer user )
+		{
+			return LifeState == LifeState.Dead;
+		}
+
+		public bool OnUse( ISPlayer user )
+		{
+			Log.Info( $"Report death of {user}" );
+
+			return false;
 		}
 
 		public void OnIsImposterChanged()
