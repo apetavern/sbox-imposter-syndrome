@@ -59,11 +59,27 @@ namespace ImposterSyndrome.Systems.States
 		{
 			base.OnSecond();
 
+			if ( !HasMinimumAlivePlayers() || !HasTasksOutstanding() )
+				OnStateEnded();
+		}
+
+		private bool HasMinimumAlivePlayers()
+		{
 			var players = ImposterSyndrome.Instance.Players;
 			var alivePlayers = players.Where( player => !player.IsImposter && player.LifeState == LifeState.Alive );
 
 			if ( alivePlayers.Count() == 1 )
-				OnStateEnded();
+				return false;
+
+			return true;
+		}
+
+		private bool HasTasksOutstanding()
+		{
+			if ( ISPlayer.GetAllPlayersTaskProgress() >= 100 )
+				return false;
+
+			return true;
 		}
 
 		public override void OnStateEnded()
