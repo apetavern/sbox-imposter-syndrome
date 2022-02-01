@@ -26,6 +26,16 @@ namespace ImposterSyndrome.Systems.Players
 			base.Respawn();
 		}
 
+		public override void CreateHull()
+		{
+			CollisionGroup = CollisionGroup.Player;
+			AddCollisionLayer( CollisionLayer.Player );
+			SetupPhysicsFromAABB( PhysicsMotionType.Keyframed, new Vector3( -8, -8, 0 ), new Vector3( 8, 8, 30 ) );
+
+			MoveType = MoveType.MOVETYPE_WALK;
+			EnableHitboxes = true;
+		}
+
 		public void UpdatePawn( ISBasePlayer newPawn )
 		{
 			var player = newPawn;
