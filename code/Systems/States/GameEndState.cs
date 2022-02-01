@@ -28,7 +28,7 @@ namespace ImposterSyndrome.Systems.States
 			Log.Info( $"Game ended. Reason {EndReason}." );
 
 			// Remove the HUD. Replace it with a game end HUD later.
-			PlayerHudEntity.Destroy();
+			// PlayerHudEntity.Destroy();
 		}
 
 		public override void OnStateEnded()
