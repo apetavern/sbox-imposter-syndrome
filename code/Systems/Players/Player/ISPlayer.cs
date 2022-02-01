@@ -44,6 +44,14 @@ namespace ImposterSyndrome.Systems.Players
 
 		public bool IsUsable( ISPlayer user )
 		{
+			if ( user.IsImposter == true )
+			{
+				if ( LifeState == LifeState.Alive )
+					return true;
+
+				return false;
+			}
+
 			return LifeState == LifeState.Dead;
 		}
 
