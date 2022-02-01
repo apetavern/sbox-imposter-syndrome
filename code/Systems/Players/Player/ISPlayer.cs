@@ -14,6 +14,8 @@ namespace ImposterSyndrome.Systems.Players
 		{
 			base.OnKilled();
 
+			Rotation = Rotation.LookAt( Vector3.Up );
+
 			TimeSinceKilled = 0;
 		}
 
@@ -21,7 +23,7 @@ namespace ImposterSyndrome.Systems.Players
 		{
 			if ( LifeState == LifeState.Dead )
 			{
-				if ( TimeSinceKilled > 3 && IsServer )
+				if ( TimeSinceKilled > 5 && IsServer )
 				{
 					// Make this player a spectator.
 					var newPawn = new ISSpectator();
