@@ -35,9 +35,7 @@ namespace ImposterSyndrome.Systems.UI
 
 			Name.Text = Player.Client.Name;
 
-			// Temporarily offset the height of the world panel, just until the customer controller (with an appropriate eye height) is made.
-			var tempOffset = Vector3.Down * 20;
-			Position = Player.EyePos + tempOffset;
+			Position = Player.EyePos + Vector3.Up * 20;
 
 			Rotation = Local.Pawn.EyeRot.RotateAroundAxis( Vector3.Up, 180 );
 		}
