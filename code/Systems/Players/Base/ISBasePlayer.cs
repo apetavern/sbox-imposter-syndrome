@@ -1,8 +1,9 @@
-﻿using Sandbox;
+﻿using ImposterSyndrome.Systems.Entities;
+using Sandbox;
 
 namespace ImposterSyndrome.Systems.Players
 {
-	public partial class ISBasePlayer : Player
+	public partial class ISBasePlayer : Player, IEntityUse
 	{
 		public AnimEntity backpack;
 
@@ -44,6 +45,31 @@ namespace ImposterSyndrome.Systems.Players
 			Client.Pawn = player;
 
 			Delete();
+		}
+
+		public bool IsUsable( ISBasePlayer user, UseType useType )
+		{
+			// Imposter killing
+			if ( useType == UseType.Kill && (user as ISPlayer).IsImposter && LifeState == LifeState.Alive )
+				return true;
+
+			// Player reporting
+			return useType == UseType.Report && LifeState == LifeState.Dead;
+		}
+
+		public bool OnUse( ISBasePlayer user, UseType useType )
+		{
+			switch ( useType )
+			{
+				case UseType.Kill:
+					OnKilled();
+					break;
+				case UseType.Report:
+					Log.Info( "DEAD BODY REPORTED" );
+					break;
+			}
+
+			return false;
 		}
 	}
 }

@@ -23,6 +23,7 @@ namespace ImposterSyndrome.Systems.Tasks
 		public void MarkAsCompleted()
 		{
 			Status = TaskStatus.Complete;
+			OnTaskCompleted();
 		}
 
 		public virtual void OnTaskCompleted()

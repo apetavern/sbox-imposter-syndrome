@@ -16,28 +16,28 @@ namespace ImposterSyndrome.Systems.UI
 			Instance = this;
 			StyleSheet.Load( "/Systems/UI/Elements/InteractionButtons/InteractionButtonsPanel.scss" );
 
-			if ( Local.Pawn is not ISPlayer player )
+			if ( Local.Pawn is not ISBasePlayer basePlayer )
 				return;
 
-			AddChild( new InteractionButton( "Report", "report", () => (Local.Pawn as ISPlayer).GetNearestUsable( UseType.Report ) != null, () => ISPlayer.UseNearestEntity( UseType.Report ) ) );
+			AddChild( new InteractionButton( "Report", "report", () => (Local.Pawn as ISBasePlayer).GetNearestUsable( UseType.Report ) != null, () => ISPlayer.UseNearestEntity( UseType.Report ) ) );
 
-			if ( player.IsImposter )
+			if ( basePlayer is ISPlayer player && player.IsImposter )
 			{
 				AddImposterButtons( player );
 				return;
 			}
 
-			AddPlayerButtons( player );
+			AddPlayerButtons( basePlayer );
 		}
 
-		private void AddImposterButtons( ISPlayer player )
+		private void AddImposterButtons( ISBasePlayer player )
 		{
-			AddChild( new InteractionButton( "Kill", "bloodtype", () => (Local.Pawn as ISPlayer).GetNearestUsable( UseType.Kill ) != null, () => ISPlayer.UseNearestEntity( UseType.Kill ) ) );
+			AddChild( new InteractionButton( "Kill", "bloodtype", () => (Local.Pawn as ISBasePlayer).GetNearestUsable( UseType.Kill ) != null, () => ISPlayer.UseNearestEntity( UseType.Kill ) ) );
 		}
 
-		private void AddPlayerButtons( ISPlayer player )
+		private void AddPlayerButtons( ISBasePlayer player )
 		{
-			AddChild( new InteractionButton( "Use", "waving_hand", () => (Local.Pawn as ISPlayer).GetNearestUsable( UseType.Use ) != null, () => ISPlayer.UseNearestEntity( UseType.Use ) ) );
+			AddChild( new InteractionButton( "Use", "waving_hand", () => (Local.Pawn as ISBasePlayer).GetNearestUsable( UseType.Use ) != null, () => ISPlayer.UseNearestEntity( UseType.Use ) ) );
 		}
 	}
 }

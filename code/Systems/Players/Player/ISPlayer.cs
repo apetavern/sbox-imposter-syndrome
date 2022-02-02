@@ -1,10 +1,9 @@
-﻿using ImposterSyndrome.Systems.Entities;
-using ImposterSyndrome.Systems.UI;
+﻿using ImposterSyndrome.Systems.UI;
 using Sandbox;
 
 namespace ImposterSyndrome.Systems.Players
 {
-	public partial class ISPlayer : ISBasePlayer, IEntityUse
+	public partial class ISPlayer : ISBasePlayer
 	{
 		[Net, Local, Change] public bool IsImposter { get; set; }
 		private TimeSince TimeSinceKilled { get; set; }
@@ -25,6 +24,7 @@ namespace ImposterSyndrome.Systems.Players
 				if ( TimeSinceKilled > 5 && IsServer )
 				{
 					var newPawn = new ISSpectator();
+					newPawn.TakeAllTasksFrom( this );
 					newPawn.Respawn( Position );
 
 					cl.Pawn = newPawn;
@@ -35,34 +35,6 @@ namespace ImposterSyndrome.Systems.Players
 
 			var controller = GetActiveController();
 			controller?.Simulate( cl, this, GetActiveAnimator() );
-		}
-
-		public bool IsUsable( ISPlayer user, UseType useType )
-		{
-			// Imposter killing
-			if ( useType == UseType.Kill && user.IsImposter && LifeState == LifeState.Alive )
-				return true;
-
-			if ( useType != UseType.Report )
-				return false;
-
-			// Player reporting
-			return LifeState == LifeState.Dead;
-		}
-
-		public bool OnUse( ISPlayer user, UseType useType )
-		{
-			switch ( useType )
-			{
-				case UseType.Kill:
-					OnKilled();
-					break;
-				case UseType.Report:
-					Log.Info( "DEAD BODY REPORTED" );
-					break;
-			}
-
-			return false;
 		}
 
 		public void OnIsImposterChanged()

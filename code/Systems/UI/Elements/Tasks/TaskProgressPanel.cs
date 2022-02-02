@@ -1,5 +1,4 @@
 ﻿using ImposterSyndrome.Systems.Players;
-using Sandbox;
 using Sandbox.UI;
 
 namespace ImposterSyndrome.Systems.UI
@@ -11,7 +10,7 @@ namespace ImposterSyndrome.Systems.UI
 
 		public override void Tick()
 		{
-			ProgressLabel.Text = ISPlayer.GetAllPlayersTaskProgress().ToString();
+			ProgressLabel.Text = ISBasePlayer.GetAllPlayersTaskProgress().ToString();
 		}
 	}
 }

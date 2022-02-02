@@ -23,7 +23,7 @@ namespace ImposterSyndrome.Systems.UI
 			RootPanel.AddChild<TasksPanel>();
 			RootPanel.AddChild<InteractionButtonsPanel>();
 
-			//_ = new Nametags();
+			_ = new Nametags();
 		}
 
 		[ServerCmd]

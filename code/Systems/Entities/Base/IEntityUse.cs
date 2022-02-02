@@ -4,7 +4,7 @@ namespace ImposterSyndrome.Systems.Entities
 {
 	public interface IEntityUse
 	{
-		bool OnUse( ISPlayer user, UseType useType );
-		bool IsUsable( ISPlayer user, UseType useType );
+		bool OnUse( ISBasePlayer user, UseType useType );
+		bool IsUsable( ISBasePlayer user, UseType useType );
 	}
 }

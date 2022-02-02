@@ -1,6 +1,5 @@
 ﻿using ImposterSyndrome.Systems.Entities;
 using Sandbox;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace ImposterSyndrome.Systems.Players
@@ -12,7 +11,7 @@ namespace ImposterSyndrome.Systems.Players
 		Kill
 	}
 
-	public partial class ISPlayer
+	public partial class ISBasePlayer
 	{
 		public IEntityUse GetNearestUsable( UseType useType )
 		{
@@ -30,7 +29,7 @@ namespace ImposterSyndrome.Systems.Players
 			if ( Host.IsClient )
 				return;
 
-			if ( ConsoleSystem.Caller.Pawn is not ISPlayer player )
+			if ( ConsoleSystem.Caller.Pawn is not ISBasePlayer player )
 				return;
 
 			var usingEnt = player.GetNearestUsable( entityUseType );

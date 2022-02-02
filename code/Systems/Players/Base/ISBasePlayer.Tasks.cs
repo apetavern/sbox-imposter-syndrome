@@ -1,4 +1,5 @@
 ﻿using ImposterSyndrome.Systems.Tasks;
+using ImposterSyndrome.Systems.UI;
 using Sandbox;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,12 @@ namespace ImposterSyndrome.Systems.Players
 	public partial class ISBasePlayer
 	{
 		[Net] public List<BaseTask> AssignedTasks { get; set; }
+
+		public void TakeAllTasksFrom( ISBasePlayer player )
+		{
+			AssignedTasks = player.AssignedTasks;
+			player.AssignedTasks.Clear();
+		}
 
 		public float GetTotalTaskProgress()
 		{
@@ -23,7 +30,7 @@ namespace ImposterSyndrome.Systems.Players
 
 		public static float GetAllPlayersTaskProgress()
 		{
-			var players = Entity.All.OfType<ISPlayer>();
+			var players = Entity.All.OfType<ISBasePlayer>();
 
 			float totalTaskAmount = players.Select( player => player.AssignedTasks.Count() ).Sum();
 
