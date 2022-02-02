@@ -50,6 +50,9 @@ namespace ImposterSyndrome.Systems.Players
 
 		public bool IsUsable( ISBasePlayer user, UseType useType )
 		{
+			if ( user is ISSpectator )
+				return false;
+
 			// Imposter killing
 			if ( useType == UseType.Kill && (user as ISPlayer).IsImposter && LifeState == LifeState.Alive )
 				return true;
