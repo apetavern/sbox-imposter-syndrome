@@ -14,6 +14,15 @@ namespace ImposterSyndrome.Systems.UI
 			Instance = this;
 			StyleSheet.Load( "/Systems/UI/Elements/Tasks/TaskListPanel.scss" );
 
+			Rebuild();
+		}
+
+		public void Rebuild()
+		{
+			DeleteChildren();
+
+			Log.Info( Local.Pawn );
+
 			if ( Local.Pawn is not ISBasePlayer basePlayer )
 				return;
 
@@ -25,6 +34,8 @@ namespace ImposterSyndrome.Systems.UI
 
 			foreach ( var task in basePlayer.AssignedTasks )
 				AddChild( new Task( task ) );
+
+			Log.Info( "Rebuilding" );
 		}
 	}
 }

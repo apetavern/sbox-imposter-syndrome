@@ -12,8 +12,12 @@ namespace ImposterSyndrome.Systems.Players
 
 		public void TakeAllTasksFrom( ISBasePlayer player )
 		{
+			Host.AssertServer();
+
 			AssignedTasks = player.AssignedTasks;
 			player.AssignedTasks.Clear();
+
+			PlayerHudEntity.RefreshTaskList( To.Single( this ) );
 		}
 
 		public float GetTotalTaskProgress()
@@ -43,13 +47,6 @@ namespace ImposterSyndrome.Systems.Players
 				totalCompletedAmount += player.AssignedTasks.Where( task => task.Status == TaskStatus.Complete ).Count();
 
 			return (totalCompletedAmount / totalTaskAmount) * 100; ;
-		}
-
-		[ClientCmd]
-		public static void CheckTasks()
-		{
-			var player = ConsoleSystem.Caller.Pawn as ISBasePlayer;
-			Log.Info( player.AssignedTasks.Count );
 		}
 	}
 }

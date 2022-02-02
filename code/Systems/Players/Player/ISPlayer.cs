@@ -24,8 +24,7 @@ namespace ImposterSyndrome.Systems.Players
 				if ( TimeSinceKilled > 5 && IsServer )
 				{
 					var newPawn = new ISSpectator();
-					newPawn.TakeAllTasksFrom( this );
-					newPawn.Respawn( Position );
+					newPawn.Respawn( cl.Pawn as ISBasePlayer );
 
 					cl.Pawn = newPawn;
 				}

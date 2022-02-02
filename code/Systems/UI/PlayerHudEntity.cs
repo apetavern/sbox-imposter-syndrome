@@ -27,16 +27,16 @@ namespace ImposterSyndrome.Systems.UI
 		}
 
 		[ServerCmd]
-		public static void Destroy()
-		{
-			Instance?.Delete();
-		}
-
-		[ServerCmd]
 		public static void Rebuild()
 		{
 			Instance?.Delete();
 			Instance = new PlayerHudEntity();
+		}
+
+		[ClientRpc]
+		public static void RefreshTaskList()
+		{
+			TaskListPanel.Instance?.Rebuild();
 		}
 	}
 }

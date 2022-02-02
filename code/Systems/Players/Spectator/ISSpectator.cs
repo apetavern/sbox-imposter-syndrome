@@ -6,12 +6,15 @@ namespace ImposterSyndrome.Systems.Players
 {
 	public partial class ISSpectator : ISBasePlayer
 	{
-		public void Respawn( Vector3 position = default )
+		public void Respawn( ISBasePlayer oldPawn = null )
 		{
-			if ( position == default )
+			if ( oldPawn is null )
 				Game.Current?.MoveToSpawnpoint( this );
 			else
-				Position = position;
+			{
+				Position = oldPawn.Position;
+				TakeAllTasksFrom( oldPawn );
+			}
 
 			ResetInterpolation();
 
