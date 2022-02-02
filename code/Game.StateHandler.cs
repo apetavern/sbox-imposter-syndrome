@@ -32,8 +32,12 @@ namespace ImposterSyndrome
 			if ( TimeSinceLastSecond < 1 )
 				return;
 
-			Instance.CurrentState?.OnSecond();
 			TimeSinceLastSecond = 0;
+
+			if ( !Host.IsServer )
+				return;
+
+			Instance.CurrentState?.OnSecond();
 		}
 	}
 }
