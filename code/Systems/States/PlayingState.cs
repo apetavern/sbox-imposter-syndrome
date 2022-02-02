@@ -17,6 +17,9 @@ namespace ImposterSyndrome.Systems.States
 		{
 			base.OnStateStarted();
 
+			// Clear player list.
+			ImposterSyndrome.Instance?.Players?.Clear();
+
 			foreach ( var player in Client.All.Select( cl => cl.Pawn as ISBasePlayer ) )
 			{
 				var newPawn = new ISPlayer();

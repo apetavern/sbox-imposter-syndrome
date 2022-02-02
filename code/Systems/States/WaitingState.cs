@@ -52,9 +52,6 @@ namespace ImposterSyndrome.Systems.States
 
 		private void DoPostGameCleanup()
 		{
-			// Clear player list.
-			ImposterSyndrome.Instance?.Players?.Clear();
-
 			// Cleanup bodies.
 			Entity.All.OfType<ISPlayer>().ToList().ForEach( player => player.Delete() );
 		}
