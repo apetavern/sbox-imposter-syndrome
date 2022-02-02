@@ -1,5 +1,6 @@
 ﻿using ImposterSyndrome.Systems.Entities;
 using Sandbox;
+using System.Linq;
 
 namespace ImposterSyndrome.Systems.Players
 {
@@ -70,6 +71,13 @@ namespace ImposterSyndrome.Systems.Players
 			}
 
 			return false;
+		}
+
+		[ServerCmd]
+		public static void KillTarget( string name )
+		{
+			var player = Client.All.FirstOrDefault( x => x.Name == name ).Pawn;
+			player.OnKilled();
 		}
 	}
 }
