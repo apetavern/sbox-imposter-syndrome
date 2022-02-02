@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace ImposterSyndrome.Systems.Players
 {
-	public partial class ISPlayer
+	public partial class ISBasePlayer
 	{
 		[Net] public List<BaseTask> AssignedTasks { get; set; }
 
@@ -36,6 +36,13 @@ namespace ImposterSyndrome.Systems.Players
 				totalCompletedAmount += player.AssignedTasks.Where( task => task.Status == TaskStatus.Complete ).Count();
 
 			return (totalCompletedAmount / totalTaskAmount) * 100; ;
+		}
+
+		[ClientCmd]
+		public static void CheckTasks()
+		{
+			var player = ConsoleSystem.Caller.Pawn as ISBasePlayer;
+			Log.Info( player.AssignedTasks.Count );
 		}
 	}
 }
