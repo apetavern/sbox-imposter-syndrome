@@ -17,7 +17,7 @@ namespace ImposterSyndrome.Systems.Players
 			AssignedTasks = player.AssignedTasks;
 			player.AssignedTasks.Clear();
 
-			PlayerHudEntity.RefreshTaskList( To.Single( this ) );
+			PlayerHudEntity.RefreshTaskList( To.Single( player.Client ) );
 		}
 
 		public float GetTotalTaskProgress()
