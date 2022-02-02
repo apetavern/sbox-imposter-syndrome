@@ -24,9 +24,8 @@ namespace ImposterSyndrome.Systems.Players
 			{
 				if ( TimeSinceKilled > 5 && IsServer )
 				{
-					// Make this player a spectator.
 					var newPawn = new ISSpectator();
-					newPawn.Respawn();
+					newPawn.Respawn( Position );
 
 					cl.Pawn = newPawn;
 				}
