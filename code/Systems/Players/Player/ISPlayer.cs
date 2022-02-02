@@ -12,6 +12,7 @@ namespace ImposterSyndrome.Systems.Players
 		{
 			base.OnKilled();
 
+			PhysicsClear();
 			Rotation = Rotation.LookAt( Vector3.Up );
 
 			TimeSinceKilled = 0;
