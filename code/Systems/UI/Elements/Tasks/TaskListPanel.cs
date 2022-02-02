@@ -21,8 +21,6 @@ namespace ImposterSyndrome.Systems.UI
 		{
 			DeleteChildren();
 
-			Log.Info( Local.Pawn );
-
 			if ( Local.Pawn is not ISBasePlayer basePlayer )
 				return;
 
@@ -34,8 +32,6 @@ namespace ImposterSyndrome.Systems.UI
 
 			foreach ( var task in basePlayer.AssignedTasks )
 				AddChild( new Task( task ) );
-
-			Log.Info( "Rebuilding" );
 		}
 	}
 }
