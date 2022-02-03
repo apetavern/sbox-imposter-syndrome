@@ -1,5 +1,8 @@
-﻿using ImposterSyndrome.Systems.Players;
+﻿using ImposterSyndrome.Systems.Entities;
+using ImposterSyndrome.Systems.Players;
+using ImposterSyndrome.Systems.UI;
 using Sandbox;
+using System.Linq;
 
 namespace ImposterSyndrome.Systems.States
 {
@@ -10,12 +13,20 @@ namespace ImposterSyndrome.Systems.States
 
 		public override void OnStateStarted()
 		{
+			// Send these over to the players HUDs.
+			PlayerHudEntity.ShowVotingScreen( true );
+
 			ISBasePlayer.ReturnAllToCampfire();
 		}
 
 		public override void OnStateEnded()
 		{
 			ImposterSyndrome.UpdateState( new PlayingState() );
+
+			PlayerHudEntity.ShowVotingScreen( false );
+
+			// Delete these dead players.
+			DeadPlayerEntity.RemoveAll();
 		}
 	}
 }

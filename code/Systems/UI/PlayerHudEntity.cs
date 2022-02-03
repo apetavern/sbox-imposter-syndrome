@@ -22,6 +22,7 @@ namespace ImposterSyndrome.Systems.UI
 			RootPanel.AddChild<GameInfoPanel>();
 			RootPanel.AddChild<TasksPanel>();
 			RootPanel.AddChild<InteractionButtonsPanel>();
+			RootPanel.AddChild<VotingPanel>();
 
 			_ = new Nametags();
 		}
@@ -37,6 +38,12 @@ namespace ImposterSyndrome.Systems.UI
 		public static void RefreshTaskList()
 		{
 			TaskListPanel.Instance?.Rebuild();
+		}
+
+		[ClientRpc]
+		public static void ShowVotingScreen( bool shouldShow )
+		{
+			VotingPanel.Instance?.Show( shouldShow );
 		}
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using ImposterSyndrome.Systems.Players;
+using ImposterSyndrome.Systems.States;
 using Sandbox;
 using System.ComponentModel;
 using System.Linq;
@@ -35,9 +36,7 @@ namespace ImposterSyndrome.Systems.Entities
 
 		public bool OnUse( ISPlayer user, UseType useType )
 		{
-			Log.Info( "DEAD BODY REPORTED" );
-
-			ISPlayer.ReturnAllToCampfire();
+			ImposterSyndrome.UpdateState( new VotingState() );
 			HasBeenReported = true;
 
 			return false;
