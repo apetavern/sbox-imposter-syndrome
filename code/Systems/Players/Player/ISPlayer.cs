@@ -14,6 +14,8 @@ namespace ImposterSyndrome.Systems.Players
 		{
 			base.OnKilled();
 
+			TimeSinceKilled = 0;
+
 			PhysicsClear();
 
 			LifeState = LifeState.Dead;
@@ -21,8 +23,6 @@ namespace ImposterSyndrome.Systems.Players
 			new DeadPlayerEntity().UpdateFrom( this );
 
 			UpdateRenderAlpha();
-
-			TimeSinceKilled = 0;
 		}
 
 		public override void Simulate( Client cl )
@@ -38,14 +38,13 @@ namespace ImposterSyndrome.Systems.Players
 
 		public bool IsUsable( ISBasePlayer user, UseType useType )
 		{
+			if ( LifeState == LifeState.Dead )
+				return false;
+
 			if ( !(user as ISPlayer).IsImposter )
 				return false;
 
-			// Imposter killing
-			if ( useType == UseType.Kill && LifeState == LifeState.Alive )
-				return true;
-
-			return false;
+			return useType == UseType.Kill;
 		}
 
 		public bool OnUse( ISBasePlayer user, UseType useType )
