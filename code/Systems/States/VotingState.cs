@@ -6,5 +6,10 @@ namespace ImposterSyndrome.Systems.States
 	{
 		[Net] public override string StateName => "Voting";
 		public override float StateDuration { get; set; } = 30;
+
+		public override void OnStateEnded()
+		{
+			ImposterSyndrome.UpdateState( new PlayingState() );
+		}
 	}
 }

@@ -1,7 +1,5 @@
 ﻿using ImposterSyndrome.Systems.Players;
 using Sandbox;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace ImposterSyndrome.Systems.States
@@ -26,7 +24,7 @@ namespace ImposterSyndrome.Systems.States
 		{
 			base.OnStateEnded();
 
-			ImposterSyndrome.UpdateState( new PlayingState() );
+			ImposterSyndrome.UpdateState( new SetupState() );
 		}
 
 		public override void OnSecond()
