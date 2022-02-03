@@ -76,6 +76,16 @@ namespace ImposterSyndrome.Systems.Players
 			return false;
 		}
 
+		public static void ReturnAllToCampfire()
+		{
+			foreach ( var player in ImposterSyndrome.Instance?.Players )
+			{
+				player.Position = CampfireEntity.Instance?.Position ?? player.Position;
+				player.ResetInterpolation();
+			}
+
+		}
+
 		[ServerCmd]
 		public static void KillTarget( string name )
 		{
