@@ -30,16 +30,6 @@ namespace ImposterSyndrome.Systems.Players
 
 		public override void Simulate( Client cl )
 		{
-			if ( LifeState == LifeState.Dead )
-			{
-				if ( TimeSinceKilled > 5 && IsServer )
-				{
-					// Re-enable input
-				}
-
-				return;
-			}
-
 			var controller = GetActiveController();
 			controller?.Simulate( cl, this, GetActiveAnimator() );
 		}
