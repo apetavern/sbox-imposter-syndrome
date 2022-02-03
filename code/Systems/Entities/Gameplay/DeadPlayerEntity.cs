@@ -12,16 +12,7 @@ namespace ImposterSyndrome.Systems.Entities
 			base.Spawn();
 
 			SetModel( "models/playermodel/terrysus.vmdl" );
-			SetupPhysicsFromModel( PhysicsMotionType.Static );
-
-			Transmit = TransmitType.Always;
-
-			CollisionGroup = CollisionGroup.Player;
-			AddCollisionLayer( CollisionLayer.Player );
-			SetupPhysicsFromAABB( PhysicsMotionType.Keyframed, new Vector3( -8, -8, 0 ), new Vector3( 8, 8, 30 ) );
-
-			MoveType = MoveType.MOVETYPE_WALK;
-			EnableHitboxes = true;
+			SetupPhysicsFromAABB( PhysicsMotionType.Static, new Vector3( -8, -8, 0 ), new Vector3( 8, 8, 30 ) );
 		}
 
 		public void UpdateFrom( ISPlayer player )

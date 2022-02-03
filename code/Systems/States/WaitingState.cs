@@ -1,4 +1,5 @@
-﻿using ImposterSyndrome.Systems.Players;
+﻿using ImposterSyndrome.Systems.Entities;
+using ImposterSyndrome.Systems.Players;
 using Sandbox;
 using System.Linq;
 
@@ -51,7 +52,7 @@ namespace ImposterSyndrome.Systems.States
 		private void DoPostGameCleanup()
 		{
 			// Cleanup bodies.
-			Entity.All.OfType<ISPlayer>().ToList().ForEach( player => player.Delete() );
+			Entity.All.OfType<DeadPlayerEntity>().ToList().ForEach( player => player.Delete() );
 		}
 	}
 }
