@@ -23,7 +23,7 @@ namespace ImposterSyndrome
 		{
 			base.ClientJoined( client );
 
-			var player = new ISSpectator();
+			var player = new ISPlayer();
 			player.Respawn();
 
 			client.Pawn = player;

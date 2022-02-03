@@ -1,5 +1,6 @@
 ﻿using ImposterSyndrome.Systems.UI;
 using Sandbox;
+using System.Linq;
 
 namespace ImposterSyndrome.Systems.Players
 {
@@ -13,7 +14,16 @@ namespace ImposterSyndrome.Systems.Players
 			base.OnKilled();
 
 			PhysicsClear();
-			Rotation = Rotation.LookAt( Vector3.Up );
+
+			Game.Current?.OnKilled( this );
+
+			LifeState = LifeState.Dead;
+
+			RenderColor = Color.White.WithAlpha( 0.4f );
+
+			// Update children render alpha.
+			foreach ( var child in Children.Cast<ModelEntity>() )
+				child.RenderColor = Color.White.WithAlpha( 0.4f );
 
 			TimeSinceKilled = 0;
 		}
@@ -24,10 +34,7 @@ namespace ImposterSyndrome.Systems.Players
 			{
 				if ( TimeSinceKilled > 5 && IsServer )
 				{
-					var newPawn = new ISSpectator();
-					newPawn.Respawn( cl.Pawn as ISBasePlayer );
-
-					cl.Pawn = newPawn;
+					// Re-enable input
 				}
 
 				return;

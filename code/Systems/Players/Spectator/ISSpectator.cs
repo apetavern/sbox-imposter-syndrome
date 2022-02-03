@@ -37,17 +37,6 @@ namespace ImposterSyndrome.Systems.Players
 			EnableDrawing = true;
 			EnableHideInFirstPerson = true;
 			EnableShadowInFirstPerson = true;
-
-			UpdateRenderAlpha();
-		}
-
-		private void UpdateRenderAlpha()
-		{
-			RenderColor = Color.White.WithAlpha( 0.4f );
-
-			// Update children render alpha.
-			foreach ( var child in Children.Cast<ModelEntity>() )
-				child.RenderColor = Color.White.WithAlpha( 0.4f );
 		}
 	}
 }

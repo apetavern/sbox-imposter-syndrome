@@ -78,12 +78,11 @@ namespace ImposterSyndrome.Systems.Players
 
 		public static void ReturnAllToCampfire()
 		{
-			foreach ( var player in ImposterSyndrome.Instance?.Players )
+			foreach ( var player in ImposterSyndrome.Instance?.Players.Where( x => x.LifeState == LifeState.Alive ) )
 			{
 				player.Position = CampfireEntity.Instance?.Position ?? player.Position;
 				player.ResetInterpolation();
 			}
-
 		}
 
 		[ServerCmd]
