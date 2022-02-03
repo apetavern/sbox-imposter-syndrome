@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ImposterSyndrome.Systems.Players
 {
-	public partial class ISBasePlayer : Player, IEntityUse
+	public partial class ISBasePlayer : Player
 	{
 		public AnimEntity backpack;
 
@@ -46,34 +46,6 @@ namespace ImposterSyndrome.Systems.Players
 			Client.Pawn = player;
 
 			Delete();
-		}
-
-		public bool IsUsable( ISBasePlayer user, UseType useType )
-		{
-			if ( user is ISSpectator )
-				return false;
-
-			// Imposter killing
-			if ( useType == UseType.Kill && (user as ISPlayer).IsImposter && LifeState == LifeState.Alive )
-				return true;
-
-			// Player reporting
-			return useType == UseType.Report && LifeState == LifeState.Dead;
-		}
-
-		public bool OnUse( ISBasePlayer user, UseType useType )
-		{
-			switch ( useType )
-			{
-				case UseType.Kill:
-					OnKilled();
-					break;
-				case UseType.Report:
-					ISBasePlayer.ReturnAllToCampfire();
-					break;
-			}
-
-			return false;
 		}
 
 		public static void ReturnAllToCampfire()
