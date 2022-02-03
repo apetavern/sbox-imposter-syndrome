@@ -42,9 +42,6 @@ namespace ImposterSyndrome.Systems.States
 			switch ( statename )
 			{
 				case "waiting":
-					ImposterSyndrome.UpdateState( new WaitingState() );
-					break;
-				case "playing":
 					// Meet min player requirement.
 					if ( Client.All.Count < GameConfig.MinimumPlayers )
 					{
@@ -55,7 +52,7 @@ namespace ImposterSyndrome.Systems.States
 							new Bot();
 						}
 					}
-					ImposterSyndrome.UpdateState( new PlayingState() );
+					ImposterSyndrome.UpdateState( new WaitingState() );
 					break;
 				case "end":
 					ImposterSyndrome.UpdateState( new GameEndState() );
