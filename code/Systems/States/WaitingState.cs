@@ -52,7 +52,7 @@ namespace ImposterSyndrome.Systems.States
 		private void DoPostGameCleanup()
 		{
 			// Cleanup bodies.
-			Entity.All.OfType<DeadPlayerEntity>().ToList().ForEach( player => player.Delete() );
+			DeadPlayerEntity.RemoveAll();
 		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using ImposterSyndrome.Systems.Players;
 using Sandbox;
 using System.ComponentModel;
+using System.Linq;
 
 namespace ImposterSyndrome.Systems.Entities
 {
@@ -40,6 +41,11 @@ namespace ImposterSyndrome.Systems.Entities
 			HasBeenReported = true;
 
 			return false;
+		}
+
+		public static void RemoveAll()
+		{
+			Entity.All.OfType<DeadPlayerEntity>().ToList().ForEach( player => player.Delete() );
 		}
 	}
 }
