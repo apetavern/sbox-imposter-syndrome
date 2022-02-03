@@ -15,8 +15,6 @@ namespace ImposterSyndrome.Systems.Players
 
 			PhysicsClear();
 
-			Game.Current?.OnKilled( this );
-
 			LifeState = LifeState.Dead;
 
 			RenderColor = Color.White.WithAlpha( 0.4f );
