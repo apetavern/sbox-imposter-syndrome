@@ -69,7 +69,7 @@ namespace ImposterSyndrome.Systems.Players
 					OnKilled();
 					break;
 				case UseType.Report:
-					Log.Info( "DEAD BODY REPORTED" );
+					ISBasePlayer.ReturnAllToCampfire();
 					break;
 			}
 
