@@ -2,6 +2,7 @@ using Sandbox;
 using ImposterSyndrome.Systems.Players;
 using ImposterSyndrome.Systems.States;
 using ImposterSyndrome.Systems.UI;
+using ImposterSyndrome.Systems.PostProcessing;
 
 namespace ImposterSyndrome
 {
@@ -11,6 +12,9 @@ namespace ImposterSyndrome
 
 		public ImposterSyndrome()
 		{
+			if ( Host.IsClient )
+				PostEffects.Setup();
+
 			if ( !Host.IsServer )
 				return;
 
