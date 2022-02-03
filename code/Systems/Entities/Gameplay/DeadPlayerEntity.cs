@@ -1,11 +1,16 @@
 ﻿using ImposterSyndrome.Systems.Players;
 using Sandbox;
+using System.ComponentModel;
 
 namespace ImposterSyndrome.Systems.Entities
 {
 	public partial class DeadPlayerEntity : AnimEntity, IEntityUse
 	{
+		[Browsable( false )]
 		[Net] public bool HasBeenReported { get; set; }
+
+		[Browsable( false )]
+		[Net] public ISPlayer BodyOwner { get; set; }
 
 		public override void Spawn()
 		{
@@ -19,6 +24,7 @@ namespace ImposterSyndrome.Systems.Entities
 		{
 			Position = player.Position;
 			Rotation = Rotation.LookAt( Vector3.Up );
+			BodyOwner = player;
 		}
 
 		public bool IsUsable( ISPlayer user, UseType useType )
