@@ -10,16 +10,6 @@ namespace ImposterSyndrome.Systems.Players
 	{
 		[Net] public List<BaseTask> AssignedTasks { get; set; }
 
-		public void TakeAllTasksFrom( ISBasePlayer player )
-		{
-			Host.AssertServer();
-
-			AssignedTasks = player.AssignedTasks;
-			player.AssignedTasks.Clear();
-
-			PlayerHudEntity.RefreshTaskList( To.Single( player.Client ) );
-		}
-
 		public float GetTotalTaskProgress()
 		{
 			float totalAmount = AssignedTasks.Count();

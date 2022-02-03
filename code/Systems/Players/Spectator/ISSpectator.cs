@@ -6,17 +6,9 @@ namespace ImposterSyndrome.Systems.Players
 {
 	public partial class ISSpectator : ISBasePlayer
 	{
-		public void Respawn( ISBasePlayer oldPawn = null )
+		public override void Respawn()
 		{
-			if ( oldPawn is null )
-				Game.Current?.MoveToSpawnpoint( this );
-			else
-			{
-				Position = oldPawn.Position;
-				TakeAllTasksFrom( oldPawn );
-			}
-
-			ResetInterpolation();
+			base.Respawn();
 
 			SetModel( "models/playermodel/terrysus.vmdl" );
 			backpack = new AnimEntity();
@@ -27,11 +19,6 @@ namespace ImposterSyndrome.Systems.Players
 			Controller = new ISController();
 			Animator = new ISAnimator();
 			Camera = new ISCamera();
-
-			LifeState = LifeState.Alive;
-			Health = 100;
-			Velocity = Vector3.Zero;
-			WaterLevel.Clear();
 
 			EnableAllCollisions = false;
 			EnableDrawing = true;
