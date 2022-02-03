@@ -85,6 +85,15 @@ namespace ImposterSyndrome.Systems.Players
 			}
 		}
 
+		protected void UpdateRenderAlpha()
+		{
+			RenderColor = Color.White.WithAlpha( 0.4f );
+
+			// Update children render alpha.
+			foreach ( var child in Children.Cast<ModelEntity>() )
+				child.RenderColor = Color.White.WithAlpha( 0.4f );
+		}
+
 		[ServerCmd]
 		public static void KillTarget( string name )
 		{

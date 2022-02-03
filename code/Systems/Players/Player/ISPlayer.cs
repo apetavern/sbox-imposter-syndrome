@@ -17,11 +17,7 @@ namespace ImposterSyndrome.Systems.Players
 
 			LifeState = LifeState.Dead;
 
-			RenderColor = Color.White.WithAlpha( 0.4f );
-
-			// Update children render alpha.
-			foreach ( var child in Children.Cast<ModelEntity>() )
-				child.RenderColor = Color.White.WithAlpha( 0.4f );
+			UpdateRenderAlpha();
 
 			TimeSinceKilled = 0;
 		}
