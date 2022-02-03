@@ -11,19 +11,23 @@ namespace ImposterSyndrome.Systems.Players
 		Kill
 	}
 
-	public partial class ISBasePlayer
+	public partial class ISPlayer
 	{
 		public IEntityUse GetNearestUsable( UseType useType )
 		{
-			var ents = Physics.GetEntitiesInSphere( Position, GameConfig.InteractionRadius )
+			/*var ents = Physics.GetEntitiesInSphere( Position, GameConfig.InteractionRadius )
 				.Where( ent => ent.Owner != Owner && ent.LifeState == LifeState.Alive )
 				.OrderBy( ent => Vector3.DistanceBetween( ent.Position, Position ) )
-				.OfType<IEntityUse>().ToList();
+				.OfType<IEntityUse>().ToList();*/
 
-			foreach ( var usable in ents )
-				Log.Info( usable );
+			var ents = Physics.GetEntitiesInSphere( Position, GameConfig.InteractionRadius )
+				.Where( ent => ent.Owner != Owner )
+				.OrderBy( ent => Vector3.DistanceBetween( ent.Position, Position ) )
+				.OfType<IEntityUse>()
+				.Where( ent => ent.IsUsable( this, useType ) )
+				.ToList();
 
-			return ents.FirstOrDefault( ent => ent.IsUsable( this, useType ) );
+			return ents.FirstOrDefault();
 		}
 
 		[ServerCmd]
@@ -32,7 +36,7 @@ namespace ImposterSyndrome.Systems.Players
 			if ( Host.IsClient )
 				return;
 
-			if ( ConsoleSystem.Caller.Pawn is not ISBasePlayer player )
+			if ( ConsoleSystem.Caller.Pawn is not ISPlayer player )
 				return;
 
 			var usingEnt = player.GetNearestUsable( entityUseType );

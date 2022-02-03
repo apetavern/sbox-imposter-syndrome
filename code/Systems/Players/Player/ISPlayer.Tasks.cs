@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace ImposterSyndrome.Systems.Players
 {
-	public partial class ISBasePlayer
+	public partial class ISPlayer
 	{
 		[Net] public List<BaseTask> AssignedTasks { get; set; }
 
@@ -24,7 +24,7 @@ namespace ImposterSyndrome.Systems.Players
 
 		public static float GetAllPlayersTaskProgress()
 		{
-			var players = Entity.All.OfType<ISBasePlayer>();
+			var players = Entity.All.OfType<ISPlayer>();
 
 			float totalTaskAmount = players.Select( player => player.AssignedTasks.Count() ).Sum();
 
