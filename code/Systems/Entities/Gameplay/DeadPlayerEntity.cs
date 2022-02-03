@@ -21,12 +21,12 @@ namespace ImposterSyndrome.Systems.Entities
 			Rotation = Rotation.LookAt( Vector3.Up );
 		}
 
-		public bool IsUsable( ISBasePlayer user, UseType useType )
+		public bool IsUsable( ISPlayer user, UseType useType )
 		{
-			return !HasBeenReported;
+			return !HasBeenReported && useType == UseType.Report;
 		}
 
-		public bool OnUse( ISBasePlayer user, UseType useType )
+		public bool OnUse( ISPlayer user, UseType useType )
 		{
 			ISPlayer.ReturnAllToCampfire();
 			HasBeenReported = true;

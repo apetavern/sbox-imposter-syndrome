@@ -10,7 +10,7 @@ namespace ImposterSyndrome.Systems.UI
 
 		public override void Tick()
 		{
-			ProgressLabel.Text = ISBasePlayer.GetAllPlayersTaskProgress().ToString();
+			ProgressLabel.Text = ISPlayer.GetAllPlayersTaskProgress().ToString();
 		}
 	}
 }

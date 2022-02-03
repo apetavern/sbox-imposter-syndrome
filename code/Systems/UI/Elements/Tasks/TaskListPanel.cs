@@ -21,16 +21,16 @@ namespace ImposterSyndrome.Systems.UI
 		{
 			DeleteChildren();
 
-			if ( Local.Pawn is not ISBasePlayer basePlayer )
+			if ( Local.Pawn is not ISPlayer player )
 				return;
 
-			if ( basePlayer is ISPlayer player && player.IsImposter )
+			if ( player.IsImposter )
 			{
 				Add.Label( "Kill people" );
 				Add.Label( "Fake Tasks:" );
 			}
 
-			foreach ( var task in basePlayer.AssignedTasks )
+			foreach ( var task in player.AssignedTasks )
 				AddChild( new Task( task ) );
 		}
 	}

@@ -19,7 +19,7 @@ namespace ImposterSyndrome.Systems.Entities
 			SetupPhysicsFromModel( PhysicsMotionType.Static );
 		}
 
-		public bool IsUsable( ISBasePlayer user, UseType useType )
+		public bool IsUsable( ISPlayer user, UseType useType )
 		{
 			if ( useType != UseType.Use )
 				return false;
@@ -29,7 +29,7 @@ namespace ImposterSyndrome.Systems.Entities
 			return task != null;
 		}
 
-		public bool OnUse( ISBasePlayer user, UseType useType )
+		public bool OnUse( ISPlayer user, UseType useType )
 		{
 			var task = user.AssignedTasks.OfType<FindWilson>().FirstOrDefault( task => task.Status == TaskStatus.Incomplete );
 			task.MarkAsCompleted();

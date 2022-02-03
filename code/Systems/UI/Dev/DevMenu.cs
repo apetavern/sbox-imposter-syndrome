@@ -25,8 +25,7 @@ namespace ImposterSyndrome.Systems.UI
 			Add.Label( "States", "title" );
 
 			var stateButtons = Add.Panel( "buttons" );
-			stateButtons.Add.ButtonWithIcon( "Waiting", "schedule", "button", () => ConsoleSystem.Run( "updatestate waiting" ) );
-			stateButtons.Add.ButtonWithIcon( "Playing", "videogame_asset", "button", () => ConsoleSystem.Run( "updatestate playing" ) );
+			stateButtons.Add.ButtonWithIcon( "Startup", "schedule", "button", () => ConsoleSystem.Run( "updatestate waiting" ) );
 			stateButtons.Add.ButtonWithIcon( "End Game", "close", "button", () => ConsoleSystem.Run( "updatestate end" ) );
 
 			// Players panel
@@ -46,6 +45,10 @@ namespace ImposterSyndrome.Systems.UI
 			} );
 
 			row.Add.ButtonWithIcon( "Kill", "close", "button", () => ConsoleSystem.Run( $"killtarget {dropdown.Value}" ) );
+
+			var playerButtons = Add.Panel( "buttons" );
+			playerButtons.Add.ButtonWithIcon( "Force Imposter", "close", "button", () => ConsoleSystem.Run( $"forceimposter true" ) );
+			playerButtons.Add.ButtonWithIcon( "Force Player", "close", "button", () => ConsoleSystem.Run( $"forceimposter false" ) );
 		}
 
 		public override void Tick()
