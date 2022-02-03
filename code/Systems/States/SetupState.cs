@@ -51,7 +51,7 @@ namespace ImposterSyndrome.Systems.States
 			for ( int i = 0; i < imposterCount; i++ )
 			{
 				var player = ImposterSyndrome.Instance.Players.Where( player => !player.IsImposter ).OrderBy( _ => Guid.NewGuid() ).First();
-				player.IsImposter = true;
+				player.UpdateImposterStatus( true );
 
 				Imposters.Add( player );
 
