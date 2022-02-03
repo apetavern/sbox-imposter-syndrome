@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using ImposterSyndrome.Systems.Players;
+using Sandbox;
 
 namespace ImposterSyndrome.Systems.States
 {
@@ -6,6 +7,11 @@ namespace ImposterSyndrome.Systems.States
 	{
 		[Net] public override string StateName => "Voting";
 		public override float StateDuration { get; set; } = 30;
+
+		public override void OnStateStarted()
+		{
+			ISBasePlayer.ReturnAllToCampfire();
+		}
 
 		public override void OnStateEnded()
 		{
