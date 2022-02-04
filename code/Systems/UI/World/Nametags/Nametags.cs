@@ -19,6 +19,9 @@ namespace ImposterSyndrome.Systems.UI
 			{
 				foreach ( var player in ImposterSyndrome.Instance?.Players )
 				{
+					if ( !player.IsValid )
+						return;
+
 					if ( !Tags.ContainsKey( player ) )
 					{
 						var nametag = new Nametag();

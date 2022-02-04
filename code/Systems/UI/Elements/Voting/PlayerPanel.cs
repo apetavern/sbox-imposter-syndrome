@@ -1,4 +1,5 @@
 ﻿using ImposterSyndrome.Systems.Players;
+using ImposterSyndrome.Systems.States;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
 
@@ -20,12 +21,17 @@ namespace ImposterSyndrome.Systems.UI
 
 			HeldPlayer = player;
 
-			AddEventListener( "onclick", () => Click() );
+			AddEventListener( "onclick", () => Click( HeldPlayer ) );
 		}
 
-		private void Click()
+		private void Click( ISPlayer votedForPlayer )
 		{
-			Log.Info( $"{HeldPlayer.Client.Name} clicked." );
+			VotingState.ReceiveVote( votedForPlayer.NetworkIdent );
+		}
+
+		public void UpdateVote( ISPlayer voteFromPlayer )
+		{
+			Log.Info( $"{HeldPlayer.Client.Name} receiving vote from {voteFromPlayer.Client.Name}" );
 		}
 	}
 }

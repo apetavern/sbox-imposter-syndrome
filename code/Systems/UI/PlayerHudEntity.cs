@@ -45,5 +45,11 @@ namespace ImposterSyndrome.Systems.UI
 		{
 			VotingPanel.Instance?.Show( shouldShow );
 		}
+
+		[ClientRpc]
+		public static void ReceivePlayerVote( int voteToPlayer, int voteFromPlayer )
+		{
+			VotingPanel.Instance?.UpdatePlayerPanel( voteFromPlayer, voteToPlayer );
+		}
 	}
 }
