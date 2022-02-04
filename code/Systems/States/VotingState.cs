@@ -50,16 +50,25 @@ namespace ImposterSyndrome.Systems.States
 			if ( ConsoleSystem.Caller.Pawn is not ISPlayer votingFromPlayer || votingFromPlayer.LifeState != LifeState.Alive )
 				return;
 
-			var votedForPlayer = Entity.All.FirstOrDefault( ent => ent.NetworkIdent == voteToPlayerNetId ) as ISPlayer;
-
-			if ( votedForPlayer is null || votedForPlayer.LifeState != LifeState.Alive )
-				return;
-
 			if ( votingState.PlayerVotes.ContainsKey( votingFromPlayer ) )
 			{
 				Log.Info( "already voted" );
 				return;
 			}
+
+			// Skipping
+			if ( voteToPlayerNetId < 0 )
+			{
+				votingState.PlayerVotes.Add( votingFromPlayer, null );
+
+				PlayerHudEntity.ReceivePlayerVote( -1, votingFromPlayer.NetworkIdent );
+				return;
+			}
+
+			var votedForPlayer = Entity.All.FirstOrDefault( ent => ent.NetworkIdent == voteToPlayerNetId ) as ISPlayer;
+
+			if ( votedForPlayer is null || votedForPlayer.LifeState != LifeState.Alive )
+				return;
 
 			votingState.PlayerVotes.Add( votingFromPlayer, votedForPlayer );
 			PlayerHudEntity.ReceivePlayerVote( voteToPlayerNetId, votingFromPlayer.NetworkIdent );

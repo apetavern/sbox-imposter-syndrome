@@ -1,4 +1,5 @@
 ﻿using ImposterSyndrome.Systems.Players;
+using ImposterSyndrome.Systems.States;
 using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
@@ -45,7 +46,7 @@ namespace ImposterSyndrome.Systems.UI
 			}
 
 			var footer = Add.Panel( "footer" );
-			footer.Add.Button( "Skip", () => Log.Info( "SKIP" ) );
+			footer.Add.Button( "Skip", () => VotingState.ReceiveVote( -1 ) );
 		}
 
 		public override void Tick()
@@ -59,16 +60,22 @@ namespace ImposterSyndrome.Systems.UI
 			TimerLabel.Text = MathX.Clamp( (int)(stateEndTime - Time.Now), 0, 500 ).ToString() + "s";
 		}
 
-		public void UpdatePlayerPanel( int voteFromNetIdent, int voteToNetIdent )
+		public void UpdateVoteFromPlayer( int voteFromNetIdent, int voteToNetIdent )
 		{
-			var votedForPlayer = Entity.All.FirstOrDefault( ent => ent.NetworkIdent == voteToNetIdent ) as ISPlayer;
-
-			if ( votedForPlayer is null )
-				return;
-
 			var voteFromPlayer = Entity.All.FirstOrDefault( ent => ent.NetworkIdent == voteFromNetIdent ) as ISPlayer;
 
 			if ( voteFromPlayer is null )
+				return;
+
+			if ( voteToNetIdent < 0 )
+			{
+				Log.Info( "Update skip area with new vote" );
+				return;
+			}
+
+			var votedForPlayer = Entity.All.FirstOrDefault( ent => ent.NetworkIdent == voteToNetIdent ) as ISPlayer;
+
+			if ( votedForPlayer is null )
 				return;
 
 			var playerPanel = PlayerPanels.FirstOrDefault( entry => entry.Value == votedForPlayer ).Key;

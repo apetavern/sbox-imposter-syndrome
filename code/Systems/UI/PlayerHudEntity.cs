@@ -49,7 +49,7 @@ namespace ImposterSyndrome.Systems.UI
 		[ClientRpc]
 		public static void ReceivePlayerVote( int voteToPlayer, int voteFromPlayer )
 		{
-			VotingPanel.Instance?.UpdatePlayerPanel( voteFromPlayer, voteToPlayer );
+			VotingPanel.Instance?.UpdateVoteFromPlayer( voteFromPlayer, voteToPlayer );
 		}
 	}
 }
