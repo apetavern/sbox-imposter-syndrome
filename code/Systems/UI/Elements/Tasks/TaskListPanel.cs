@@ -27,7 +27,6 @@ namespace ImposterSyndrome.Systems.UI
 			if ( player.IsImposter )
 			{
 				Add.Label( "Kill people" );
-				Add.Label( "Fake Tasks:" );
 			}
 
 			foreach ( var task in player.AssignedTasks )
