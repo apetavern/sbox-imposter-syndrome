@@ -47,7 +47,7 @@ namespace ImposterSyndrome.Systems.States
 			if ( ImposterSyndrome.Instance.CurrentState is not VotingState votingState )
 				return;
 
-			if ( ConsoleSystem.Caller.Pawn is not ISPlayer votingFromPlayer )
+			if ( ConsoleSystem.Caller.Pawn is not ISPlayer votingFromPlayer || votingFromPlayer.LifeState != LifeState.Alive )
 				return;
 
 			var votedForPlayer = Entity.All.FirstOrDefault( ent => ent.NetworkIdent == voteToPlayerNetId ) as ISPlayer;
