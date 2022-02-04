@@ -10,6 +10,7 @@ namespace ImposterSyndrome.Systems.UI
 	{
 		private ISPlayer HeldPlayer { get; set; }
 		private Label MeetingCallerStatus { get; set; }
+		private Panel VotePanel { get; set; }
 
 		public PlayerPanel( ISPlayer player )
 		{
@@ -19,7 +20,7 @@ namespace ImposterSyndrome.Systems.UI
 
 			var playerInfo = Add.Panel( "info" );
 			playerInfo.Add.Label( player.Client.Name, "name" );
-			playerInfo.Add.Panel( "votes" );
+			VotePanel = playerInfo.Add.Panel( "votes" );
 			MeetingCallerStatus = playerInfo.Add.Label( "!", "calledmeeting" );
 
 			HeldPlayer = player;
@@ -45,6 +46,9 @@ namespace ImposterSyndrome.Systems.UI
 		public void UpdateVote( ISPlayer voteFromPlayer )
 		{
 			Log.Info( $"{HeldPlayer.Client.Name} receiving vote from {voteFromPlayer.Client.Name}" );
+
+			// TODO: Get player colour and update the class colour.
+			VotePanel.Add.Panel( "vote" );
 		}
 	}
 }
