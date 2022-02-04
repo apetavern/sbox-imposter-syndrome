@@ -1,5 +1,6 @@
 ﻿using ImposterSyndrome.Systems.Players;
 using ImposterSyndrome.Systems.States;
+using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
 
@@ -20,12 +21,16 @@ namespace ImposterSyndrome.Systems.UI
 			playerInfo.Add.Panel( "votes" );
 
 			HeldPlayer = player;
+			SetClass( "dead", player.LifeState != LifeState.Alive );
 
 			AddEventListener( "onclick", () => Click( HeldPlayer ) );
 		}
 
 		private void Click( ISPlayer votedForPlayer )
 		{
+			if ( HeldPlayer.LifeState != LifeState.Alive )
+				return;
+
 			VotingState.ReceiveVote( votedForPlayer.NetworkIdent );
 		}
 

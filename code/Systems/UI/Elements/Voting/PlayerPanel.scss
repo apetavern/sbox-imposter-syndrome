@@ -8,6 +8,16 @@
     padding: 4px;
     background-color: #B39682;
 
+    &.dead {
+        opacity: 0.5;
+
+        &:hover {
+            cursor: default;
+            transform: scale(1);
+            transition: all 0.1s ease;
+        }
+    }
+
     .colour {
         background-color: #5A4737;
         aspect-ratio: 1;
