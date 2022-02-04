@@ -52,7 +52,7 @@ namespace ImposterSyndrome.Systems.States
 
 			var votedForPlayer = Entity.All.FirstOrDefault( ent => ent.NetworkIdent == voteToPlayerNetId ) as ISPlayer;
 
-			if ( votedForPlayer is null )
+			if ( votedForPlayer is null || votedForPlayer.LifeState != LifeState.Alive )
 				return;
 
 			if ( votingState.PlayerVotes.ContainsKey( votingFromPlayer ) )
