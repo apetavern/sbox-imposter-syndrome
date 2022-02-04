@@ -8,6 +8,8 @@ namespace ImposterSyndrome.Systems.UI
 		{
 			StyleSheet.Load( "/Systems/UI/Elements/Tasks/TasksPanel.scss" );
 
+			Add.Panel( "header" );
+
 			AddChild<TaskProgressPanel>();
 			AddChild<TaskListPanel>();
 		}
