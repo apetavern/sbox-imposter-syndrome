@@ -13,6 +13,8 @@ namespace ImposterSyndrome.Systems.States
 
 		public override void OnStateStarted()
 		{
+			base.OnStateStarted();
+
 			// Send these over to the players HUDs.
 			PlayerHudEntity.ShowVotingScreen( true );
 
@@ -21,12 +23,14 @@ namespace ImposterSyndrome.Systems.States
 
 		public override void OnStateEnded()
 		{
-			ImposterSyndrome.UpdateState( new PlayingState() );
+			Log.Info( "state ended" );
 
 			PlayerHudEntity.ShowVotingScreen( false );
 
 			// Delete these dead players.
 			DeadPlayerEntity.RemoveAll();
+
+			ImposterSyndrome.UpdateState( new PlayingState() );
 		}
 	}
 }
