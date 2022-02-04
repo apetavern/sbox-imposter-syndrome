@@ -18,7 +18,8 @@ namespace ImposterSyndrome.Systems.UI
 		{
 			DeleteChildren( true );
 
-			Log.Info( shouldShow );
+			Log.Info( "Showing voting screen: " + shouldShow );
+			SetClass( "visible", shouldShow );
 
 			if ( !shouldShow )
 				return;
