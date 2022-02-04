@@ -10,6 +10,7 @@ votingpanel {
     justify-content: center;
     flex-direction: column;
     opacity: 0;
+    color: #f6ded4;
 
     &.visible {
         opacity: 1;
