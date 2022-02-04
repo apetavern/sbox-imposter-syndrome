@@ -7,6 +7,7 @@ namespace ImposterSyndrome.Systems.UI
 	public class VotingPanel : Panel
 	{
 		public static VotingPanel Instance { get; set; }
+		private Label TimerLabel { get; set; }
 
 		public VotingPanel()
 		{
@@ -23,13 +24,30 @@ namespace ImposterSyndrome.Systems.UI
 			if ( !shouldShow )
 				return;
 
-			Add.Label( "Who is the imposter?", "Title" );
+			var header = Add.Panel( "header" );
+			header.Add.Label( "Who is the imposter?", "Title" );
+			TimerLabel = header.Add.Label( "0s", "Timer" );
 
 			var container = Add.Panel( "container" );
-			foreach ( var player in ImposterSyndrome.Instance.Players )
+
+			foreach ( var player in ImposterSyndrome.Instance?.Players )
 			{
 				container.AddChild( new PlayerPanel( player ) );
 			}
+
+			var footer = Add.Panel( "footer" );
+			footer.Add.Button( "Skip", () => Log.Info( "SKIP" ) );
+		}
+
+		public override void Tick()
+		{
+			base.Tick();
+
+			if ( ImposterSyndrome.Instance.CurrentState is null || TimerLabel is null )
+				return;
+
+			var stateEndTime = ImposterSyndrome.Instance.CurrentState.StateEndTime;
+			TimerLabel.Text = MathX.Clamp( (int)(stateEndTime - Time.Now), 0, 500 ).ToString() + "s";
 		}
 	}
 }
