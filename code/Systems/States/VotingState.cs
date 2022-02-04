@@ -23,8 +23,6 @@ namespace ImposterSyndrome.Systems.States
 
 		public override void OnStateEnded()
 		{
-			Log.Info( "state ended" );
-
 			PlayerHudEntity.ShowVotingScreen( false );
 
 			// Delete these dead players.
