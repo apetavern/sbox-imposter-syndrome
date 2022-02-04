@@ -18,7 +18,6 @@ namespace ImposterSyndrome.Systems.UI
 		{
 			DeleteChildren( true );
 
-			Log.Info( "Showing voting screen: " + shouldShow );
 			SetClass( "visible", shouldShow );
 
 			if ( !shouldShow )
@@ -27,15 +26,9 @@ namespace ImposterSyndrome.Systems.UI
 			Add.Label( "Who is the imposter?", "Title" );
 
 			var container = Add.Panel( "container" );
-
 			foreach ( var player in ImposterSyndrome.Instance.Players )
 			{
-				var playerContainer = container.Add.Panel( "player" );
-				playerContainer.Add.Panel( "colour" );
-
-				var playerInfo = playerContainer.Add.Panel( "info" );
-				playerInfo.Add.Label( "Name", "name" );
-				playerInfo.Add.Panel( "votes" );
+				container.AddChild( new PlayerPanel( player ) );
 			}
 		}
 	}
