@@ -9,6 +9,7 @@ namespace ImposterSyndrome.Systems.UI
 	public class PlayerPanel : Panel
 	{
 		private ISPlayer HeldPlayer { get; set; }
+		private Label MeetingCallerStatus { get; set; }
 
 		public PlayerPanel( ISPlayer player )
 		{
@@ -19,11 +20,18 @@ namespace ImposterSyndrome.Systems.UI
 			var playerInfo = Add.Panel( "info" );
 			playerInfo.Add.Label( player.Client.Name, "name" );
 			playerInfo.Add.Panel( "votes" );
+			MeetingCallerStatus = playerInfo.Add.Label( "!", "calledmeeting" );
 
 			HeldPlayer = player;
 			SetClass( "dead", player.LifeState != LifeState.Alive );
 
 			AddEventListener( "onclick", () => Click( HeldPlayer ) );
+		}
+
+		public void CheckIfMeetingCaller( int calledByPlayerNetIdent )
+		{
+			if ( HeldPlayer.NetworkIdent == calledByPlayerNetIdent )
+				MeetingCallerStatus.SetClass( "visible", true );
 		}
 
 		private void Click( ISPlayer votedForPlayer )

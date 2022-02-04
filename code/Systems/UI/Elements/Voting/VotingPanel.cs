@@ -21,7 +21,7 @@ namespace ImposterSyndrome.Systems.UI
 			PlayerPanels = new();
 		}
 
-		public void Show( bool shouldShow )
+		public void Show( bool shouldShow, int calledByPlayerNetIdent )
 		{
 			DeleteChildren( true );
 			PlayerPanels.Clear();
@@ -40,6 +40,7 @@ namespace ImposterSyndrome.Systems.UI
 			foreach ( var player in ImposterSyndrome.Instance?.Players )
 			{
 				var playerPanel = new PlayerPanel( player );
+				playerPanel.CheckIfMeetingCaller( calledByPlayerNetIdent );
 
 				container.AddChild( playerPanel );
 				PlayerPanels.Add( playerPanel, player );

@@ -15,13 +15,21 @@ namespace ImposterSyndrome.Systems.States
 		// Voting player, voted for player
 		[Net] public Dictionary<ISPlayer, ISPlayer> PlayerVotes { get; set; }
 		public override float StateDuration { get; set; } = 30;
+		public int CalledByPlayerNetIdent { get; set; } = -1;
+
+		public VotingState() { }
+
+		public VotingState( ISPlayer calledByPlayer ) : this()
+		{
+			CalledByPlayerNetIdent = calledByPlayer.NetworkIdent;
+		}
 
 		public override void OnStateStarted()
 		{
 			base.OnStateStarted();
 
 			// Send these over to the players HUDs.
-			PlayerHudEntity.ShowVotingScreen( true );
+			PlayerHudEntity.ShowVotingScreen( true, CalledByPlayerNetIdent >= 0 ? CalledByPlayerNetIdent : -1 );
 
 			ISBasePlayer.ReturnAllToCampfire();
 		}

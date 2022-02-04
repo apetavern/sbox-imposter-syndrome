@@ -41,9 +41,9 @@ namespace ImposterSyndrome.Systems.UI
 		}
 
 		[ClientRpc]
-		public static void ShowVotingScreen( bool shouldShow )
+		public static void ShowVotingScreen( bool shouldShow, int calledByNetIdent = -1 )
 		{
-			VotingPanel.Instance?.Show( shouldShow );
+			VotingPanel.Instance?.Show( shouldShow, calledByNetIdent );
 		}
 
 		[ClientRpc]
