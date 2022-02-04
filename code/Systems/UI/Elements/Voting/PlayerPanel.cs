@@ -15,7 +15,7 @@ namespace ImposterSyndrome.Systems.UI
 			Add.Panel( "colour" );
 
 			var playerInfo = Add.Panel( "info" );
-			playerInfo.Add.Label( "Name", "name" );
+			playerInfo.Add.Label( player.Client.Name, "name" );
 			playerInfo.Add.Panel( "votes" );
 
 			HeldPlayer = player;
