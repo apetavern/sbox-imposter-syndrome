@@ -1,6 +1,8 @@
 ﻿@import "/Systems/UI/_Common.scss";
 
 GameInfoPanel {
+    position: absolute;
+    bottom: 0px;
     padding: 5px;
     flex-direction: column;
 }
