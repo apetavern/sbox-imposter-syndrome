@@ -20,12 +20,6 @@ namespace ImposterSyndrome
 			Instance.CurrentState?.OnStateStarted();
 		}
 
-		[ServerCmd( "is_nextstate" )]
-		public static void EndCurrentState()
-		{
-			ImposterSyndrome.Instance?.CurrentState?.OnStateEnded();
-		}
-
 		[Event.Tick]
 		public void OnSecond()
 		{
