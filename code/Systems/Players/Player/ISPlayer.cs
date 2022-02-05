@@ -11,17 +11,16 @@ namespace ImposterSyndrome.Systems.Players
 		[Net] public Color PlayerColor { get; set; }
 		private TimeSince TimeSinceKilled { get; set; }
 
-		public override void OnKilled()
+		public void OnKilled( bool leaveBody = true )
 		{
-			base.OnKilled();
-
 			TimeSinceKilled = 0;
 
 			PhysicsClear();
 
 			LifeState = LifeState.Dead;
 
-			new DeadPlayerEntity().UpdateFrom( this );
+			if ( leaveBody )
+				new DeadPlayerEntity().UpdateFrom( this );
 
 			UpdateRenderAlpha();
 		}
@@ -30,6 +29,12 @@ namespace ImposterSyndrome.Systems.Players
 		{
 			var controller = GetActiveController();
 			controller?.Simulate( cl, this, GetActiveAnimator() );
+		}
+
+		public void Eject()
+		{
+			Log.Info( $"Ejected player {Client.Name}" );
+			OnKilled( false );
 		}
 
 		public void OnIsImposterChanged()

@@ -57,7 +57,7 @@ namespace ImposterSyndrome.Systems.States
 			var totalAlivePlayers = ImposterSyndrome.Instance?.Players.Count( player => player.LifeState == LifeState.Alive );
 
 			if ( numberOfVotesForHighestVoted >= totalAlivePlayers / 2 )
-				Log.Info( $"Eject {highestVotedPlayer.Client.Name}" );
+				highestVotedPlayer.Eject();
 		}
 
 		[ServerCmd]
