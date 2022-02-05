@@ -8,6 +8,7 @@ namespace ImposterSyndrome.Systems.Players
 	public partial class ISPlayer : ISBasePlayer, IEntityUse
 	{
 		[Net, Local, Change] public bool IsImposter { get; private set; }
+		[Net] public Color PlayerColor { get; set; }
 		private TimeSince TimeSinceKilled { get; set; }
 
 		public override void OnKilled()
@@ -34,6 +35,12 @@ namespace ImposterSyndrome.Systems.Players
 		public void OnIsImposterChanged()
 		{
 			PlayerHudEntity.Rebuild();
+		}
+
+		public void UpdateColor( Color newColor )
+		{
+			PlayerColor = newColor;
+			Backpack.RenderColor = newColor;
 		}
 
 		public bool IsUsable( ISPlayer user, UseType useType )

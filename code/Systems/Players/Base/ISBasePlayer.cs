@@ -6,7 +6,7 @@ namespace ImposterSyndrome.Systems.Players
 {
 	public partial class ISBasePlayer : Player
 	{
-		public AnimEntity backpack;
+		public AnimEntity Backpack { get; set; }
 
 		public override void Respawn()
 		{
@@ -16,9 +16,9 @@ namespace ImposterSyndrome.Systems.Players
 			Animator = new ISAnimator();
 			Camera = new ISCamera();
 
-			backpack = new AnimEntity();
-			backpack.SetModel( "models/backpacks/business/susbusinessbackpack.vmdl" );
-			backpack.SetParent( this, true );
+			Backpack = new AnimEntity();
+			Backpack.SetModel( "models/backpacks/business/susbusinessbackpack.vmdl" );
+			Backpack.SetParent( this, true );
 
 			EnableAllCollisions = true;
 			EnableDrawing = true;

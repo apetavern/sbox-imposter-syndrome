@@ -17,6 +17,9 @@ namespace ImposterSyndrome.Systems.States
 		{
 			base.OnStateStarted();
 
+			// Make all player colors available again.
+			ImposterSyndrome.ResetAvailableColors();
+
 			// Clear player list.
 			ImposterSyndrome.Instance?.Players?.Clear();
 
@@ -30,6 +33,9 @@ namespace ImposterSyndrome.Systems.States
 
 			AssignImposters();
 			AssignTasks();
+
+			// Assign player colours.
+			ImposterSyndrome.AssignPlayerColors();
 
 			OnStateEnded();
 		}
