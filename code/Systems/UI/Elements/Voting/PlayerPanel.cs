@@ -46,9 +46,6 @@ namespace ImposterSyndrome.Systems.UI
 
 		public void UpdateVote( ISPlayer voteFromPlayer )
 		{
-			Log.Info( $"{HeldPlayer.Client.Name} receiving vote from {voteFromPlayer.Client.Name}" );
-
-			// TODO: Get player colour and update the class colour.
 			var vote = VotePanel.Add.Panel( "vote" );
 			vote.Style.BackgroundColor = voteFromPlayer.PlayerColor;
 		}
