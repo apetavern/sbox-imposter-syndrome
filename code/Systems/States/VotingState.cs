@@ -38,10 +38,26 @@ namespace ImposterSyndrome.Systems.States
 		{
 			PlayerHudEntity.ShowVotingScreen( false );
 
+			EjectMajorityVotedPlayer();
+
 			// Delete these dead players.
 			DeadPlayerEntity.RemoveAll();
 
 			ImposterSyndrome.UpdateState( new PlayingState() );
+		}
+
+		private void EjectMajorityVotedPlayer()
+		{
+			// Calculate which player to eject.
+			var sortedDict = PlayerVotes.GroupBy( x => x.Value ).ToDictionary( x => x.Key, x => x.Count() ).OrderByDescending( x => x ).FirstOrDefault();
+
+			var highestVotedPlayer = sortedDict.Key;
+			var numberOfVotesForHighestVoted = sortedDict.Value;
+
+			var totalAlivePlayers = ImposterSyndrome.Instance?.Players.Count( player => player.LifeState == LifeState.Alive );
+
+			if ( numberOfVotesForHighestVoted >= totalAlivePlayers / 2 )
+				Log.Info( $"Eject {highestVotedPlayer.Client.Name}" );
 		}
 
 		[ServerCmd]
