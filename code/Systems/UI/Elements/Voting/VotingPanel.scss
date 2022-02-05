@@ -51,15 +51,29 @@ votingpanel {
         width: 78%;
         padding-top: 10px;
         padding-left: 10px;
+        flex-direction: row;
+        align-items: center;
 
         label {
             font-size: 50px;
+            padding-right: 50px;
 
             &:hover {
                 color: #B39682;
                 cursor: pointer;
                 transition: all 0.1s ease;
             }
+        }
+
+        .vote {
+            height: 40%;
+            aspect-ratio: 1;
+            background-image: url("materials/ui/votes/player_thumb.png");
+            background-color: #704e42;
+            background-size: cover;
+            border-radius: 10px;
+            margin-right: 5px;
+            border: 4px solid rgba(black, 0.6);
         }
     }
 }

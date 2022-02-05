@@ -12,7 +12,9 @@ namespace ImposterSyndrome.Systems.UI
 	{
 		public static VotingPanel Instance { get; set; }
 		private Label TimerLabel { get; set; }
+		private Panel FooterPanel { get; set; }
 		private Dictionary<PlayerPanel, ISPlayer> PlayerPanels { get; set; }
+
 
 		public VotingPanel()
 		{
@@ -46,8 +48,8 @@ namespace ImposterSyndrome.Systems.UI
 				PlayerPanels.Add( playerPanel, player );
 			}
 
-			var footer = Add.Panel( "footer" );
-			footer.Add.Button( "Skip", () => VotingState.ReceiveVote( -1 ) );
+			FooterPanel = Add.Panel( "footer" );
+			FooterPanel.Add.Button( "Skip", () => VotingState.ReceiveVote( -1 ) );
 		}
 
 		public override void Tick()
@@ -70,7 +72,8 @@ namespace ImposterSyndrome.Systems.UI
 
 			if ( voteToNetIdent < 0 )
 			{
-				Log.Info( "Update skip area with new vote" );
+				var vote = FooterPanel.Add.Panel( "vote" );
+				vote.Style.BackgroundColor = voteFromPlayer.PlayerColor;
 				return;
 			}
 
