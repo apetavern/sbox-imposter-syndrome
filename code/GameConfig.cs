@@ -2,7 +2,7 @@
 {
 	public static class GameConfig
 	{
-		public static int MinimumPlayers = 4;
+		public static int MinimumPlayers = 6;
 		public static float InteractionRadius = 60f;
 		public static Color[] AvailablePlayerColors = new[]
 		{
