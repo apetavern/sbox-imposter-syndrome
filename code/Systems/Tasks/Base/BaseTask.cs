@@ -20,7 +20,7 @@ namespace ImposterSyndrome.Systems.Tasks
 			return Status == TaskStatus.Fake ? $"{TaskName} (fake)" : TaskName;
 		}
 
-		public void MarkAsCompleted()
+		public virtual void MarkAsCompleted()
 		{
 			Status = TaskStatus.Complete;
 			OnTaskCompleted();
