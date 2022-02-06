@@ -14,7 +14,7 @@ namespace ImposterSyndrome.Systems.States
 
 		// Voting player, voted for player
 		[Net] public Dictionary<ISPlayer, ISPlayer> PlayerVotes { get; set; }
-		public override float StateDuration { get; set; } = 30;
+		public override float StateDuration { get; set; } = 10;
 		public int CalledByPlayerNetIdent { get; set; } = -1;
 
 		public VotingState() { }
