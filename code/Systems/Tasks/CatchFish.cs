@@ -8,9 +8,6 @@ namespace ImposterSyndrome.Systems.Tasks
 {
 	public class CatchFish : BaseTask
 	{
-		public CatchFish()
-		{
-			TaskName = "Catch a fish.";
-		}
+		public override string TaskName => "Catch a fish";
 	}
 }

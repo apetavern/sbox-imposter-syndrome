@@ -8,9 +8,6 @@ namespace ImposterSyndrome.Systems.Tasks
 {
 	public class SandSOS : BaseTask
 	{
-		public SandSOS()
-		{
-			TaskName = "Draw a dick in the sand.";
-		}
+		public override string TaskName => "Draw an SOS signal";
 	}
 }

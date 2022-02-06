@@ -8,9 +8,6 @@ namespace ImposterSyndrome.Systems.Tasks
 {
 	public class RepairSatellite : BaseTask
 	{
-		public RepairSatellite()
-		{
-			TaskName = "Repair the satellite.";
-		}
+		public override string TaskName => "Repair the satellite";
 	}
 }

@@ -1,5 +1,6 @@
-﻿using ImposterSyndrome.Systems.Tasks;
-using Sandbox.Internal;
+﻿using ImposterSyndrome.Systems.Players;
+using ImposterSyndrome.Systems.Tasks;
+using Sandbox;
 using Sandbox.UI;
 
 namespace ImposterSyndrome.Systems.UI
@@ -10,7 +11,15 @@ namespace ImposterSyndrome.Systems.UI
 		{
 			StyleSheet.Load( "/Systems/UI/Elements/Tasks/Task.scss" );
 
-			SetText( task.GetTaskName() );
+			var displayName = task.TaskName;
+
+			if ( task is MultipleTask multiTask )
+				displayName += $": {multiTask.ActiveSubTask.TaskName}";
+
+			if ( (Local.Pawn as ISPlayer).IsImposter )
+				displayName += "(fake)";
+
+			SetText( displayName );
 			BindClass( "completed", () => task.Status == TaskStatus.Complete );
 		}
 	}

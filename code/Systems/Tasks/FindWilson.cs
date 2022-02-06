@@ -8,9 +8,6 @@ namespace ImposterSyndrome.Systems.Tasks
 {
 	public class FindWilson : BaseTask
 	{
-		public FindWilson()
-		{
-			TaskName = "Find Wilson.";
-		}
+		public override string TaskName => "Find Wilson";
 	}
 }
