@@ -1,4 +1,6 @@
-﻿namespace ImposterSyndrome.Systems.Tasks
+﻿using Sandbox;
+
+namespace ImposterSyndrome.Systems.Tasks
 {
 	public abstract partial class SubTask : BaseTask
 	{
