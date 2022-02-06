@@ -6,9 +6,8 @@ using System.Linq;
 
 namespace ImposterSyndrome.Systems.Entities
 {
-	public class TaskEntity : AnimEntity, IEntityUse
+	public class BaseUsableEntity : AnimEntity, IEntityUse
 	{
-		protected virtual Type TargetTaskType { get; set; }
 		protected virtual string ModelPath { get; set; } = "models/citizen_props/cardboardbox01.vmdl";
 		private bool Debug { get; set; } = true;
 

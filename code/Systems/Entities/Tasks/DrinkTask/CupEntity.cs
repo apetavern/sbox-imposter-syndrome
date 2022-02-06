@@ -1,9 +1,6 @@
-﻿using ImposterSyndrome.Systems.Players;
-using ImposterSyndrome.Systems.Tasks;
+﻿using ImposterSyndrome.Systems.Tasks;
 using Sandbox;
 using System;
-using System.ComponentModel;
-using System.Linq;
 
 namespace ImposterSyndrome.Systems.Entities
 {
@@ -13,7 +10,7 @@ namespace ImposterSyndrome.Systems.Entities
 	public class CupEntity : MultipleTaskEntity
 	{
 		protected override string ModelPath => "models/citizen_props/coffeemug01.vmdl";
-		protected override Type ParentMultipleTaskType { get; set; } = typeof( DrinkTask );
+		protected override Type TargetTaskType { get; set; } = typeof( DrinkTask );
 		protected override Type TargetSubTaskType { get; set; } = typeof( FindCup );
 
 	}

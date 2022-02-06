@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace ImposterSyndrome.Systems.Entities
 {
-	public partial class DeadPlayerEntity : BaseUsable
+	public partial class DeadPlayerEntity : BaseUsableEntity
 	{
 		protected override string ModelPath => "models/playermodel/terrysus.vmdl";
 
