@@ -36,6 +36,9 @@ namespace ImposterSyndrome.Systems.Entities
 
 		public override bool OnUse( ISPlayer user, UseType useType )
 		{
+			if ( HasBeenReported )
+				return false;
+
 			ImposterSyndrome.UpdateState( new VotingState( user ) );
 			HasBeenReported = true;
 
