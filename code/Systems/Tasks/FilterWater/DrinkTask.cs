@@ -12,7 +12,8 @@ namespace ImposterSyndrome.Systems.Tasks
 		{
 			SubTasks = new()
 			{
-				new FindCup()
+				new FindCup(),
+				new PurifyWater()
 			};
 		}
 	}
