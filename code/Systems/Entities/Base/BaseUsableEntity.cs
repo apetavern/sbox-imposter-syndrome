@@ -2,13 +2,14 @@
 using ImposterSyndrome.Systems.Tasks;
 using Sandbox;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ImposterSyndrome.Systems.Entities
 {
 	public partial class BaseUsableEntity : AnimEntity, IEntityUse
 	{
-		public bool IsDisabled { get; set; }
+		[Net] public List<ISPlayer> UsedByPlayers { get; set; }
 		protected virtual string ModelPath { get; set; } = "models/citizen_props/cardboardbox01.vmdl";
 		private bool Debug { get; set; } = true;
 
@@ -38,13 +39,22 @@ namespace ImposterSyndrome.Systems.Entities
 			DebugOverlay.Text( Position + Vector3.Up * 40f, Name );
 		}
 
-		/// <summary>
-		/// Pass in To.Single(Entity or Client)
-		/// </summary>
-		[ClientRpc]
-		public void DisableForClient()
+		protected void DisableForPlayer( ISPlayer player )
 		{
-			IsDisabled = true;
+			UsedByPlayers.Add( player );
+			ToggleVisibility( To.Single( player ), false );
+		}
+
+		protected bool HasBeenUsedBy( ISPlayer player )
+		{
+			return UsedByPlayers.Contains( player );
+		}
+
+		[ClientRpc]
+		public void ToggleVisibility( bool shouldShow )
+		{
+			var renderAlpha = shouldShow ? 1 : 0;
+			RenderColor = RenderColor.WithAlpha( renderAlpha );
 		}
 	}
 }
