@@ -17,7 +17,7 @@ namespace ImposterSyndrome.Systems.UI
 				displayName += $": {multiTask.ActiveSubTask.TaskName}";
 
 			if ( (Local.Pawn as ISPlayer).IsImposter )
-				displayName += "(fake)";
+				displayName += " (fake)";
 
 			SetText( displayName );
 			BindClass( "completed", () => task.Status == TaskStatus.Complete );
