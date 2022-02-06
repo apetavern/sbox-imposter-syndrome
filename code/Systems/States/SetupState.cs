@@ -49,10 +49,8 @@ namespace ImposterSyndrome.Systems.States
 				{
 					var taskInstance = Library.Create<BaseTask>( task ).FlagAsFake( player.IsImposter );
 
-					Log.Info( taskInstance );
-
 					if ( taskInstance is SubTask )
-						return;
+						continue;
 
 					player.AssignedTasks.Add( taskInstance );
 				}
