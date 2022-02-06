@@ -1,6 +1,7 @@
 ﻿using ImposterSyndrome.Systems.Players;
 using ImposterSyndrome.Systems.Tasks;
 using Sandbox;
+using System;
 using System.Linq;
 
 namespace ImposterSyndrome.Systems.Entities
@@ -10,24 +11,7 @@ namespace ImposterSyndrome.Systems.Entities
 	[Hammer.EditorModel( "models/citizen_props/beachball.vmdl" )]
 	public class WilsonEntity : TaskEntity
 	{
+		protected override Type TargetTaskType => typeof( FindWilson );
 		protected override string ModelPath => "models/citizen_props/beachball.vmdl";
-
-		public override bool IsUsable( ISPlayer user, UseType useType )
-		{
-			if ( useType != UseType.Use )
-				return false;
-
-			var task = user.AssignedTasks.OfType<FindWilson>().FirstOrDefault( task => task.Status == TaskStatus.Incomplete );
-
-			return task != null;
-		}
-
-		public override bool OnUse( ISPlayer user, UseType useType )
-		{
-			var task = user.AssignedTasks.OfType<FindWilson>().FirstOrDefault( task => task.Status == TaskStatus.Incomplete );
-			task.MarkAsCompleted();
-
-			return false;
-		}
 	}
 }
