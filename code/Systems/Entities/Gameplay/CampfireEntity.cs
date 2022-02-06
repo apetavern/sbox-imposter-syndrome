@@ -20,11 +20,15 @@ namespace ImposterSyndrome.Systems.Entities
 
 		public override bool IsUsable( ISPlayer user, UseType useType )
 		{
-			return true;
+			if ( useType == UseType.Use )
+				return true;
+
+			return false;
 		}
 
 		public override bool OnUse( ISPlayer user, UseType useType )
 		{
+			Log.Info( $"{Name} used." );
 			return false;
 		}
 	}
