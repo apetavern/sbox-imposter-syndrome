@@ -39,6 +39,12 @@ namespace ImposterSyndrome.Systems.Entities
 			DebugOverlay.Text( Position + Vector3.Up * 40f, Name );
 		}
 
+		public virtual void Reset()
+		{
+			UsedByPlayers.Clear();
+			ToggleVisibility( true );
+		}
+
 		protected void DisableForPlayer( ISPlayer player )
 		{
 			UsedByPlayers.Add( player );
@@ -55,6 +61,12 @@ namespace ImposterSyndrome.Systems.Entities
 		{
 			var renderAlpha = shouldShow ? 1 : 0.5f;
 			RenderColor = RenderColor.WithAlpha( renderAlpha );
+		}
+
+		public static void ResetAll()
+		{
+			foreach ( var entity in All.OfType<BaseUsableEntity>() )
+				entity.Reset();
 		}
 	}
 }
