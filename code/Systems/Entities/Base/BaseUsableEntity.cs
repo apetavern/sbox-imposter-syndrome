@@ -1,13 +1,14 @@
 ﻿using ImposterSyndrome.Systems.Players;
 using ImposterSyndrome.Systems.Tasks;
 using Sandbox;
-using System.ComponentModel;
+using System;
 using System.Linq;
 
 namespace ImposterSyndrome.Systems.Entities
 {
-	public class BaseUsable : AnimEntity, IEntityUse
+	public class TaskEntity : AnimEntity, IEntityUse
 	{
+		protected virtual Type TargetTaskType { get; set; }
 		protected virtual string ModelPath { get; set; } = "models/citizen_props/cardboardbox01.vmdl";
 		private bool Debug { get; set; } = true;
 
@@ -21,13 +22,13 @@ namespace ImposterSyndrome.Systems.Entities
 
 		public virtual bool IsUsable( ISPlayer user, UseType useType )
 		{
-			Log.Warning( "Entity of type BaseUsable: IsUsable() not implemented." );
+			Log.Warning( "Entity of type BaseUsableEntity: IsUsable() not implemented." );
 			return false;
 		}
 
 		public virtual bool OnUse( ISPlayer user, UseType useType )
 		{
-			Log.Warning( "Entity of type BaseUsable: OnUse() not implemented." );
+			Log.Warning( "Entity of type BaseUsableEntity: OnUse() not implemented." );
 			return false;
 		}
 
