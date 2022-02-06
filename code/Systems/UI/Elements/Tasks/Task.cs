@@ -25,7 +25,7 @@ namespace ImposterSyndrome.Systems.UI
 			var displayName = HeldTask.TaskName;
 
 			if ( HeldTask is MultipleTask multiTask )
-				displayName += $": {multiTask.ActiveSubTask.TaskName}";
+				displayName += $": {multiTask.ActiveSubTask.TaskName} ({multiTask.SubTaskProgress}/{multiTask.SubTaskQuantity})";
 
 			if ( (Local.Pawn as ISPlayer).IsImposter )
 				displayName += " (fake)";

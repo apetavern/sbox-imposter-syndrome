@@ -8,16 +8,25 @@ namespace ImposterSyndrome.Systems.Tasks
 	public abstract partial class MultipleTask : BaseTask
 	{
 		public override string TaskName => "MultipleTask";
+		[Net] public int SubTaskProgress { get; set; }
+		[Net] public int SubTaskQuantity { get; set; }
 		[Net] public SubTask ActiveSubTask { get; set; }
 		public List<SubTask> SubTasks { get; set; } = new();
 
 		public MultipleTask()
 		{
 			SetupSubTasks();
+			CountSubTasks();
+
 			AssignNextTask();
 		}
 
 		protected virtual void SetupSubTasks() { }
+
+		private void CountSubTasks()
+		{
+			SubTaskQuantity = SubTasks.Count;
+		}
 
 		private void AssignNextTask()
 		{
@@ -33,6 +42,8 @@ namespace ImposterSyndrome.Systems.Tasks
 
 		public override void MarkAsCompleted()
 		{
+			SubTaskProgress++;
+
 			if ( SubTasks.Count > 0 )
 			{
 				AssignNextTask();
