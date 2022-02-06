@@ -9,17 +9,11 @@ namespace ImposterSyndrome.Systems.Entities
 	[Library( "is_task_wilson" )]
 	[Hammer.EntityTool( "Wilson", "ImposterSyndrome", "The entity for the 'Find Wilson' task." )]
 	[Hammer.EditorModel( "models/citizen_props/beachball.vmdl" )]
-	public class WilsonEntity : AnimEntity, IEntityUse
+	public class WilsonEntity : BaseUsable
 	{
-		public override void Spawn()
-		{
-			base.Spawn();
+		protected override string ModelPath => "models/citizen_props/beachball.vmdl";
 
-			SetModel( "models/citizen_props/beachball.vmdl" );
-			SetupPhysicsFromModel( PhysicsMotionType.Static );
-		}
-
-		public bool IsUsable( ISPlayer user, UseType useType )
+		public override bool IsUsable( ISPlayer user, UseType useType )
 		{
 			if ( useType != UseType.Use )
 				return false;
@@ -29,7 +23,7 @@ namespace ImposterSyndrome.Systems.Entities
 			return task != null;
 		}
 
-		public bool OnUse( ISPlayer user, UseType useType )
+		public override bool OnUse( ISPlayer user, UseType useType )
 		{
 			var task = user.AssignedTasks.OfType<FindWilson>().FirstOrDefault( task => task.Status == TaskStatus.Incomplete );
 			task.MarkAsCompleted();
