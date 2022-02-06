@@ -26,9 +26,7 @@ namespace ImposterSyndrome.Systems.Entities
 			if ( useType != UseType.Use )
 				return false;
 
-			var task = GetTaskInstance( user );
-
-			return task != null;
+			return GetTaskInstance( user ) != null;
 		}
 
 		public override bool OnUse( ISPlayer user, UseType useType )
