@@ -49,7 +49,7 @@ namespace ImposterSyndrome.Systems.States
 		private void EjectMajorityVotedPlayer()
 		{
 			// Calculate which player to eject.
-			var sortedDict = PlayerVotes.GroupBy( x => x.Value ).ToDictionary( x => x.Key, x => x.Count() ).OrderByDescending( x => x ).FirstOrDefault();
+			var sortedDict = PlayerVotes.Where( x => x.Value is not null ).GroupBy( x => x.Value ).ToDictionary( x => x.Key, x => x.Count() ).OrderByDescending( x => x ).FirstOrDefault();
 
 			var highestVotedPlayer = sortedDict.Key;
 			var numberOfVotesForHighestVoted = sortedDict.Value;
