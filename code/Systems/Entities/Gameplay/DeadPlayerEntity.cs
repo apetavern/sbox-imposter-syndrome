@@ -31,7 +31,7 @@ namespace ImposterSyndrome.Systems.Entities
 
 		public override bool IsUsable( ISPlayer user, UseType useType )
 		{
-			return !HasBeenReported && useType == UseType.Report;
+			return !HasBeenReported && useType == UseType.Report && user.LifeState == LifeState.Alive;
 		}
 
 		public override bool OnUse( ISPlayer user, UseType useType )
