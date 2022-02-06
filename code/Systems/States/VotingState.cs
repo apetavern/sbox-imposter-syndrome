@@ -75,10 +75,7 @@ namespace ImposterSyndrome.Systems.States
 				return;
 
 			if ( votingState.PlayerVotes.ContainsKey( votingFromPlayer ) )
-			{
-				Log.Info( "already voted" );
 				return;
-			}
 
 			// Skipping
 			if ( voteToPlayerNetId < 0 )
