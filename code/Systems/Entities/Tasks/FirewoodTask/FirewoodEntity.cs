@@ -1,4 +1,5 @@
-﻿using ImposterSyndrome.Systems.Tasks;
+﻿using ImposterSyndrome.Systems.Players;
+using ImposterSyndrome.Systems.Tasks;
 using Sandbox;
 using System;
 
@@ -11,6 +12,6 @@ namespace ImposterSyndrome.Systems.Entities
 	{
 		protected override string ModelPath => "models/sbox_props/low_wood_fence/low_wood_fence_beam_1_gib2.vmdl";
 		protected override Type TargetTaskType { get; set; } = typeof( FirewoodTask );
-		protected override Type TargetSubTaskType { get; set; } = typeof( CollectFirewood );
+		protected override Type TargetSubTaskType { get; set; } = typeof( GatherFirewood );
 	}
 }

@@ -8,7 +8,9 @@
 		{
 			SubTasks = new()
 			{
-				new CollectFirewood()
+				new GatherFirewood(),
+				new GatherFirewood(),
+				new GatherFirewood()
 			};
 		}
 	}
