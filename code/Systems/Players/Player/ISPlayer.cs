@@ -12,6 +12,11 @@ namespace ImposterSyndrome.Systems.Players
 		[Net] public bool HasCalledEmergencyMeeting { get; set; }
 		private TimeSince TimeSinceKilled { get; set; }
 
+		public override void OnKilled()
+		{
+			OnKilled( true );
+		}
+
 		public void OnKilled( bool leaveBody = true )
 		{
 			TimeSinceKilled = 0;
