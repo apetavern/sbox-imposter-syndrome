@@ -53,7 +53,7 @@ namespace ImposterSyndrome.Systems.Entities
 		[ClientRpc]
 		public void ToggleVisibility( bool shouldShow )
 		{
-			var renderAlpha = shouldShow ? 1 : 0;
+			var renderAlpha = shouldShow ? 1 : 0.5f;
 			RenderColor = RenderColor.WithAlpha( renderAlpha );
 		}
 	}
