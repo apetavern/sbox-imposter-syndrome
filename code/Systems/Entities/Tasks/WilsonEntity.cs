@@ -1,8 +1,6 @@
-﻿using ImposterSyndrome.Systems.Players;
-using ImposterSyndrome.Systems.Tasks;
+﻿using ImposterSyndrome.Systems.Tasks;
 using Sandbox;
 using System;
-using System.Linq;
 
 namespace ImposterSyndrome.Systems.Entities
 {

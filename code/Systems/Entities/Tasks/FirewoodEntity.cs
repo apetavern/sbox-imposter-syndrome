@@ -1,6 +1,7 @@
 ﻿using ImposterSyndrome.Systems.Tasks;
 using Sandbox;
 using System;
+
 namespace ImposterSyndrome.Systems.Entities
 {
 	[Library( "is_task_firewood" )]

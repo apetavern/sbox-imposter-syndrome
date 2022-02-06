@@ -2,8 +2,6 @@
 using ImposterSyndrome.Systems.Players;
 using Sandbox;
 using Sandbox.UI;
-using Sandbox.UI.Construct;
-using System.Linq;
 
 namespace ImposterSyndrome.Systems.UI
 {
