@@ -14,6 +14,7 @@ namespace ImposterSyndrome.Systems.Entities
 			return user.AssignedTasks
 				.FirstOrDefault(
 					task => task.GetType() == TargetTaskType
+					&& (task as MultipleTask).Status == TaskStatus.Incomplete
 					&& (task as MultipleTask).ActiveSubTask.GetType() == TargetSubTaskType
 				);
 		}
