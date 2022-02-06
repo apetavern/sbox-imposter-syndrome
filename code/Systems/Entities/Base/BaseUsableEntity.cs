@@ -6,8 +6,9 @@ using System.Linq;
 
 namespace ImposterSyndrome.Systems.Entities
 {
-	public class BaseUsableEntity : AnimEntity, IEntityUse
+	public partial class BaseUsableEntity : AnimEntity, IEntityUse
 	{
+		public bool IsDisabled { get; set; }
 		protected virtual string ModelPath { get; set; } = "models/citizen_props/cardboardbox01.vmdl";
 		private bool Debug { get; set; } = true;
 
@@ -35,6 +36,15 @@ namespace ImposterSyndrome.Systems.Entities
 		public virtual void OnTick()
 		{
 			DebugOverlay.Text( Position + Vector3.Up * 40f, Name );
+		}
+
+		/// <summary>
+		/// Pass in To.Single(Entity or Client)
+		/// </summary>
+		[ClientRpc]
+		public void DisableForClient()
+		{
+			IsDisabled = true;
 		}
 	}
 }
