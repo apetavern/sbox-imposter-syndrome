@@ -1,4 +1,5 @@
 ﻿using ImposterSyndrome.Systems.Players;
+using ImposterSyndrome.Systems.States;
 using Sandbox;
 
 namespace ImposterSyndrome.Systems.Entities
@@ -21,14 +22,19 @@ namespace ImposterSyndrome.Systems.Entities
 		public override bool IsUsable( ISPlayer user, UseType useType )
 		{
 			if ( useType == UseType.Use )
-				return true;
+				return !user.HasCalledEmergencyMeeting;
 
 			return false;
 		}
 
 		public override bool OnUse( ISPlayer user, UseType useType )
 		{
-			Log.Info( $"{Name} used." );
+			if ( !IsUsable( user, useType ) )
+				return false;
+
+			ImposterSyndrome.UpdateState( new VotingState( user ) );
+			user.HasCalledEmergencyMeeting = true;
+
 			return false;
 		}
 	}

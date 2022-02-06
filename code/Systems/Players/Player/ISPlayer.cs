@@ -9,6 +9,7 @@ namespace ImposterSyndrome.Systems.Players
 	{
 		[Net, Local, Change] public bool IsImposter { get; private set; }
 		[Net] public Color PlayerColor { get; set; }
+		[Net] public bool HasCalledEmergencyMeeting { get; set; }
 		private TimeSince TimeSinceKilled { get; set; }
 
 		public void OnKilled( bool leaveBody = true )
