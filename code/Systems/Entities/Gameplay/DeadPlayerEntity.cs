@@ -6,8 +6,10 @@ using System.Linq;
 
 namespace ImposterSyndrome.Systems.Entities
 {
-	public partial class DeadPlayerEntity : AnimEntity, IEntityUse
+	public partial class DeadPlayerEntity : BaseUsable
 	{
+		protected override string ModelPath => "models/playermodel/terrysus.vmdl";
+
 		[Browsable( false )]
 		[Net] public bool HasBeenReported { get; set; }
 
@@ -17,8 +19,6 @@ namespace ImposterSyndrome.Systems.Entities
 		public override void Spawn()
 		{
 			base.Spawn();
-
-			SetModel( "models/playermodel/terrysus.vmdl" );
 			SetupPhysicsFromAABB( PhysicsMotionType.Static, new Vector3( -8, -8, 0 ), new Vector3( 8, 8, 30 ) );
 		}
 
@@ -29,12 +29,12 @@ namespace ImposterSyndrome.Systems.Entities
 			BodyOwner = player;
 		}
 
-		public bool IsUsable( ISPlayer user, UseType useType )
+		public override bool IsUsable( ISPlayer user, UseType useType )
 		{
 			return !HasBeenReported && useType == UseType.Report;
 		}
 
-		public bool OnUse( ISPlayer user, UseType useType )
+		public override bool OnUse( ISPlayer user, UseType useType )
 		{
 			ImposterSyndrome.UpdateState( new VotingState( user ) );
 			HasBeenReported = true;
