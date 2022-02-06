@@ -15,7 +15,7 @@ namespace ImposterSyndrome.Systems.Entities
 		{
 			base.Spawn();
 
-			SetModel( "models/citizen_props/beachball.vmdl" );
+			SetModel( ModelPath );
 			SetupPhysicsFromModel( PhysicsMotionType.Static );
 		}
 
