@@ -37,7 +37,7 @@ namespace ImposterSyndrome.Systems.UI
 		[ClientRpc]
 		public static void RefreshTaskList()
 		{
-			TaskListPanel.Instance?.Rebuild();
+			TaskListPanel.Instance?.Refresh();
 		}
 
 		[ClientRpc]
