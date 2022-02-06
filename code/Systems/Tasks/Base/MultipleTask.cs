@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using ImposterSyndrome.Systems.UI;
+using Sandbox;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -35,11 +36,18 @@ namespace ImposterSyndrome.Systems.Tasks
 			if ( SubTasks.Count > 0 )
 			{
 				AssignNextTask();
+
+				// Refresh players task list.
+				PlayerHudEntity.RefreshTaskList();
+
 				return;
 			}
 
 			Status = TaskStatus.Complete;
 			OnTaskCompleted();
+
+			// Refresh players task list.
+			PlayerHudEntity.RefreshTaskList();
 		}
 
 		public override void OnTaskCompleted()
