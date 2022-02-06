@@ -53,6 +53,9 @@ namespace ImposterSyndrome.Systems.States
 		{
 			// Cleanup bodies.
 			DeadPlayerEntity.RemoveAll();
+
+			// Reset all world entities.
+			BaseUsableEntity.ResetAll();
 		}
 	}
 }
