@@ -10,7 +10,8 @@
 			{
 				new GatherFirewood(),
 				new GatherFirewood(),
-				new GatherFirewood()
+				new GatherFirewood(),
+				new PlaceOnWoodStockpile()
 			};
 		}
 	}
