@@ -7,20 +7,30 @@ namespace ImposterSyndrome.Systems.UI
 {
 	public class Task : Label
 	{
+		private BaseTask HeldTask { get; set; }
+
 		public Task( BaseTask task )
 		{
 			StyleSheet.Load( "/Systems/UI/Elements/Tasks/Task.scss" );
 
-			var displayName = task.TaskName;
+			HeldTask = task;
 
-			if ( task is MultipleTask multiTask )
+			Refresh();
+
+			BindClass( "completed", () => task.Status == TaskStatus.Complete );
+		}
+
+		public void Refresh()
+		{
+			var displayName = HeldTask.TaskName;
+
+			if ( HeldTask is MultipleTask multiTask )
 				displayName += $": {multiTask.ActiveSubTask.TaskName}";
 
 			if ( (Local.Pawn as ISPlayer).IsImposter )
 				displayName += " (fake)";
 
 			SetText( displayName );
-			BindClass( "completed", () => task.Status == TaskStatus.Complete );
 		}
 	}
 }
