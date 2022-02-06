@@ -20,6 +20,9 @@ namespace ImposterSyndrome.Systems.Entities
 			if ( useType != UseType.Use )
 				return false;
 
+			if ( HasBeenUsedBy( user ) )
+				return false;
+
 			return GetTaskInstance( user ) != null;
 		}
 
@@ -28,6 +31,7 @@ namespace ImposterSyndrome.Systems.Entities
 			if ( !IsUsable( user, useType ) )
 				return false;
 
+			DisableForPlayer( user );
 			GetTaskInstance( user )?.MarkAsCompleted();
 
 			return false;
