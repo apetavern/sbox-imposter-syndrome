@@ -9,6 +9,7 @@ namespace ImposterSyndrome.Systems.Entities
 	[Hammer.EditorModel( "models/citizen_props/beachball.vmdl" )]
 	public class WilsonEntity : TaskEntity
 	{
+		public override string UseName => "Pickup";
 		protected override Type TargetTaskType => typeof( FindWilson );
 		protected override string ModelPath => "models/citizen_props/beachball.vmdl";
 	}

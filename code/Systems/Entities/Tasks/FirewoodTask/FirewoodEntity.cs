@@ -10,6 +10,7 @@ namespace ImposterSyndrome.Systems.Entities
 	[Hammer.EditorModel( "models/sbox_props/low_wood_fence/low_wood_fence_beam_1_gib2.vmdl" )]
 	public class FirewoodEntity : MultipleTaskEntity
 	{
+		public override string UseName => "Pickup";
 		protected override string ModelPath => "models/sbox_props/low_wood_fence/low_wood_fence_beam_1_gib2.vmdl";
 		protected override Type TargetTaskType { get; set; } = typeof( FirewoodTask );
 		protected override Type TargetSubTaskType { get; set; } = typeof( GatherFirewood );

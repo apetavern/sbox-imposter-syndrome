@@ -11,6 +11,7 @@ namespace ImposterSyndrome.Systems.Entities
 	[Hammer.EditorModel( "models/citizen_props/newspaper01.vmdl" )]
 	public class WoodStockpileEntity : MultipleTaskEntity
 	{
+		public override string UseName => "Place";
 		protected override string ModelPath => "models/citizen_props/newspaper01.vmdl";
 		protected override Type TargetTaskType { get; set; } = typeof( FirewoodTask );
 		protected override Type TargetSubTaskType { get; set; } = typeof( PlaceOnWoodStockpile );
