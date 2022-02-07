@@ -9,7 +9,6 @@ namespace ImposterSyndrome.Systems.Entities
 	[Hammer.EditorModel( "models/sbox_props/burger_box/burger_box.vmdl" )]
 	public class CampfireEntity : BaseUsableEntity
 	{
-		public override string UseName => "Use";
 		protected override string ModelPath => "models/sbox_props/burger_box/burger_box.vmdl";
 		public static CampfireEntity Instance { get; set; }
 
