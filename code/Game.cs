@@ -3,6 +3,7 @@ using ImposterSyndrome.Systems.Players;
 using ImposterSyndrome.Systems.States;
 using ImposterSyndrome.Systems.UI;
 using ImposterSyndrome.Systems.PostProcessing;
+using ImposterSyndrome.Systems.Misc;
 
 namespace ImposterSyndrome
 {
@@ -13,7 +14,10 @@ namespace ImposterSyndrome
 		public ImposterSyndrome()
 		{
 			if ( Host.IsClient )
+			{
+				Fog.Initialize( new BBox( Vector3.One * -5000f, Vector3.One * 5000f ) );
 				PostEffects.Setup();
+			}
 
 			if ( !Host.IsServer )
 				return;
