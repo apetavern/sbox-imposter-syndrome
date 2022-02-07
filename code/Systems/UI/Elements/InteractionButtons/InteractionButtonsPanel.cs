@@ -1,5 +1,4 @@
-﻿using ImposterSyndrome.Systems.Entities;
-using ImposterSyndrome.Systems.Players;
+﻿using ImposterSyndrome.Systems.Players;
 using Sandbox;
 using Sandbox.UI;
 
