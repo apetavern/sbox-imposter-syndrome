@@ -10,7 +10,7 @@ namespace ImposterSyndrome.Systems.Entities
 	public partial class BaseUsableEntity : AnimEntity, IEntityUse
 	{
 		[Net] public List<ISPlayer> UsedByPlayers { get; set; }
-		public virtual string UseName { get; set; }
+		public virtual string UseName { get; set; } = "Use";
 		protected virtual string ModelPath { get; set; } = "models/citizen_props/cardboardbox01.vmdl";
 		private bool Debug { get; set; } = true;
 
