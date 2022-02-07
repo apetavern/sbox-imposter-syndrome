@@ -18,6 +18,7 @@ namespace ImposterSyndrome.Systems.UI
 
 			var colorPanel = Add.Panel( "colour" );
 			colorPanel.Style.BackgroundColor = player.PlayerColor;
+			colorPanel.SetClass( "dead", player.LifeState != LifeState.Alive );
 
 			var playerInfo = Add.Panel( "info" );
 			playerInfo.Add.Label( player.Client.Name, "name" );

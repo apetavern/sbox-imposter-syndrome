@@ -29,6 +29,10 @@
         border-top-left-radius: 28px;
         border-bottom-left-radius: 28px;
         border-right: 4px solid rgba(black, 0.6);
+
+        &.dead {
+            background-image: url("materials/ui/votes/player_thumb_dead.png");
+        }
     }
 
     .info {
