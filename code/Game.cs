@@ -1,9 +1,8 @@
 using Sandbox;
 using ImposterSyndrome.Systems.Players;
 using ImposterSyndrome.Systems.States;
-using ImposterSyndrome.Systems.UI;
 using ImposterSyndrome.Systems.PostProcessing;
-using ImposterSyndrome.Systems.Misc;
+using ImposterSyndrome.Systems.UI;
 
 namespace ImposterSyndrome
 {
@@ -15,12 +14,9 @@ namespace ImposterSyndrome
 		{
 			if ( Host.IsClient )
 			{
-				Fog.Initialize( new BBox( Vector3.One * -5000f, Vector3.One * 5000f ) );
 				PostEffects.Setup();
-			}
-
-			if ( !Host.IsServer )
 				return;
+			}
 
 			_ = new PlayerHudEntity();
 
