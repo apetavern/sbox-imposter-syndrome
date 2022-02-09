@@ -9,11 +9,14 @@ namespace ImposterSyndrome.Systems.UI
 
 		public MenuHudEntity()
 		{
-			if ( IsClient )
-			{
-				Instance = this;
-				RootPanel.SetTemplate( "/UI/MenuHudEntity.html" );
-			}
+			Instance = this;
+
+			if ( !IsClient )
+				return;
+
+			RootPanel.StyleSheet.Load( "/Systems/UI/PlayerHudEntity.scss" );
+
+			RootPanel.AddChild<DevMenu>();
 		}
 	}
 }
