@@ -46,7 +46,7 @@ namespace ImposterSyndrome.Systems.Players
 
 		public void OnIsImposterChanged()
 		{
-			PlayerHudEntity.Rebuild();
+			PlayingHudEntity.Rebuild();
 		}
 
 		public void UpdateColor( Color newColor )

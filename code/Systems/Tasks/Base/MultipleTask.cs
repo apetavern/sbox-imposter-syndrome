@@ -49,7 +49,7 @@ namespace ImposterSyndrome.Systems.Tasks
 				AssignNextTask();
 
 				// Refresh players task list.
-				PlayerHudEntity.RefreshTaskList();
+				PlayingHudEntity.RefreshTaskList();
 
 				return;
 			}
@@ -58,7 +58,7 @@ namespace ImposterSyndrome.Systems.Tasks
 			OnTaskCompleted();
 
 			// Refresh players task list.
-			PlayerHudEntity.RefreshTaskList();
+			PlayingHudEntity.RefreshTaskList();
 		}
 
 		public override void OnTaskCompleted()

@@ -29,14 +29,14 @@ namespace ImposterSyndrome.Systems.States
 			base.OnStateStarted();
 
 			// Send these over to the players HUDs.
-			PlayerHudEntity.ShowVotingScreen( true, CalledByPlayerNetIdent >= 0 ? CalledByPlayerNetIdent : -1 );
+			PlayingHudEntity.ShowVotingScreen( true, CalledByPlayerNetIdent >= 0 ? CalledByPlayerNetIdent : -1 );
 
 			ISBasePlayer.ReturnAllToCampfire();
 		}
 
 		public override void OnStateEnded()
 		{
-			PlayerHudEntity.ShowVotingScreen( false );
+			PlayingHudEntity.ShowVotingScreen( false );
 
 			EjectMajorityVotedPlayer();
 
@@ -82,7 +82,7 @@ namespace ImposterSyndrome.Systems.States
 			{
 				votingState.PlayerVotes.Add( votingFromPlayer, null );
 
-				PlayerHudEntity.ReceivePlayerVote( -1, votingFromPlayer.NetworkIdent );
+				PlayingHudEntity.ReceivePlayerVote( -1, votingFromPlayer.NetworkIdent );
 				return;
 			}
 
@@ -92,7 +92,8 @@ namespace ImposterSyndrome.Systems.States
 				return;
 
 			votingState.PlayerVotes.Add( votingFromPlayer, votedForPlayer );
-			PlayerHudEntity.ReceivePlayerVote( voteToPlayerNetId, votingFromPlayer.NetworkIdent );
+
+			PlayingHudEntity.ReceivePlayerVote( voteToPlayerNetId, votingFromPlayer.NetworkIdent );
 		}
 	}
 }

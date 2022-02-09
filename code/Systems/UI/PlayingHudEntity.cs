@@ -3,12 +3,11 @@ using Sandbox.UI;
 
 namespace ImposterSyndrome.Systems.UI
 {
-	[Library]
-	public partial class PlayerHudEntity : HudEntity<RootPanel>
+	public partial class PlayingHudEntity : HudEntity<RootPanel>
 	{
-		public static PlayerHudEntity Instance { get; set; }
+		public static PlayingHudEntity Instance { get; set; }
 
-		public PlayerHudEntity()
+		public PlayingHudEntity()
 		{
 			Instance = this;
 
@@ -31,7 +30,7 @@ namespace ImposterSyndrome.Systems.UI
 		public static void Rebuild()
 		{
 			Instance?.Delete();
-			Instance = new PlayerHudEntity();
+			Instance = new PlayingHudEntity();
 		}
 
 		[ClientRpc]

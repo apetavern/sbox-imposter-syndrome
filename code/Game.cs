@@ -18,7 +18,7 @@ namespace ImposterSyndrome
 				return;
 			}
 
-			_ = new PlayerHudEntity();
+			_ = new PlayingHudEntity();
 
 			UpdateState( new WaitingState() );
 		}

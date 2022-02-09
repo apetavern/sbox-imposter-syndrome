@@ -11,7 +11,7 @@ namespace ImposterSyndrome.Systems.UI
 
 		public Task( BaseTask task )
 		{
-			StyleSheet.Load( "/Systems/UI/Elements/Tasks/Task.scss" );
+			StyleSheet.Load( "/Systems/UI/Gameplay/Elements/Tasks/Task.scss" );
 
 			HeldTask = task;
 

@@ -13,7 +13,7 @@ namespace ImposterSyndrome.Systems.UI
 
 		public Nametag()
 		{
-			StyleSheet.Load( "/Systems/UI/World/Nametags/Nametag.scss" );
+			StyleSheet.Load( "/Systems/UI/Gameplay/World/Nametags/Nametag.scss" );
 
 			Name = Add.Label( "Name" );
 

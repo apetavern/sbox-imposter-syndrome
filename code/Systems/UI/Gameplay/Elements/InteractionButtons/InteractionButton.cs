@@ -8,7 +8,7 @@ namespace ImposterSyndrome.Systems.UI
 	{
 		public InteractionButton( string buttonText, string icon, Func<bool> enabledFunc, Action onClick )
 		{
-			StyleSheet.Load( "/Systems/UI/Elements/InteractionButtons/ButtonStyles.scss" );
+			StyleSheet.Load( "/Systems/UI/Gameplay/Elements/InteractionButtons/ButtonStyles.scss" );
 
 			Add.Label( buttonText );
 			Add.Label( icon, "icon" );

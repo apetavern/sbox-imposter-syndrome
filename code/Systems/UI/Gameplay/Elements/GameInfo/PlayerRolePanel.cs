@@ -1,7 +1,6 @@
 ﻿using ImposterSyndrome.Systems.Players;
 using Sandbox;
 using Sandbox.UI;
-using Sandbox.UI.Construct;
 
 namespace ImposterSyndrome.Systems.UI
 {

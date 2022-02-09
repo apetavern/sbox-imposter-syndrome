@@ -14,7 +14,7 @@ namespace ImposterSyndrome.Systems.UI
 		public TaskListPanel()
 		{
 			Instance = this;
-			StyleSheet.Load( "/Systems/UI/Elements/Tasks/TaskListPanel.scss" );
+			StyleSheet.Load( "/Systems/UI/Gameplay/Elements/Tasks/TaskListPanel.scss" );
 
 			if ( Local.Pawn is not ISPlayer player )
 				return;

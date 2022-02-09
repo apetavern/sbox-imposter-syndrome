@@ -11,7 +11,7 @@ namespace ImposterSyndrome.Systems.UI
 		public InteractionButtonsPanel()
 		{
 			Instance = this;
-			StyleSheet.Load( "/Systems/UI/Elements/InteractionButtons/InteractionButtonsPanel.scss" );
+			StyleSheet.Load( "/Systems/UI/Gameplay/Elements/InteractionButtons/InteractionButtonsPanel.scss" );
 
 			if ( Local.Pawn is not ISPlayer player )
 				return;

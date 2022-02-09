@@ -14,7 +14,7 @@ namespace ImposterSyndrome.Systems.UI
 
 		public DynamicInteractionButton( string icon, Action onClick )
 		{
-			StyleSheet.Load( "/Systems/UI/Elements/InteractionButtons/ButtonStyles.scss" );
+			StyleSheet.Load( "/Systems/UI/Gameplay/Elements/InteractionButtons/ButtonStyles.scss" );
 
 			ButtonLabel = Add.Label( "" );
 			Add.Label( icon, "icon" );

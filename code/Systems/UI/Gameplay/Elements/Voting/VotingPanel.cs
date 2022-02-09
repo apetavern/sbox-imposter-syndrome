@@ -18,7 +18,7 @@ namespace ImposterSyndrome.Systems.UI
 
 		public VotingPanel()
 		{
-			StyleSheet.Load( "/Systems/UI/Elements/Voting/VotingPanel.scss" );
+			StyleSheet.Load( "/Systems/UI/Gameplay/Elements/Voting/VotingPanel.scss" );
 			Instance = this;
 			PlayerPanels = new();
 		}

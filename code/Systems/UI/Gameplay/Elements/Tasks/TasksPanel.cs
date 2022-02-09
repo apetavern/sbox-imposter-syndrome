@@ -6,7 +6,7 @@ namespace ImposterSyndrome.Systems.UI
 	{
 		public TasksPanel()
 		{
-			StyleSheet.Load( "/Systems/UI/Elements/Tasks/TasksPanel.scss" );
+			StyleSheet.Load( "/Systems/UI/Gameplay/Elements/Tasks/TasksPanel.scss" );
 
 			Add.Panel( "header" );
 

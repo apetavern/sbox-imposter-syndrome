@@ -14,7 +14,7 @@ namespace ImposterSyndrome.Systems.UI
 
 		public PlayerPanel( ISPlayer player )
 		{
-			StyleSheet.Load( "/Systems/UI/Elements/Voting/PlayerPanel.scss" );
+			StyleSheet.Load( "/Systems/UI/Gameplay/Elements/Voting/PlayerPanel.scss" );
 
 			var colorPanel = Add.Panel( "colour" );
 			colorPanel.Style.BackgroundColor = player.PlayerColor;
