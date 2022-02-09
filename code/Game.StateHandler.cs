@@ -2,6 +2,8 @@ using Sandbox;
 using ImposterSyndrome.Systems.States;
 using System.Collections.Generic;
 using ImposterSyndrome.Systems.Players;
+using Sandbox.UI;
+using ImposterSyndrome.Systems.UI;
 
 namespace ImposterSyndrome
 {
@@ -10,6 +12,7 @@ namespace ImposterSyndrome
 		[Net] public List<ISPlayer> Players { get; set; }
 		[Net] public BaseState CurrentState { get; set; }
 		private TimeSince TimeSinceLastSecond { get; set; }
+		private static HudEntity<RootPanel> CurrentHud { get; set; }
 
 		public static void UpdateState( BaseState newState )
 		{
