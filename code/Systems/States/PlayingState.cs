@@ -14,14 +14,6 @@ namespace ImposterSyndrome.Systems.States
 			base.OnStateStarted();
 		}
 
-		public override void OnSecond()
-		{
-			base.OnSecond();
-
-			if ( !HasMinimumAlivePlayers() || !HasTasksOutstanding() )
-				ImposterSyndrome.UpdateState( new GameEndState() );
-		}
-
 		private bool HasMinimumAlivePlayers()
 		{
 			var players = ImposterSyndrome.Instance.Players;
@@ -44,6 +36,8 @@ namespace ImposterSyndrome.Systems.States
 		public override void OnStateEnded()
 		{
 			base.OnStateEnded();
+
+			Log.Info( "was this even called" );
 
 			ImposterSyndrome.UpdateState( new VotingState() );
 		}
