@@ -12,7 +12,6 @@ namespace ImposterSyndrome
 		[Net] public List<ISPlayer> Players { get; set; }
 		[Net] public BaseState CurrentState { get; set; }
 		private TimeSince TimeSinceLastSecond { get; set; }
-		private static HudEntity<RootPanel> CurrentHud { get; set; }
 
 		public static void UpdateState( BaseState newState )
 		{
@@ -22,6 +21,7 @@ namespace ImposterSyndrome
 			Instance.CurrentState = newState;
 			Instance.CurrentState?.OnStateStarted();
 		}
+
 
 		[Event.Tick]
 		public void OnSecond()

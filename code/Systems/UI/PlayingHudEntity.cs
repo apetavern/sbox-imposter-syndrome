@@ -16,6 +16,8 @@ namespace ImposterSyndrome.Systems.UI
 
 			RootPanel.StyleSheet.Load( "/Systems/UI/PlayerHudEntity.scss" );
 
+			RootPanel.AddChild<MenuPanel>();
+
 			RootPanel.AddChild<DevMenu>();
 			RootPanel.AddChild<ChatBox>();
 			RootPanel.AddChild<GameInfoPanel>();

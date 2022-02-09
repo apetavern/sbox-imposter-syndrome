@@ -18,7 +18,8 @@ namespace ImposterSyndrome
 				return;
 			}
 
-			CurrentHud = new PlayingHudEntity();
+			_ = new PlayingHudEntity();
+
 			UpdateState( new WaitingState() );
 		}
 
