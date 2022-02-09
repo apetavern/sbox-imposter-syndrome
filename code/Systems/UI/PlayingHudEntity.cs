@@ -25,6 +25,8 @@ namespace ImposterSyndrome.Systems.UI
 			RootPanel.AddChild<InteractionButtonsPanel>();
 			RootPanel.AddChild<VotingPanel>();
 
+			RootPanel.AddChild<GameEndPanel>();
+
 			_ = new Nametags();
 		}
 

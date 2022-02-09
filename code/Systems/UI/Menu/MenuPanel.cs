@@ -1,6 +1,5 @@
 ﻿using ImposterSyndrome.Systems.States;
 using Sandbox.UI;
-using System.ComponentModel;
 
 namespace ImposterSyndrome.Systems.UI
 {
