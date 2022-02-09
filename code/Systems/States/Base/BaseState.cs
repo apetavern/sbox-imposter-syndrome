@@ -22,7 +22,6 @@ namespace ImposterSyndrome.Systems.States
 
 			if ( ImposterSyndrome.Instance.CurrentState is PlayingState && !CheckMinimumPlayers() )
 			{
-				OnStateEnded();
 				ImposterSyndrome.UpdateState( new GameEndState().SetReason( GameEndReason.NotEnoughPlayers ) );
 			}
 
