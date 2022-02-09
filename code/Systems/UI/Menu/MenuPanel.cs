@@ -12,7 +12,9 @@ namespace ImposterSyndrome.Systems.UI
 			Instance = this;
 			StyleSheet.Load( "/Systems/UI/Menu/MenuPanel.scss" );
 
-			AddChild<MenuPlayersPanel>();
+			AddChild<WorldPreviewScene>();
+			AddChild<MenuLeftPanel>();
+			AddChild<MenuRightPanel>();
 
 			BindClass( "visible", () => ImposterSyndrome.Instance.CurrentState is WaitingState );
 		}

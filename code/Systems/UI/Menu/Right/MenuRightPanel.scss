@@ -1,0 +1,9 @@
+﻿@import "/Systems/UI/_Common.scss";
+
+MenuRightPanel {
+    position: absolute;
+    right: 0px;
+    width: 20%;
+    height: 100%;
+    flex-direction: column;
+}

@@ -1,0 +1,11 @@
+﻿@import "/Systems/UI/_Common.scss";
+
+MenuLeftPanel {
+    position: absolute;
+    left: 0px;
+    width: 30%;
+    height: 100%;
+    font-size: 100px;
+    flex-direction: column;
+    padding: 10px;
+}
