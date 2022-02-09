@@ -26,7 +26,7 @@ namespace ImposterSyndrome.Systems.UI
 		{
 			base.Tick();
 
-			var usableEntity = (Local.Pawn as ISPlayer).GetNearestUsable( UseType.Use );
+			var usableEntity = (Local.Pawn as ISPlayer)?.GetNearestUsable( UseType.Use );
 
 			if ( LastUsableEntity != usableEntity )
 			{
