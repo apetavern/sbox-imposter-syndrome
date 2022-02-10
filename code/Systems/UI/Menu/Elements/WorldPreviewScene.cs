@@ -1,6 +1,7 @@
 ﻿using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ImposterSyndrome.Systems.UI
@@ -10,50 +11,49 @@ namespace ImposterSyndrome.Systems.UI
 		private ScenePanel RenderScene { get; set; }
 		private Angles RenderSceneAngles { get; set; } = new( 35.0f, 0.0f, 0.0f );
 		private Vector3 RenderScenePos => new Vector3( -100, -50, 25 );
-		private Transform PlayerTransform { get; set; }
-		private AnimSceneObject Player { get; set; }
+		private List<SceneAnimChild> SceneAnimChildren { get; set; } = new();
+
+		public WorldPreviewScene()
+		{
+			Build();
+		}
+
+		private void AddSceneAnimChildren()
+		{
+			SceneAnimChildren.Add(
+				new SceneAnimChild( Model.Load( "models/playermodel/terrysus.vmdl" ),
+					Transform.Zero.WithScale( 1f )
+					.WithPosition( new Vector3( -64, 32, -4 ) )
+					.WithRotation( Rotation.From( 0, -130, 0 ) ) )
+			);
+		}
 
 		public override void Tick()
 		{
 			base.Tick();
 
-			if ( RenderScene == null )
+			if ( RenderScene is null )
 				return;
 
-			Animate();
+			foreach ( var child in SceneAnimChildren )
+				child.Tick();
 		}
 
-		public WorldPreviewScene()
+		private void Reset()
 		{
-			PlayerTransform = Transform.Zero.WithScale( 1f )
-					.WithPosition( new Vector3( -64, 32, -4 ) )
-					.WithRotation( Rotation.From( 0, -130, 0 ) );
-
-			Build();
-		}
-
-		public override void OnHotloaded()
-		{
-			base.OnHotloaded();
-
-			Build();
-		}
-
-		public void Animate()
-		{
-			Player.Update( Time.Delta );
-			Player.SetAnimBool( "grounded", true );
+			RenderScene?.Delete( true );
+			SceneAnimChildren?.Clear();
 		}
 
 		public void Build()
 		{
-			RenderScene?.Delete( true );
+			Reset();
 
 			using ( SceneWorld.SetCurrent( new SceneWorld() ) )
 			{
 				SceneObject.CreateModel( Model.Load( "models/avatareditorscene.vmdl" ), Transform.Zero.WithScale( 1 ).WithPosition( Vector3.Down * 4 ) );
 
-				Player = new AnimSceneObject( Model.Load( "models/playermodel/terrysus.vmdl" ), PlayerTransform );
+				AddSceneAnimChildren();
 
 				Light.Point( Vector3.Up * 150.0f, 200.0f, Color.White * 5.0f );
 				Light.Point( Vector3.Up * 75.0f + Vector3.Forward * 100.0f, 200, Color.White * 15.0f );
@@ -83,6 +83,13 @@ namespace ImposterSyndrome.Systems.UI
 				skyColor = sceneLight.SkyColor;
 
 			return skyColor;
+		}
+
+		public override void OnHotloaded()
+		{
+			base.OnHotloaded();
+
+			Build();
 		}
 	}
 }
