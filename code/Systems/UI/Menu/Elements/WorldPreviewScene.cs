@@ -9,12 +9,16 @@ namespace ImposterSyndrome.Systems.UI
 	public class WorldPreviewScene : Panel
 	{
 		private ScenePanel RenderScene { get; set; }
-		private Angles RenderSceneAngles { get; set; } = new( 35.0f, 0.0f, 0.0f );
-		private Vector3 RenderScenePos => new Vector3( -100, -50, 25 );
+		private Angles RenderSceneAngles { get; set; } = new( 0f, 0.0f, 0.0f );
+		private Vector3 PlayerPosition => new Vector3( 40, 70, 0 );
+		private Vector3 RenderScenePos => new Vector3( 0, 0, 25 );
+		private BBox SceneAnimBounds { get; set; }
 		private List<SceneAnimChild> SceneAnimChildren { get; set; } = new();
 
 		public WorldPreviewScene()
 		{
+			SceneAnimBounds = new BBox( PlayerPosition + Vector3.One * 180, PlayerPosition + -Vector3.One * 20 );
+
 			Build();
 		}
 
@@ -22,10 +26,17 @@ namespace ImposterSyndrome.Systems.UI
 		{
 			SceneAnimChildren.Add(
 				new SceneAnimChild( Model.Load( "models/playermodel/terrysus.vmdl" ),
-					Transform.Zero.WithScale( 1f )
-					.WithPosition( new Vector3( -64, 32, -4 ) )
+					Transform.Zero.WithScale( 1.2f )
+					.WithPosition( PlayerPosition )
 					.WithRotation( Rotation.From( 0, -130, 0 ) ) )
 			);
+
+			SceneAnimChildren.Add(
+				new SceneAnimChild( Model.Load( "models/playermodel/terrysus.vmdl" ),
+					Transform.Zero.WithScale( 1f )
+					.WithPosition( new Vector3( -120, 120, -4 ) ) )
+					.EnableWanderWithin( SceneAnimBounds )
+				);
 		}
 
 		public override void Tick()
@@ -51,7 +62,7 @@ namespace ImposterSyndrome.Systems.UI
 
 			using ( SceneWorld.SetCurrent( new SceneWorld() ) )
 			{
-				SceneObject.CreateModel( Model.Load( "models/avatareditorscene.vmdl" ), Transform.Zero.WithScale( 1 ).WithPosition( Vector3.Down * 4 ) );
+				SceneObject.CreateModel( Model.Load( "models/avatareditorscene.vmdl" ), Transform.Zero.WithScale( 1 ) );
 
 				AddSceneAnimChildren();
 
