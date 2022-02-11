@@ -1,0 +1,9 @@
+﻿@import "/Systems/UI/_Common.scss";
+
+PlayerPanel {
+    width: 100%;
+    background-color: $background-light;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
