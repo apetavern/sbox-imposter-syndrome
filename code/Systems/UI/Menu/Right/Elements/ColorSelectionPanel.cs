@@ -1,12 +1,19 @@
 ﻿using Sandbox.UI;
 using Sandbox.UI.Construct;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ImposterSyndrome.Systems.UI
 {
 	public class ColorSelectionPanel : Panel
 	{
+		public static ColorSelectionPanel Instance { get; set; }
+		private List<ColorPanel> ColorPanels { get; set; } = new();
+
 		public ColorSelectionPanel()
 		{
+			Instance = this;
+
 			StyleSheet.Load( "/Systems/UI/Menu/Right/Elements/ColorSelectionPanel.scss" );
 
 			Add.Label( "Pick your color", "title" );
@@ -17,7 +24,19 @@ namespace ImposterSyndrome.Systems.UI
 			{
 				var colorPanel = new ColorPanel( i );
 				colors.AddChild( colorPanel );
+
+				ColorPanels.Add( colorPanel );
 			}
+		}
+
+		public void MarkColorUsable( int colourIndex, bool isUsable )
+		{
+			var targetPanel = ColorPanels.FirstOrDefault( panel => panel.ColorIndex == colourIndex );
+
+			if ( targetPanel is null )
+				return;
+
+			targetPanel.IsUsable = isUsable;
 		}
 	}
 }

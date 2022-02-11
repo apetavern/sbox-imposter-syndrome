@@ -44,6 +44,12 @@ namespace ImposterSyndrome.Systems.UI
 		}
 
 		[ClientRpc]
+		public static void MarkColorUsable( int colorIndex, bool isUsable )
+		{
+			ColorSelectionPanel.Instance.MarkColorUsable( colorIndex, isUsable );
+		}
+
+		[ClientRpc]
 		public static void ShowVotingScreen( bool shouldShow, int calledByNetIdent = -1 )
 		{
 			VotingPanel.Instance?.Show( shouldShow, calledByNetIdent );

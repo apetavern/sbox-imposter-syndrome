@@ -5,7 +5,8 @@ namespace ImposterSyndrome.Systems.UI
 {
 	public class ColorPanel : Panel
 	{
-		private int ColorIndex { get; set; }
+		public int ColorIndex { get; set; }
+		public bool IsUsable { get; set; } = true;
 
 		public ColorPanel( int colorIndex )
 		{
@@ -16,9 +17,9 @@ namespace ImposterSyndrome.Systems.UI
 			var color = GameConfig.AvailablePlayerColors[colorIndex];
 			Style.BackgroundColor = color;
 
-			Log.Info( $"Created new button with color index {ColorIndex}" );
-
 			AddEventListener( "onclick", () => ImposterSyndrome.AssignColorToClient( Local.Client, ColorIndex ) );
+
+			BindClass( "enabled", () => IsUsable );
 		}
 	}
 }

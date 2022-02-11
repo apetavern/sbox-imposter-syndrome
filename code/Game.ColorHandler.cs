@@ -1,33 +1,38 @@
 using Sandbox;
 using System.Collections.Generic;
-using ImposterSyndrome.Systems.Players;
 using System.Linq;
 using ImposterSyndrome.Systems.States;
+using ImposterSyndrome.Systems.UI;
 
 namespace ImposterSyndrome
 {
 	public partial class ImposterSyndrome
 	{
-		[Net] public Dictionary<Client, Color> AssignedColors { get; set; } = new();
+		[Net] public Dictionary<Client, int> AssignedColors { get; set; }
 
 		public static void AssignColorToClient( Client client, int colorIndex )
 		{
 			if ( Instance is null )
 				return;
 
-			// Get colour from index.
-			var color = GameConfig.AvailablePlayerColors[colorIndex];
-
 			// Check if this colour is already assigned.
-			if ( (Instance.AssignedColors as Dictionary<Client, Color>).ContainsValue( color ) )
+			if ( Instance.AssignedColors.Any( x => x.Value == colorIndex ) )
 				return;
 
-			Instance.AssignedColors.Add( client, color );
+			if ( Instance.AssignedColors.Any( x => x.Key == client ) )
+				ClearPlayerSelection( client );
 
-			if ( client.Pawn is not ISPlayer player )
-				return;
+			Instance.AssignedColors.Add( client, colorIndex );
 
-			player.UpdateColor( color );
+			PlayingHudEntity.MarkColorUsable( colorIndex, false );
+		}
+
+		public static void ClearPlayerSelection( Client client )
+		{
+			var entry = Instance.AssignedColors.FirstOrDefault( x => x.Key == client );
+
+			PlayingHudEntity.MarkColorUsable( entry.Value, true );
+			Instance.AssignedColors.Remove( entry.Key );
 		}
 
 		public static void AssignRemainingColors()
@@ -39,16 +44,6 @@ namespace ImposterSyndrome
 
 			if ( unassignedPlayers.Count() < 1 )
 				return;
-
-			var unassignedColors = GameConfig.AvailablePlayerColors.Except( Instance.AssignedColors.Values ).ToList();
-
-			foreach ( var player in unassignedPlayers )
-			{
-				var selectedColor = Rand.FromList( unassignedColors );
-				unassignedColors.Remove( selectedColor );
-
-				Instance.AssignedColors.Add( player, selectedColor );
-			}
 		}
 
 		[ServerCmd]
