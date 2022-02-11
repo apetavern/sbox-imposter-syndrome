@@ -14,7 +14,7 @@ namespace ImposterSyndrome.Systems.UI
 			if ( !IsClient )
 				return;
 
-			RootPanel.StyleSheet.Load( "/Systems/UI/PlayerHudEntity.scss" );
+			RootPanel.StyleSheet.Load( "/Systems/UI/PlayingHudEntity.scss" );
 
 			RootPanel.AddChild<MenuPanel>();
 
