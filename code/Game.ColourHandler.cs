@@ -2,6 +2,7 @@ using Sandbox;
 using System.Collections.Generic;
 using ImposterSyndrome.Systems.Players;
 using System.Linq;
+using ImposterSyndrome.Systems.States;
 
 namespace ImposterSyndrome
 {
@@ -45,6 +46,23 @@ namespace ImposterSyndrome
 
 				Instance.AssignedColours.Add( player, selectedColour );
 			}
+		}
+
+		[ServerCmd]
+		public static void SelectColour( int indexOfColour )
+		{
+			if ( Host.IsServer )
+				return;
+
+			if ( ImposterSyndrome.Instance.CurrentState is not WaitingState )
+				return;
+
+			var client = ConsoleSystem.Caller;
+			var colour = GameConfig.AvailablePlayerColors[indexOfColour];
+
+			Log.Info( $"Player {client.Name} selected colour {colour}" );
+
+			AssignColourToClient( client, colour );
 		}
 
 		public static void ResetColourAssignment()
