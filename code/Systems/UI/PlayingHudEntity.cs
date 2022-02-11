@@ -2,6 +2,7 @@
 using Sandbox.UI;
 using ImposterSyndrome.Systems.UI.Menu;
 using ImposterSyndrome.Systems.UI.GameEnd;
+using ImposterSyndrome.Systems.UI.Dev;
 
 namespace ImposterSyndrome.Systems.UI
 {

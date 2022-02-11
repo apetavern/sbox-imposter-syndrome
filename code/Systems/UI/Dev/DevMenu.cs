@@ -2,7 +2,7 @@
 using Sandbox.UI;
 using Sandbox.UI.Construct;
 
-namespace ImposterSyndrome.Systems.UI
+namespace ImposterSyndrome.Systems.UI.Dev
 {
 	public class DevMenu : Panel
 	{
