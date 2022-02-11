@@ -1,5 +1,22 @@
 ﻿@import "/Systems/UI/_Common.scss";
 
 ColourSelectionPanel {
-    font-size: 100px;
+    background-color: #d4c7b0;
+    border-bottom: 8px solid #3F4238;
+    padding: 10px 8px;
+    flex-direction: column;
+    color: black;
+
+    .title {
+        color: #3F4238;
+        font-weight: bold;
+        text-shadow: none;
+    }
+
+    .colours {
+        margin-top: 10px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+    }
 }

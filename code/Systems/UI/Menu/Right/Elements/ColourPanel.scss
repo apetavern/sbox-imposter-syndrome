@@ -1,0 +1,12 @@
+﻿@import "/Systems/UI/_Common.scss";
+
+ColourPanel {
+    width: 10%;
+    aspect-ratio: 1;
+    border: 2px solid #3F4238;
+
+    &:hover {
+        cursor: pointer;
+        bottom: 5px;
+    }
+}

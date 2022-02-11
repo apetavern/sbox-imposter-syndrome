@@ -11,7 +11,7 @@ namespace ImposterSyndrome.Systems.UI
 		private ScenePanel RenderScene { get; set; }
 		private Vector3 RenderScenePos => new Vector3( 0, 0, 20 );
 		private Angles RenderSceneAngles { get; set; } = new( 0f, 0.0f, 0.0f );
-		private Vector3 PlayerPosition => new Vector3( 80, -20, 0 );
+		private Vector3 PlayerPosition => new Vector3( 80, -10, 0 );
 		private BBox SceneAnimBounds { get; set; }
 		private List<SceneAnimChild> SceneAnimChildren { get; set; } = new();
 

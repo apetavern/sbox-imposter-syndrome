@@ -9,7 +9,14 @@ namespace ImposterSyndrome.Systems.UI
 		{
 			StyleSheet.Load( "/Systems/UI/Menu/Right/Elements/ColourSelectionPanel.scss" );
 
-			Add.Label( "Colours" );
+			Add.Label( "Available colours", "title" );
+			var colours = Add.Panel( "colours" );
+
+			foreach ( var colour in GameConfig.AvailablePlayerColors )
+			{
+				var colourPanel = new ColourPanel( colour );
+				colours.AddChild( colourPanel );
+			}
 		}
 	}
 }
