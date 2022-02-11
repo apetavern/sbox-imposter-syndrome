@@ -1,6 +1,8 @@
 ﻿using ImposterSyndrome.Systems.Entities;
 using ImposterSyndrome.Systems.Players;
+using ImposterSyndrome.Systems.UI;
 using Sandbox;
+using Sandbox.UI;
 using System.Linq;
 
 namespace ImposterSyndrome.Systems.States
@@ -17,6 +19,8 @@ namespace ImposterSyndrome.Systems.States
 
 			foreach ( var player in Client.All.Select( cl => cl.Pawn as ISBasePlayer ) )
 				player.UpdatePawn( new ISSpectator() );
+
+			PlayingHudEntity.Rebuild();
 
 			DoPostGameCleanup();
 		}
