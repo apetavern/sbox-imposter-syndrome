@@ -1,9 +1,9 @@
 ﻿@import "/Systems/UI/_Common.scss";
 
 ColorSelectionPanel {
-    background-color: #d4c7b0;
-    border-bottom: 8px solid #8D826F;
-    border-right: 3px solid #8D826F;
+    background-color: $background-lighter;
+    border-bottom: 8px solid $background-light;
+    border-right: 3px solid $background-light;
     padding: 10px 14px;
     flex-direction: column;
     color: black;
@@ -11,7 +11,7 @@ ColorSelectionPanel {
 
     .title {
         color: #FFF;
-        text-shadow: 3px 3px 1px #8D826F;
+        text-shadow: 3px 3px 1px $background-light;
         font-weight: bold;
         text-align: center;
         font-size: 40px;
