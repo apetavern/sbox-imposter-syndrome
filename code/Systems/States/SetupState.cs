@@ -27,8 +27,8 @@ namespace ImposterSyndrome.Systems.States
 				var newPawn = new ISPlayer();
 				player?.UpdatePawn( newPawn );
 
-				var colour = ImposterSyndrome.Instance.AssignedColors.FirstOrDefault( x => x.Key == client ).Value;
-				newPawn.UpdateColor( colour );
+				var colorIndex = ImposterSyndrome.Instance.AssignedColors.FirstOrDefault( x => x.Key == client ).Value;
+				newPawn.UpdateColor( GameConfig.AvailablePlayerColors[colorIndex] );
 
 				ImposterSyndrome.Instance.Players.Add( newPawn );
 			}
