@@ -1,7 +1,7 @@
 ﻿using ImposterSyndrome.Systems.States;
 using Sandbox.UI;
 
-namespace ImposterSyndrome.Systems.UI
+namespace ImposterSyndrome.Systems.UI.GameEnd
 {
 	public class GameEndPanel : Panel
 	{
