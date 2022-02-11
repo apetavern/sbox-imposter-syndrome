@@ -1,7 +1,7 @@
 ﻿using Sandbox.UI;
 using Sandbox;
 
-namespace ImposterSyndrome.Systems.UI
+namespace ImposterSyndrome.Systems.UI.Menu
 {
 	public class ColorPanel : Panel
 	{

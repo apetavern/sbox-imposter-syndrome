@@ -3,7 +3,7 @@ using Sandbox.UI.Construct;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ImposterSyndrome.Systems.UI
+namespace ImposterSyndrome.Systems.UI.Menu
 {
 	public class ColorSelectionPanel : Panel
 	{

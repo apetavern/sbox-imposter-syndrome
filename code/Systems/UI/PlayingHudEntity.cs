@@ -1,5 +1,6 @@
 ﻿using Sandbox;
 using Sandbox.UI;
+using ImposterSyndrome.Systems.UI.Menu;
 
 namespace ImposterSyndrome.Systems.UI
 {

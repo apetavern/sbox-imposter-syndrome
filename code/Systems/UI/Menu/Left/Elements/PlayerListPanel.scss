@@ -1,0 +1,12 @@
+﻿@import "/Systems/UI/_Common.scss";
+
+MenuPlayersPanel {
+    background-color: $background-lighter;
+    border-bottom: 8px solid $background-light;
+    border-right: 3px solid $background-light;
+    width: 100%;
+    padding: 10px 14px;
+    flex-direction: column;
+    color: black;
+    border-radius: 20px;
+}
