@@ -31,7 +31,7 @@ namespace ImposterSyndrome.Systems.States
 			var players = ImposterSyndrome.Instance.Players;
 			var alivePlayers = players.Where( player => !player.IsImposter && player.LifeState == LifeState.Alive );
 
-			if ( alivePlayers.Count() == 1 )
+			if ( alivePlayers.Count() <= 1 )
 				return false;
 
 			return true;
@@ -39,7 +39,7 @@ namespace ImposterSyndrome.Systems.States
 
 		private bool HasTasksOutstanding()
 		{
-			if ( ISPlayer.GetAllPlayersTaskProgress() >= 100 )
+			if ( ISPlayer.GetAllPlayersTaskProgress() <= 100 )
 				return false;
 
 			return true;
