@@ -14,6 +14,18 @@ namespace ImposterSyndrome.Systems.States
 			base.OnStateStarted();
 		}
 
+		public override void OnSecond()
+		{
+			if ( Host.IsClient )
+				return;
+
+			if ( HasMinimumAlivePlayers() || HasTasksOutstanding() )
+				ImposterSyndrome.UpdateState( new GameEndState().SetReason( GameEndReason.TeamWin ) );
+
+			if ( Time.Now > StateEndTime )
+				OnStateEnded();
+		}
+
 		private bool HasMinimumAlivePlayers()
 		{
 			var players = ImposterSyndrome.Instance.Players;
