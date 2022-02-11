@@ -47,9 +47,10 @@ namespace ImposterSyndrome.Systems.UI
 		}
 
 		[ClientRpc]
-		public static void MarkColorUsable( int colorIndex, bool isUsable )
+		public static void UpdateMenuColorUsage( int colorIndex, bool isUsable, int clientNetIdent )
 		{
 			ColorSelectionPanel.Instance.MarkColorUsable( colorIndex, isUsable );
+			Menu.PlayerListPanel.Instance.UpdatePlayerColor( clientNetIdent, colorIndex );
 		}
 
 		[ClientRpc]

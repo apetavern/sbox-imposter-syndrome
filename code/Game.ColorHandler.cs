@@ -24,14 +24,14 @@ namespace ImposterSyndrome
 
 			Instance.AssignedColors.Add( client, colorIndex );
 
-			PlayingHudEntity.MarkColorUsable( colorIndex, false );
+			PlayingHudEntity.UpdateMenuColorUsage( colorIndex, false, client.NetworkIdent );
 		}
 
 		public static void ClearPlayerSelection( Client client )
 		{
 			var entry = Instance.AssignedColors.FirstOrDefault( x => x.Key == client );
 
-			PlayingHudEntity.MarkColorUsable( entry.Value, true );
+			PlayingHudEntity.UpdateMenuColorUsage( entry.Value, true, client.NetworkIdent );
 			Instance.AssignedColors.Remove( entry.Key );
 		}
 
