@@ -1,0 +1,27 @@
+﻿@import "/Systems/UI/_Common.scss";
+
+ColorSelectionPanel {
+    background-color: #d4c7b0;
+    border-bottom: 8px solid #8D826F;
+    border-right: 3px solid #8D826F;
+    padding: 10px 14px;
+    flex-direction: column;
+    color: black;
+    border-radius: 20px;
+
+    .title {
+        color: #FFF;
+        text-shadow: 3px 3px 1px #8D826F;
+        font-weight: bold;
+        text-align: center;
+        font-size: 40px;
+    }
+
+    .colors {
+        margin-top: 10px;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+}

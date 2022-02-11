@@ -25,8 +25,8 @@ namespace ImposterSyndrome.Systems.States
 		{
 			base.OnStateEnded();
 
-			// Ensure everybody has a colour before starting the game.
-			ImposterSyndrome.AssignRemainingColours();
+			// Ensure everybody has a color before starting the game.
+			ImposterSyndrome.AssignRemainingColors();
 
 			ImposterSyndrome.UpdateState( new SetupState() );
 		}
@@ -55,7 +55,7 @@ namespace ImposterSyndrome.Systems.States
 		private void DoPostGameCleanup()
 		{
 			// Make all player colors available again.
-			ImposterSyndrome.ResetColourAssignment();
+			ImposterSyndrome.ResetColorAssignment();
 
 			// Cleanup bodies.
 			DeadPlayerEntity.RemoveAll();
