@@ -19,7 +19,7 @@ namespace ImposterSyndrome.Systems.States
 			if ( Host.IsClient )
 				return;
 
-			if ( HasMinimumAlivePlayers() || HasTasksOutstanding() )
+			if ( !HasMinimumAlivePlayers() || !HasTasksOutstanding() )
 				ImposterSyndrome.UpdateState( new GameEndState().SetReason( GameEndReason.TeamWin ) );
 
 			if ( Time.Now > StateEndTime )
@@ -29,6 +29,7 @@ namespace ImposterSyndrome.Systems.States
 		private bool HasMinimumAlivePlayers()
 		{
 			var players = ImposterSyndrome.Instance.Players;
+
 			var alivePlayers = players.Where( player => !player.IsImposter && player.LifeState == LifeState.Alive );
 
 			if ( alivePlayers.Count() <= 1 )
@@ -39,17 +40,15 @@ namespace ImposterSyndrome.Systems.States
 
 		private bool HasTasksOutstanding()
 		{
-			if ( ISPlayer.GetAllPlayersTaskProgress() <= 100 )
-				return false;
+			if ( ISPlayer.GetAllPlayersTaskProgress() < 100 )
+				return true;
 
-			return true;
+			return false;
 		}
 
 		public override void OnStateEnded()
 		{
 			base.OnStateEnded();
-
-			Log.Info( "was this even called" );
 
 			ImposterSyndrome.UpdateState( new VotingState() );
 		}
