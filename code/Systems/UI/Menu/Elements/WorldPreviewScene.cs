@@ -66,12 +66,11 @@ namespace ImposterSyndrome.Systems.UI
 
 				AddSceneAnimChildren();
 
-				Light.Point( Vector3.Up * 150.0f, 200.0f, Color.White * 5.0f );
+				Light.Point( Vector3.Up * 150.0f, 300.0f, Color.White * 5.0f );
 				Light.Point( Vector3.Up * 75.0f + Vector3.Forward * 100.0f, 200, Color.White * 15.0f );
-				Light.Point( Vector3.Up * 75.0f + Vector3.Backward * 100.0f, 200, Color.White * 15f );
 				Light.Point( Vector3.Up * 75.0f + Vector3.Left * 100.0f, 200, GetSkyColor() * 20.0f );
 				Light.Point( Vector3.Up * 75.0f + Vector3.Right * 100.0f, 200, Color.White * 15.0f );
-				Light.Point( Vector3.Up * 100.0f + Vector3.Up, 200, Color.Yellow * 15.0f );
+				Light.Point( Vector3.Up * 100.0f + Vector3.Up, 200, Color.White * 35.0f );
 
 				RenderScene = Add.ScenePanel( SceneWorld.Current, RenderScenePos, Rotation.From( RenderSceneAngles ), 75 );
 
