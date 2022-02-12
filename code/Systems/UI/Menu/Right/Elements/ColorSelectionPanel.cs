@@ -16,7 +16,7 @@ namespace ImposterSyndrome.Systems.UI.Menu
 
 			StyleSheet.Load( "/Systems/UI/Menu/Right/Elements/ColorSelectionPanel.scss" );
 
-			Add.Label( "Pick your color", "title" );
+			Add.Label( "Pick a color", "title" );
 
 			var colors = Add.Panel( "colors" );
 
