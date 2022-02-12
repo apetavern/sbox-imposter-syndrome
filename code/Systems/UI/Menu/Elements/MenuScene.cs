@@ -102,9 +102,6 @@ namespace ImposterSyndrome.Systems.UI
 			if ( Player.Backpack is null )
 				return;
 
-			Log.Info( colorIndex );
-
-
 			Player.Backpack.ColorTint = GameConfig.AvailablePlayerColors[colorIndex];
 		}
 
