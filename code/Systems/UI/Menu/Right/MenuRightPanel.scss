@@ -7,4 +7,16 @@ MenuRightPanel {
     height: 100%;
     flex-direction: column;
     padding: 20px;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    .logo {
+        background-image: url("/materials/ui/logo.png");
+        width: 80%;
+        height: 15%;
+        margin-bottom: 20px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        opacity: 0.2;
+    }
 }

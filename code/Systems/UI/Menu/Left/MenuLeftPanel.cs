@@ -8,7 +8,6 @@ namespace ImposterSyndrome.Systems.UI.Menu
 		{
 			StyleSheet.Load( "/Systems/UI/Menu/Left/MenuLeftPanel.scss" );
 
-			Add.Panel( "logo" );
 			AddChild<MenuPlayerListPanel>();
 		}
 	}
