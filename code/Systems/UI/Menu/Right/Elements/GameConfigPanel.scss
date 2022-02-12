@@ -1,6 +1,7 @@
 ﻿@import "/Systems/UI/_Common.scss";
 
-ColorSelectionPanel {
+GameConfigPanel {
+    width: 100%;
     background-color: $background-lighter;
     padding: 10px 14px;
     flex-direction: column;
@@ -10,12 +11,5 @@ ColorSelectionPanel {
     border-top-right-radius: 20px;
     background: linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 100%);
     border: 3px solid rgba(0,0,0,0.5);
-
-    .colors {
-        margin-top: 10px;
-        flex-direction: row;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        align-items: center;
-    }
+    top: 20px;
 }

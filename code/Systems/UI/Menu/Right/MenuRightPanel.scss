@@ -7,10 +7,11 @@ MenuRightPanel {
     height: 100%;
     flex-direction: column;
     padding: 20px;
-    justify-content: space-between;
     align-items: flex-end;
 
     .logo {
+        position: absolute;
+        bottom: 20px;
         background-image: url("/materials/ui/apetavern_dark.png");
         width: 80%;
         height: 18%;

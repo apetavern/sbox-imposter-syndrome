@@ -10,6 +10,9 @@ namespace ImposterSyndrome.Systems.UI.Menu
 			StyleSheet.Load( "/Systems/UI/Menu/Right/MenuRightPanel.scss" );
 
 			AddChild<ColorSelectionPanel>();
+
+			AddChild<GameConfigPanel>();
+
 			var logoPanel = Add.Panel( "logo" );
 			logoPanel.Add.Label( "https://apetavern.com/", "website" );
 		}

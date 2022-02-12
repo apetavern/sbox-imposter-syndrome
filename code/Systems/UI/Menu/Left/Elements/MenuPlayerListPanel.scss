@@ -13,13 +13,6 @@ MenuPlayerListPanel {
     border-top-right-radius: 20px;
     height: 70%;
 
-    .title {
-        color: #FFF;
-        text-shadow: 3px 3px 1px $background-lighter;
-        font-weight: bold;
-        font-size: 36px;
-    }
-
     .playerlist {
         flex-direction: column;
         top: 10px;

@@ -14,7 +14,7 @@ namespace ImposterSyndrome.Systems.UI.Menu
 		{
 			StyleSheet.Load( "/Systems/UI/Menu/Left/Elements/MenuPlayerListPanel.scss" );
 
-			Add.Label( "Players", "title" );
+			Add.Label( "Current Players", "title" );
 			ListPanel = Add.Panel( "playerlist" );
 		}
 
