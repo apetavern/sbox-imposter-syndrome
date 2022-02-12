@@ -12,7 +12,7 @@ namespace ImposterSyndrome.Systems.UI.Menu
 			Instance = this;
 			StyleSheet.Load( "/Systems/UI/Menu/MenuPanel.scss" );
 
-			AddChild<WorldPreviewScene>();
+			AddChild<MenuScene>();
 			AddChild<MenuLeftPanel>();
 			AddChild<MenuRightPanel>();
 

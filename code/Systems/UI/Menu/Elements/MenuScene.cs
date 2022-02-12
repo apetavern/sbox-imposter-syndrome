@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace ImposterSyndrome.Systems.UI
 {
-	public class WorldPreviewScene : Panel
+	public class MenuScene : Panel
 	{
 		private ScenePanel RenderScene { get; set; }
 		private Vector3 RenderScenePos => new Vector3( 0, 0, 20 );
@@ -16,7 +16,7 @@ namespace ImposterSyndrome.Systems.UI
 		private SceneAnimChild Player { get; set; }
 		private List<SceneAnimChild> SceneAnimChildren { get; set; } = new();
 
-		public WorldPreviewScene()
+		public MenuScene()
 		{
 			SceneAnimBounds = new BBox( PlayerPosition + Vector3.One * 120, PlayerPosition - Vector3.One * 120 );
 
