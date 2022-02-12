@@ -15,20 +15,15 @@ namespace ImposterSyndrome.Systems.States
 
 		public override void OnStateStarted()
 		{
-			base.OnStateStarted();
-
 			foreach ( var player in Client.All.Select( cl => cl.Pawn as ISBasePlayer ) )
 				player.UpdatePawn( new ISSpectator() );
 
 			PlayingHudEntity.Rebuild();
-
 			DoPostGameCleanup();
 		}
 
 		public override void OnStateEnded()
 		{
-			base.OnStateEnded();
-
 			// Ensure everybody has a color before starting the game.
 			ImposterSyndrome.AssignRemainingColors();
 
@@ -58,6 +53,9 @@ namespace ImposterSyndrome.Systems.States
 
 		private void DoPostGameCleanup()
 		{
+			// Clear player list.
+			ImposterSyndrome.Instance.Players.Clear();
+
 			// Make all player colors available again.
 			ImposterSyndrome.ResetColorAssignment();
 

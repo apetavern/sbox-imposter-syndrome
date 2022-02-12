@@ -17,7 +17,7 @@ namespace ImposterSyndrome.Systems.UI.Menu
 			var color = GameConfig.AvailablePlayerColors[colorIndex];
 			Style.BackgroundColor = color;
 
-			AddEventListener( "onclick", () => ImposterSyndrome.AssignColorToClient( Local.Client, ColorIndex ) );
+			AddEventListener( "onclick", () => ImposterSyndrome.SelectColor( ColorIndex ) );
 
 			BindClass( "enabled", () => IsUsable );
 		}

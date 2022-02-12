@@ -17,15 +17,14 @@ namespace ImposterSyndrome.Systems.States
 		{
 			base.OnStateStarted();
 
-			// Clear player list.
-			ImposterSyndrome.Instance.Players.Clear();
-
 			foreach ( var client in Client.All )
 			{
 				var player = client.Pawn as ISBasePlayer;
 
 				var newPawn = new ISPlayer();
 				player?.UpdatePawn( newPawn );
+
+
 
 				var colorIndex = ImposterSyndrome.Instance.AssignedColors.FirstOrDefault( x => x.Key == client ).Value;
 				newPawn.UpdateColor( GameConfig.AvailablePlayerColors[colorIndex] );

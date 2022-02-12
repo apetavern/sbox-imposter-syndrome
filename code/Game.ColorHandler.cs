@@ -19,6 +19,7 @@ namespace ImposterSyndrome
 			if ( Instance.AssignedColors.Any( x => x.Value == colorIndex ) )
 				return;
 
+			// Clear the players selection if they already have one.
 			if ( Instance.AssignedColors.Any( x => x.Key == client ) )
 				ClearPlayerSelection( client );
 
@@ -44,12 +45,30 @@ namespace ImposterSyndrome
 
 			if ( unassignedPlayers.Count() < 1 )
 				return;
+
+			List<int> unassignedColorIndices = new();
+
+			for ( int i = 0; i < GameConfig.AvailablePlayerColors.Length; i++ )
+			{
+				if ( Instance.AssignedColors.Values.Contains( i ) )
+					continue;
+
+				unassignedColorIndices.Add( i );
+			}
+
+			foreach ( var player in unassignedPlayers )
+			{
+				var selectedColorIndex = Rand.FromList( unassignedColorIndices );
+				unassignedColorIndices.Remove( selectedColorIndex );
+
+				Instance.AssignedColors.Add( player, selectedColorIndex );
+			}
 		}
 
 		[ServerCmd]
 		public static void SelectColor( int indexOfColor )
 		{
-			if ( Host.IsServer )
+			if ( !Host.IsServer )
 				return;
 
 			if ( ImposterSyndrome.Instance.CurrentState is not WaitingState )
@@ -57,8 +76,6 @@ namespace ImposterSyndrome
 
 			var client = ConsoleSystem.Caller;
 			var color = GameConfig.AvailablePlayerColors[indexOfColor];
-
-			Log.Info( $"Player {client.Name} selected color {color}" );
 
 			AssignColorToClient( client, indexOfColor );
 		}
