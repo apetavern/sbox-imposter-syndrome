@@ -9,12 +9,17 @@ namespace ImposterSyndrome.Systems.UI
 		private BBox MovementBounds { get; set; }
 		private bool CanWander { get; set; }
 		private bool IsMoving { get; set; }
-		private Vector3 StartPosition { get; set; }
 		private Vector3 EndPosition { get; set; }
+		public AnimSceneObject Backpack { get; set; }
 
 		public SceneAnimChild( Model model, Transform transform ) : base( model, transform )
 		{
-			StartPosition = transform.Position;
+			if ( model.Name == "models/playermodel/terrysus.vmdl" )
+			{
+				var backbackModel = Model.Load( "models/backpacks/business/susbusinessbackpack.vmdl" );
+				Backpack = new AnimSceneObject( backbackModel, Transform );
+				AddChild( "clothing", Backpack );
+			}
 		}
 
 		public SceneAnimChild EnableWanderWithin( BBox sceneBounds )
@@ -33,6 +38,8 @@ namespace ImposterSyndrome.Systems.UI
 		public void Tick()
 		{
 			Move();
+
+			Backpack?.Update( Time.Delta );
 		}
 
 		private void Move()
