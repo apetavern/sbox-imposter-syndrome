@@ -13,6 +13,7 @@ namespace ImposterSyndrome.Systems.UI
 		private Angles RenderSceneAngles { get; set; } = new( 0f, 0.0f, 0.0f );
 		private Vector3 PlayerPosition => new Vector3( 80, -10, 0 );
 		private BBox SceneAnimBounds { get; set; }
+		private SceneAnimChild Player { get; set; }
 		private List<SceneAnimChild> SceneAnimChildren { get; set; } = new();
 
 		public WorldPreviewScene()
@@ -22,14 +23,24 @@ namespace ImposterSyndrome.Systems.UI
 			Build();
 		}
 
+		public override void OnButtonEvent( ButtonEvent e )
+		{
+			// CaptureMouseInput doesn't work wtf scam?
+			if ( e.Button == "mouseleft" )
+			{
+				RenderScene.SetMouseCapture( e.Pressed );
+			}
+
+			base.OnButtonEvent( e );
+		}
+
 		private void AddSceneAnimChildren()
 		{
-			SceneAnimChildren.Add(
-				new SceneAnimChild( Model.Load( "models/playermodel/terrysus.vmdl" ),
+			Player = new SceneAnimChild( Model.Load( "models/playermodel/terrysus.vmdl" ),
 					Transform.Zero.WithScale( 1.2f )
 					.WithPosition( PlayerPosition )
-					.WithRotation( Rotation.From( 0, -200, 0 ) ) )
-			);
+					.WithRotation( Rotation.From( 0, -200, 0 ) ) );
+			SceneAnimChildren.Add( Player );
 
 			SceneAnimChildren.Add(
 			new SceneAnimChild( Model.Load( "models/playermodel/terrysus.vmdl" ),
@@ -48,6 +59,9 @@ namespace ImposterSyndrome.Systems.UI
 
 			foreach ( var child in SceneAnimChildren )
 				child.Tick();
+
+			if ( RenderScene.HasMouseCapture )
+				Player.Rotation *= Rotation.FromYaw( Mouse.Delta.x );
 		}
 
 		private void Reset()
