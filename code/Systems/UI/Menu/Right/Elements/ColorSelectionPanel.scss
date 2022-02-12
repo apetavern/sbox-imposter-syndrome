@@ -2,16 +2,16 @@
 
 ColorSelectionPanel {
     background-color: $background-lighter;
-    border-bottom: 8px solid $background-light;
-    border-right: 3px solid $background-light;
     padding: 10px 14px;
     flex-direction: column;
     color: black;
-    border-radius: 20px;
+    border-radius: $window-radius;
+    background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+    border: 3px solid rgba(0,0,0,0.5);
 
     .title {
         color: #FFF;
-        text-shadow: 3px 3px 1px $background-light;
+        text-shadow: 3px 3px 1px $background-lighter;
         font-weight: bold;
         font-size: 20px;
     }

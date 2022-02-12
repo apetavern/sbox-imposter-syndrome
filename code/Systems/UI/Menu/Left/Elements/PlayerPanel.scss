@@ -2,8 +2,9 @@
 
 PlayerPanel {
     width: 100%;
-    background-color: $background-light;
-    border-radius: 10px;
+    background-color: $background-lighter;
+    border-radius: $window-radius-more;
+    background: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
     padding: 6px;
     margin-bottom: 5px;
     flex-direction: row;
@@ -23,8 +24,8 @@ PlayerPanel {
     .color, .avatar {
         width: 15%;
         aspect-ratio: 1;
-        border-radius: 8px;
-        border: 2px solid rgba(0,0,0,0.5);
+        border-radius: $window-radius-more;
+        border: 3px solid rgba(0,0,0,0.6);
         background-image: url("/materials/ui/disabled.png");
         background-size: cover;
     }
