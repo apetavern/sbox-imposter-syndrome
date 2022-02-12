@@ -1,20 +1,16 @@
 ﻿using Sandbox.UI;
 using Sandbox;
-using System.Linq;
 using System.Collections.Generic;
 
 namespace ImposterSyndrome.Systems.UI.Menu
 {
-	public class PlayerListPanel : Panel
+	public class MenuPlayerListPanel : Panel
 	{
-		public static PlayerListPanel Instance { get; set; }
 		private Dictionary<int, PlayerPanel> DisplayedClients { get; set; } = new();
 
-		public PlayerListPanel()
+		public MenuPlayerListPanel()
 		{
-			StyleSheet.Load( "/Systems/UI/Menu/Left/Elements/PlayerListPanel.scss" );
-
-			Instance = this;
+			StyleSheet.Load( "/Systems/UI/Menu/Left/Elements/MenuPlayerListPanel.scss" );
 		}
 
 		public override void Tick()
