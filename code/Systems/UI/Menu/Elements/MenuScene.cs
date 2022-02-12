@@ -8,6 +8,7 @@ namespace ImposterSyndrome.Systems.UI
 {
 	public class MenuScene : Panel
 	{
+		public static MenuScene Instance { get; set; }
 		private ScenePanel RenderScene { get; set; }
 		private Vector3 RenderScenePos => new Vector3( 0, 0, 20 );
 		private Angles RenderSceneAngles { get; set; } = new( 0f, 0.0f, 0.0f );
@@ -18,6 +19,7 @@ namespace ImposterSyndrome.Systems.UI
 
 		public MenuScene()
 		{
+			Instance = this;
 			SceneAnimBounds = new BBox( PlayerPosition + Vector3.One * 120, PlayerPosition - Vector3.One * 120 );
 
 			Build();
@@ -93,6 +95,17 @@ namespace ImposterSyndrome.Systems.UI
 
 				RenderScene.AmbientColor = new Color( .25f, .15f, .15f ) * 0.5f;
 			}
+		}
+
+		public void UpdateBackpackColor( int colorIndex )
+		{
+			if ( Player.Backpack is null )
+				return;
+
+			Log.Info( colorIndex );
+
+
+			Player.Backpack.ColorTint = GameConfig.AvailablePlayerColors[colorIndex];
 		}
 
 		private Color GetSkyColor()

@@ -26,6 +26,7 @@ namespace ImposterSyndrome
 			Instance.AssignedColors.Add( client, colorIndex );
 
 			PlayingHudEntity.UpdateMenuColorUsage( colorIndex, false );
+			PlayingHudEntity.UpdateBackpackColor( To.Single( client ), colorIndex );
 		}
 
 		public static void ClearPlayerSelection( Client client )

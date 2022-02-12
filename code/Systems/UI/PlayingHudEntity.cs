@@ -53,6 +53,12 @@ namespace ImposterSyndrome.Systems.UI
 		}
 
 		[ClientRpc]
+		public static void UpdateBackpackColor( int colorIndex )
+		{
+			MenuScene.Instance?.UpdateBackpackColor( colorIndex );
+		}
+
+		[ClientRpc]
 		public static void ShowVotingScreen( bool shouldShow, int calledByNetIdent = -1 )
 		{
 			VotingPanel.Instance?.Show( shouldShow, calledByNetIdent );
