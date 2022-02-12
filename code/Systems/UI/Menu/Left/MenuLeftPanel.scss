@@ -8,4 +8,16 @@ MenuLeftPanel {
     font-size: 100px;
     flex-direction: column;
     padding: 20px;
+
+    .logo {
+        opacity: 0.95;
+        background-image: url("/materials/ui/temp_logo.png");
+        width: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: 13%;
+    }
+
+    .playbutton {
+    }
 }
