@@ -28,28 +28,18 @@ namespace ImposterSyndrome.Systems.UI.Menu
 			RepopulateClients();
 		}
 
-		private void RepopulateClients()
+		public void RepopulateClients()
 		{
 			DisplayedClients.Clear();
 			DeleteChildren( true );
 
 			foreach ( var client in Client.All )
 			{
-				var playerPanel = new PlayerPanel( client.Name );
+				var playerPanel = new PlayerPanel( client.NetworkIdent );
 
 				AddChild( playerPanel );
 				DisplayedClients.Add( client.NetworkIdent, playerPanel );
 			}
-		}
-
-		public void UpdatePlayerColor( int clientNetIdent, int colorIndex )
-		{
-			var targetPanel = DisplayedClients.FirstOrDefault( x => x.Key == clientNetIdent ).Value;
-
-			if ( targetPanel is null )
-				return;
-
-			targetPanel.UpdateColor( GameConfig.AvailablePlayerColors[colorIndex] );
 		}
 	}
 }
