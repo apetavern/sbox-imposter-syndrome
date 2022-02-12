@@ -10,6 +10,9 @@ namespace ImposterSyndrome.Systems.UI.Menu
 	{
 		public static GameConfigPanel Instance { get; set; }
 
+		public int PlayersPerImposter { get; set; } = 2;
+		public int NumberOfTasks { get; set; } = 6;
+
 		public GameConfigPanel()
 		{
 			Instance = this;

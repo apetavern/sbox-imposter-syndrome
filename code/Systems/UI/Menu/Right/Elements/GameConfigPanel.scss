@@ -12,4 +12,15 @@ GameConfigPanel {
     background: linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 100%);
     border: 3px solid rgba(0,0,0,0.5);
     top: 20px;
+
+    .form-row {
+        margin-top: 20px;
+        width: 100%;
+        flex-direction: column;
+        border-radius: 0;
+
+        text {
+            font-size: 20px;
+        }
+    }
 }
