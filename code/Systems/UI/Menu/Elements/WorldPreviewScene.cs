@@ -62,7 +62,7 @@ namespace ImposterSyndrome.Systems.UI
 
 			using ( SceneWorld.SetCurrent( new SceneWorld() ) )
 			{
-				SceneObject.CreateModel( Model.Load( "models/avatareditorscene.vmdl" ), Transform.Zero.WithScale( 1 ) );
+				SceneObject.CreateModel( Model.Load( "models/menus/menuscene/menuscene.vmdl" ), Transform.Zero.WithScale( 1 ) );
 
 				AddSceneAnimChildren();
 
