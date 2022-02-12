@@ -13,10 +13,16 @@ MenuRightPanel {
     .logo {
         background-image: url("/materials/ui/logo.png");
         width: 80%;
-        height: 15%;
+        height: 18%;
         margin-bottom: 20px;
         background-size: contain;
         background-repeat: no-repeat;
+        justify-content: center;
+        align-items: flex-end;
         opacity: 0.2;
+
+        .website {
+            font-size: 21px;
+        }
     }
 }
