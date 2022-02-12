@@ -1,0 +1,23 @@
+﻿
+$primary: red !default;
+$primary-alt: white !default;
+
+$switch-padding: 6px !default;
+
+.button.popupbutton.dropdown
+{
+	cursor: pointer;
+
+	> .dropdown_indicator
+	{
+		position: absolute;
+		right: 8px;
+	}
+
+	&.open
+	{
+		border-bottom-left-radius: 1px;
+		border-bottom-right-radius: 1px;
+		transition: border-radius 0.2s ease-out;
+	}
+}

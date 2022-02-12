@@ -1,0 +1,102 @@
+﻿$primary: #adc178;
+$primary-alt: white !default;
+$switch-padding: 6px !default;
+
+.slider {
+    flex-grow: 1;
+    cursor: pointer;
+    min-height: $form-control-height;
+    align-items: center;
+    padding-right: $form-control-height;
+
+    > .thumb {
+        background-color: $primary;
+        position: absolute;
+        width: $form-control-height;
+        height: $form-control-height;
+        border-radius: 1000px;
+        box-shadow: 2px 2px 10px black;
+        transition: all 0.2s ease-out;
+
+        &:hover {
+            background-color: $primary-alt;
+        }
+    }
+
+    &:active {
+        > .thumb {
+            background-color: $primary-alt;
+        }
+    }
+
+    > .track {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        height: 10px;
+        background-color: rgba( $primary, 0.1 );
+        border-radius: 5px;
+
+        > .inner {
+            border-radius: 4px;
+            background-color: $primary;
+            width: 200px;
+            height: 10px;
+            transition: all 0.2s ease-out;
+        }
+    }
+}
+
+.sliderentry {
+    width: 100%;
+
+    > .slider {
+        flex-grow: 1;
+        flex-shrink: 0;
+    }
+
+    > .textentry:not( .one.two ) {
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: 10%;
+        background-color: rgba(black, 0.5);
+        padding: 0px 10px;
+        border-radius: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-left: 10px;
+        border-color: transparent;
+        text-align: center;
+        color: $primary-alt;
+    }
+}
+
+.slider2d {
+    flex-grow: 1;
+    cursor: pointer;
+    min-height: $form-control-height;
+    align-items: center;
+    padding-right: $form-control-height;
+    height: 200px;
+    background-color: red;
+
+    > .thumb {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        border-radius: 1000px;
+        transition: all 0.2s ease-out;
+        transform: translateX( -50% ) translateY( -50% );
+        border: 2px solid rgba( white, 1 );
+
+        &:hover {
+        }
+    }
+
+    &:active {
+        > .thumb {
+            width: 40px;
+            height: 40px;
+        }
+    }
+}
