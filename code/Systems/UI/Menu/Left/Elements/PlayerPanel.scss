@@ -4,7 +4,8 @@ PlayerPanel {
     width: 100%;
     background-color: $background-lighter;
     border-radius: $window-radius-more;
-    background: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+    background: linear-gradient(to left, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0) 100%);
+    border: 1px solid rgba(black, 0.5);
     padding: 6px;
     margin-bottom: 5px;
     flex-direction: row;
