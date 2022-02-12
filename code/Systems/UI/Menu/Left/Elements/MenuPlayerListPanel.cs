@@ -1,16 +1,21 @@
 ﻿using Sandbox.UI;
 using Sandbox;
 using System.Collections.Generic;
+using Sandbox.UI.Construct;
 
 namespace ImposterSyndrome.Systems.UI.Menu
 {
 	public class MenuPlayerListPanel : Panel
 	{
 		private Dictionary<int, PlayerPanel> DisplayedClients { get; set; } = new();
+		private Panel ListPanel { get; set; }
 
 		public MenuPlayerListPanel()
 		{
 			StyleSheet.Load( "/Systems/UI/Menu/Left/Elements/MenuPlayerListPanel.scss" );
+
+			Add.Label( "Players", "title" );
+			ListPanel = Add.Panel( "playerlist" );
 		}
 
 		public override void Tick()
@@ -27,13 +32,13 @@ namespace ImposterSyndrome.Systems.UI.Menu
 		public void RepopulateClients()
 		{
 			DisplayedClients.Clear();
-			DeleteChildren( true );
+			ListPanel.DeleteChildren( true );
 
 			foreach ( var client in Client.All )
 			{
 				var playerPanel = new PlayerPanel( client.NetworkIdent );
 
-				AddChild( playerPanel );
+				ListPanel.AddChild( playerPanel );
 				DisplayedClients.Add( client.NetworkIdent, playerPanel );
 			}
 		}
