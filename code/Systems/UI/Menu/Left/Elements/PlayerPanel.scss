@@ -4,19 +4,32 @@ PlayerPanel {
     width: 100%;
     background-color: $background-light;
     border-radius: 10px;
-    padding: 10px;
+    padding: 6px;
     margin-bottom: 5px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 
-    .name {
+    .playerinfo {
+        width: 80%;
+        flex-direction: row;
+        align-items: center;
+
+        .name {
+            padding-left: 10px;
+        }
     }
 
-    .color {
-        width: 12%;
+    .color, .avatar {
+        width: 15%;
         aspect-ratio: 1;
         border-radius: 8px;
         border: 2px solid rgba(0,0,0,0.5);
+        background-image: url("/materials/ui/disabled.png");
+        background-size: cover;
+    }
+
+    .avatar {
+        width: 18%;
     }
 }

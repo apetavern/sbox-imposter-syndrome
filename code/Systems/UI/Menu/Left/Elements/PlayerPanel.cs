@@ -16,7 +16,9 @@ namespace ImposterSyndrome.Systems.UI.Menu
 
 			HeldClient = Client.All.FirstOrDefault( x => x.NetworkIdent == clientNetIdent );
 
-			Add.Label( HeldClient.Name, "name" );
+			var playerInfo = Add.Panel( "playerinfo" );
+			playerInfo.Add.Image( $"avatar:{HeldClient.PlayerId}", "avatar" );
+			playerInfo.Add.Label( HeldClient.Name, "name" );
 		}
 
 		public override void Tick()
@@ -26,14 +28,20 @@ namespace ImposterSyndrome.Systems.UI.Menu
 			if ( ImposterSyndrome.Instance.AssignedColors is null )
 				return;
 
-			var color = ImposterSyndrome.Instance.AssignedColors.FirstOrDefault( x => x.Key == HeldClient ).Value;
-
-			if ( ColorPanel is null || ColorPanel.ComputedStyle.BackgroundColor != GameConfig.AvailablePlayerColors[color] )
+			if ( ColorPanel is null )
 			{
-				ColorPanel?.Delete();
-
 				ColorPanel = Add.Panel( "color" );
-				ColorPanel.Style.BackgroundColor = GameConfig.AvailablePlayerColors[color];
+			}
+
+			if ( !ImposterSyndrome.Instance.AssignedColors.Any( x => x.Key == HeldClient ) )
+				return;
+
+			var colorIndex = ImposterSyndrome.Instance.AssignedColors.FirstOrDefault( x => x.Key == HeldClient ).Value;
+
+			if ( ColorPanel.ComputedStyle?.BackgroundColor != GameConfig.AvailablePlayerColors[colorIndex] )
+			{
+				ColorPanel.Style.BackgroundColor = GameConfig.AvailablePlayerColors[colorIndex];
+				ColorPanel.Style.BackgroundImage = Texture.Transparent;
 			}
 		}
 	}
