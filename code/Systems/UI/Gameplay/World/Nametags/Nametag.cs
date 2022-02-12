@@ -35,9 +35,9 @@ namespace ImposterSyndrome.Systems.UI
 
 			Name.Text = Player.Client.Name;
 
-			Position = Player.EyePos + Vector3.Up * 20;
+			Position = Player.EyePosition + Vector3.Up * 20;
 
-			Rotation = Local.Pawn.EyeRot.RotateAroundAxis( Vector3.Up, 180 );
+			Rotation = Local.Pawn.EyeRotation.RotateAroundAxis( Vector3.Up, 180 );
 		}
 
 		public override void Tick()
