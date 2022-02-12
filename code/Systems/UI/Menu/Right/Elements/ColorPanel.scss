@@ -9,10 +9,12 @@ ColorPanel {
     border-radius: 20px;
     margin-top: 8px;
     box-shadow: 0px 0px 12px rgba(black, 1);
+    background-image: url("/materials/ui/disabled.png");
     opacity: 0.5;
 
     &.enabled {
         opacity: 1;
+        background-image: none;
 
         &:hover {
             cursor: pointer;
