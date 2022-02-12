@@ -15,6 +15,8 @@ namespace ImposterSyndrome.Systems.UI.Menu
 			StyleSheet.Load( "/Systems/UI/Menu/Left/Elements/MenuPlayerListPanel.scss" );
 
 			Add.Label( "Current Players", "title" );
+			Add.Label( $"Minimum players: {GameConfig.MinimumPlayers}", "subtitle" );
+
 			ListPanel = Add.Panel( "playerlist" );
 		}
 
