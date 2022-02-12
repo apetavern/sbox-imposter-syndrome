@@ -12,6 +12,8 @@ namespace ImposterSyndrome.Systems.UI.Menu
 			Add.Panel( "logo" );
 
 			AddChild<MenuPlayerListPanel>();
+
+			Add.Label( "PLAY", "playbutton" );
 		}
 	}
 }

@@ -6,8 +6,8 @@
 		public static float InteractionRadius = 60f;
 		public static Color[] AvailablePlayerColors = new[]
 		{
-			Color.FromBytes(159,9,9), // Red
-			Color.FromBytes(19,47,208), // Blue
+			Color.FromBytes(233,0,0), // Red
+			Color.FromBytes(0,89,244), // Blue
 			Color.FromBytes(18,127,47), // Green
 			Color.FromBytes(235,84,185), // Pink
 			Color.FromBytes(242,87,0), // Orange

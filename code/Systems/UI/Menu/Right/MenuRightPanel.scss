@@ -11,7 +11,7 @@ MenuRightPanel {
     align-items: flex-end;
 
     .logo {
-        background-image: url("/materials/ui/logo.png");
+        background-image: url("/materials/ui/apetavern_dark.png");
         width: 80%;
         height: 18%;
         margin-bottom: 20px;
@@ -19,7 +19,12 @@ MenuRightPanel {
         background-repeat: no-repeat;
         justify-content: center;
         align-items: flex-end;
-        opacity: 0.2;
+        opacity: 0.9;
+
+        label {
+            color: black;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
+        }
 
         .website {
             font-size: 21px;
