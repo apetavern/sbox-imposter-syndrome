@@ -35,8 +35,6 @@ namespace ImposterSyndrome.Systems.States
 			if ( Host.IsClient )
 				return;
 
-			Log.Info( HasPrematchStarted );
-
 			if ( !HasPrematchStarted )
 				return;
 
