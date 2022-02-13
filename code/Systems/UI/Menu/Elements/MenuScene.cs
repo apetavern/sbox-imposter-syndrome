@@ -40,7 +40,7 @@ namespace ImposterSyndrome.Systems.UI
 			Player = new SceneAnimChild( Model.Load( "models/playermodel/terrysus.vmdl" ),
 					Transform.Zero.WithScale( 1.2f )
 					.WithPosition( PlayerPosition )
-					.WithRotation( Rotation.From( 0, -200, 0 ) ) ).MarkAsPlayerAvatar();
+					.WithRotation( Rotation.From( 0, -200, 0 ) ) );
 			SceneAnimChildren.Add( Player );
 
 			SceneAnimChildren.Add(
@@ -61,8 +61,7 @@ namespace ImposterSyndrome.Systems.UI
 			foreach ( var child in SceneAnimChildren )
 				child.Tick();
 
-			if ( RenderScene.HasMouseCapture )
-				Player.Rotation *= Rotation.FromYaw( Mouse.Delta.x );
+			Player.DoManualRotation( RenderScene.HasMouseCapture );
 		}
 
 		private void Reset()
