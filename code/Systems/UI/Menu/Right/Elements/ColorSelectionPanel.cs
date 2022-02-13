@@ -30,6 +30,13 @@ namespace ImposterSyndrome.Systems.UI.Menu
 			}
 		}
 
+		public override void Tick()
+		{
+			base.Tick();
+
+			MenuScene.Instance?.Player?.ShowBackpack( HasHovered );
+		}
+
 		public void MarkColorUsable( int colourIndex, bool isUsable )
 		{
 			var targetPanel = ColorPanels.FirstOrDefault( panel => panel.ColorIndex == colourIndex );

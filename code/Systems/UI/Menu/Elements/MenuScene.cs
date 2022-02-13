@@ -14,7 +14,7 @@ namespace ImposterSyndrome.Systems.UI
 		private Angles RenderSceneAngles { get; set; } = new( 0f, 0.0f, 0.0f );
 		private Vector3 PlayerPosition => new Vector3( 80, -10, 0 );
 		private BBox SceneAnimBounds { get; set; }
-		private SceneAnimChild Player { get; set; }
+		public SceneAnimChild Player { get; set; }
 		private List<SceneAnimChild> SceneAnimChildren { get; set; } = new();
 
 		public MenuScene()
@@ -27,7 +27,6 @@ namespace ImposterSyndrome.Systems.UI
 
 		public override void OnButtonEvent( ButtonEvent e )
 		{
-			// CaptureMouseInput doesn't work wtf scam?
 			if ( e.Button == "mouseleft" )
 			{
 				RenderScene.SetMouseCapture( e.Pressed );
@@ -41,7 +40,7 @@ namespace ImposterSyndrome.Systems.UI
 			Player = new SceneAnimChild( Model.Load( "models/playermodel/terrysus.vmdl" ),
 					Transform.Zero.WithScale( 1.2f )
 					.WithPosition( PlayerPosition )
-					.WithRotation( Rotation.From( 0, -200, 0 ) ) );
+					.WithRotation( Rotation.From( 0, -200, 0 ) ) ).MarkAsPlayerAvatar();
 			SceneAnimChildren.Add( Player );
 
 			SceneAnimChildren.Add(
