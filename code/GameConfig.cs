@@ -31,7 +31,7 @@ namespace ImposterSyndrome
 		[Net] public int NumberOfTasks { get; set; }
 
 		// Non configurables
-		public static int MinimumPlayers = 6;
+		public static int MinimumPlayers = 3;
 		public static float InteractionRadius = 60f;
 		public static Color[] AvailablePlayerColors = new[]
 		{
