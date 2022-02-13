@@ -1,4 +1,6 @@
-﻿using Sandbox.UI;
+﻿using ImposterSyndrome.Systems.States;
+using Sandbox;
+using Sandbox.UI;
 using Sandbox.UI.Construct;
 
 namespace ImposterSyndrome.Systems.UI.Menu
@@ -13,7 +15,8 @@ namespace ImposterSyndrome.Systems.UI.Menu
 
 			AddChild<MenuPlayerListPanel>();
 
-			Add.Label( "PLAY", "playbutton" );
+			var playButton = Add.Button( "PLAY", "playbutton", () => WaitingState.Startup() );
+			playButton.BindClass( "disabled", () => Client.All.Count < GameConfig.MinimumPlayers );
 		}
 	}
 }

@@ -11,7 +11,7 @@ namespace ImposterSyndrome.Systems.States
 	{
 		[Net] public override string StateName => "Waiting";
 		public override float StateDuration { get; set; } = 5;
-		private bool HasPrematchStarted { get; set; }
+		public bool HasPrematchStarted { get; set; }
 
 		public override void OnStateStarted()
 		{
@@ -35,17 +35,8 @@ namespace ImposterSyndrome.Systems.States
 			if ( Host.IsClient )
 				return;
 
-			if ( Client.All.Count < GameConfig.MinimumPlayers )
-			{
-				HasPrematchStarted = false;
-				return;
-			}
-
 			if ( !HasPrematchStarted )
-			{
-				StateEndTime = Time.Now + StateDuration;
-				HasPrematchStarted = true;
-			}
+				return;
 
 			if ( Time.Now > StateEndTime )
 				OnStateEnded();
@@ -64,6 +55,22 @@ namespace ImposterSyndrome.Systems.States
 
 			// Reset all world entities.
 			BaseUsableEntity.ResetAll();
+		}
+
+		[ServerCmd]
+		public static void Startup()
+		{
+			if ( Host.IsClient )
+				return;
+
+			if ( Client.All.Count < GameConfig.MinimumPlayers )
+				return;
+
+			if ( ImposterSyndrome.Instance.CurrentState is not WaitingState waitingState )
+				return;
+
+			waitingState.StateEndTime = Time.Now + waitingState.StateDuration;
+			waitingState.HasPrematchStarted = true;
 		}
 	}
 }
