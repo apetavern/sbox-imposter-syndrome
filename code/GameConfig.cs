@@ -1,7 +1,36 @@
-﻿namespace ImposterSyndrome
+﻿using Sandbox;
+
+namespace ImposterSyndrome
 {
-	public static class GameConfig
+	public partial class GameConfig : BaseNetworkable
 	{
+		public static GameConfig Instance { get; set; }
+
+		public GameConfig()
+		{
+			Instance = this;
+		}
+
+		[ServerCmd]
+		public static void ReceiveMenuConfig( int playersPerImposter, int numOfTasks )
+		{
+			// TODO: Make this better when we have more config. options
+
+			if ( Host.IsClient )
+				return;
+
+			if ( Instance is null )
+				return;
+
+			Instance.PlayersPerImposter = playersPerImposter;
+			Instance.NumberOfTasks = numOfTasks;
+		}
+
+		// Configurable
+		[Net] public int PlayersPerImposter { get; set; }
+		[Net] public int NumberOfTasks { get; set; }
+
+		// Non configurables
 		public static int MinimumPlayers = 6;
 		public static float InteractionRadius = 60f;
 		public static Color[] AvailablePlayerColors = new[]

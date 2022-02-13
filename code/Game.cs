@@ -19,6 +19,7 @@ namespace ImposterSyndrome
 			}
 
 			_ = new PlayingHudEntity();
+			_ = new GameConfig();
 
 			UpdateState( new WaitingState() );
 		}
