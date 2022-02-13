@@ -51,9 +51,7 @@ namespace ImposterSyndrome.Systems.States
 
 		private void AssignImposters()
 		{
-			var imposterCount = MathX.CeilToInt( ImposterSyndrome.Instance.Players.Count * 0.25f );
-
-			for ( int i = 0; i < imposterCount; i++ )
+			for ( int i = 0; i < GameConfig.Instance.ImposterCount; i++ )
 			{
 				var player = ImposterSyndrome.Instance.Players.Where( player => !player.IsImposter ).OrderBy( _ => Guid.NewGuid() ).First();
 				player.UpdateImposterStatus( true );

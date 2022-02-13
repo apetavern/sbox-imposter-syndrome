@@ -12,7 +12,7 @@ namespace ImposterSyndrome
 		}
 
 		[ServerCmd]
-		public static void ReceiveMenuConfig( int playersPerImposter, int numOfTasks )
+		public static void ReceiveMenuConfig( int imposterCount, int numOfTasks )
 		{
 			// TODO: Make this better when we have more config. options
 
@@ -22,12 +22,12 @@ namespace ImposterSyndrome
 			if ( Instance is null )
 				return;
 
-			Instance.PlayersPerImposter = playersPerImposter;
+			Instance.ImposterCount = imposterCount;
 			Instance.NumberOfTasks = numOfTasks;
 		}
 
 		// Configurable
-		[Net] public int PlayersPerImposter { get; set; }
+		[Net] public int ImposterCount { get; set; }
 		[Net] public int NumberOfTasks { get; set; }
 
 		// Non configurables

@@ -40,7 +40,7 @@ namespace ImposterSyndrome.Systems.UI.Menu
 			if ( GameConfigPanel.Instance is null )
 				return;
 
-			GameConfig.ReceiveMenuConfig( GameConfigPanel.Instance.PlayersPerImposter, GameConfigPanel.Instance.NumberOfTasks );
+			GameConfig.ReceiveMenuConfig( GameConfigPanel.Instance.ImposterCount, GameConfigPanel.Instance.NumberOfTasks );
 		}
 	}
 }
