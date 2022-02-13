@@ -7,8 +7,6 @@ GameConfigPanel {
     flex-direction: column;
     color: black;
     border-radius: $window-radius;
-    border-bottom-left-radius: 20px;
-    border-top-right-radius: 20px;
     background: linear-gradient(to left, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 100%);
     border: 3px solid rgba(0,0,0,0.5);
     top: 20px;
