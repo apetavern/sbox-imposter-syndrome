@@ -9,6 +9,7 @@ namespace ImposterSyndrome.Systems.UI
 		private BBox MovementBounds { get; set; }
 		private bool CanWander { get; set; }
 		private bool IsMoving { get; set; }
+		private bool NeedsToReturn { get; set; }
 		private Vector3 EndPosition { get; set; }
 		public AnimSceneObject Backpack { get; set; }
 
@@ -51,9 +52,18 @@ namespace ImposterSyndrome.Systems.UI
 				return;
 
 			if ( shouldShow )
+			{
 				Rotation = Rotation.FromYaw( 30 );
-			else
+				NeedsToReturn = true;
+
+				return;
+			}
+
+			if ( NeedsToReturn )
+			{
 				Rotation = Rotation.FromYaw( 150 );
+				NeedsToReturn = false;
+			}
 		}
 
 		private void Move()
