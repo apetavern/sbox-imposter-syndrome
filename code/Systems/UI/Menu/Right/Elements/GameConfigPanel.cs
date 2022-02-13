@@ -9,7 +9,6 @@ namespace ImposterSyndrome.Systems.UI.Menu
 	public class GameConfigPanel : Panel
 	{
 		public static GameConfigPanel Instance { get; set; }
-
 		public int PlayersPerImposter { get; set; } = 2;
 		public int NumberOfTasks { get; set; } = 6;
 
