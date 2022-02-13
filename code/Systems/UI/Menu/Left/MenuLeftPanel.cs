@@ -36,6 +36,11 @@ namespace ImposterSyndrome.Systems.UI.Menu
 				PlayButton.Text = "START";
 
 			WaitingState.Startup( PlayButtonClicked );
+
+			if ( GameConfigPanel.Instance is null )
+				return;
+
+			GameConfig.ReceiveMenuConfig( GameConfigPanel.Instance.PlayersPerImposter, GameConfigPanel.Instance.NumberOfTasks );
 		}
 	}
 }
