@@ -58,5 +58,17 @@ MenuLeftPanel {
                 transform: scale(1);
             }
         }
+
+        &.clicked {
+            background-color: #AB1616;
+
+            label {
+                color: #E3E3E3;
+            }
+
+            &:hover {
+                background-color: #880D0D;
+            }
+        }
     }
 }

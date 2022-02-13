@@ -11,7 +11,7 @@ namespace ImposterSyndrome.Systems.States
 	{
 		[Net] public override string StateName => "Waiting";
 		public override float StateDuration { get; set; } = 5;
-		public bool HasPrematchStarted { get; set; }
+		[Net] public bool HasPrematchStarted { get; set; }
 
 		public override void OnStateStarted()
 		{
@@ -34,6 +34,8 @@ namespace ImposterSyndrome.Systems.States
 		{
 			if ( Host.IsClient )
 				return;
+
+			Log.Info( HasPrematchStarted );
 
 			if ( !HasPrematchStarted )
 				return;
@@ -58,7 +60,7 @@ namespace ImposterSyndrome.Systems.States
 		}
 
 		[ServerCmd]
-		public static void Startup()
+		public static void Startup( bool shouldStartup )
 		{
 			if ( Host.IsClient )
 				return;
@@ -69,8 +71,10 @@ namespace ImposterSyndrome.Systems.States
 			if ( ImposterSyndrome.Instance.CurrentState is not WaitingState waitingState )
 				return;
 
-			waitingState.StateEndTime = Time.Now + waitingState.StateDuration;
-			waitingState.HasPrematchStarted = true;
+			waitingState.HasPrematchStarted = shouldStartup;
+
+			if ( shouldStartup )
+				waitingState.StateEndTime = Time.Now + waitingState.StateDuration;
 		}
 	}
 }

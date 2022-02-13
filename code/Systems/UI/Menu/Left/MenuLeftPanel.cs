@@ -7,6 +7,9 @@ namespace ImposterSyndrome.Systems.UI.Menu
 {
 	public class MenuLeftPanel : Panel
 	{
+		private Button PlayButton { get; set; }
+		private bool PlayButtonClicked { get; set; }
+
 		public MenuLeftPanel()
 		{
 			StyleSheet.Load( "/Systems/UI/Menu/Left/MenuLeftPanel.scss" );
@@ -15,8 +18,24 @@ namespace ImposterSyndrome.Systems.UI.Menu
 
 			AddChild<MenuPlayerListPanel>();
 
-			var playButton = Add.Button( "PLAY", "playbutton", () => WaitingState.Startup() );
-			playButton.BindClass( "disabled", () => Client.All.Count < GameConfig.MinimumPlayers );
+			PlayButton = Add.Button( "START", "playbutton", () => OnPlayClicked() );
+			PlayButton.BindClass( "disabled", () => Client.All.Count < GameConfig.MinimumPlayers );
+			PlayButton.BindClass( "clicked", () => PlayButtonClicked );
+		}
+
+		private void OnPlayClicked()
+		{
+			if ( Client.All.Count < GameConfig.MinimumPlayers )
+				return;
+
+			PlayButtonClicked = !PlayButtonClicked;
+
+			if ( PlayButtonClicked )
+				PlayButton.Text = "CANCEL";
+			else
+				PlayButton.Text = "START";
+
+			WaitingState.Startup( PlayButtonClicked );
 		}
 	}
 }
