@@ -40,7 +40,6 @@ namespace ImposterSyndrome.Systems.States
 		{
 			foreach ( var player in ImposterSyndrome.Instance.Players )
 			{
-				// Temporarily add all tasks. We can add a random selection of tasks later instead.
 				foreach ( var task in Library.GetAll<BaseTask>().Where( x => !x.IsAbstract && x.BaseType != typeof( SubTask ) ).OrderBy( _ => Guid.NewGuid() ).Take( GameConfig.Instance.NumberOfTasks ) )
 				{
 					var taskInstance = Library.Create<BaseTask>( task ).FlagAsFake( player.IsImposter );
