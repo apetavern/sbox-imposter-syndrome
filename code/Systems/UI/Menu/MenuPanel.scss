@@ -20,4 +20,13 @@ MenuPanel {
         width: 100%;
         height: 100%;
     }
+
+    .timer {
+        position: absolute;
+        color: rgba(black, 0.6);
+        font-weight: bold;
+        font-size: 30px;
+        top: 20px;
+        text-shadow: none;
+    }
 }
