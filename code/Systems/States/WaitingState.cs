@@ -49,6 +49,13 @@ namespace ImposterSyndrome.Systems.States
 			PlayingHudEntity.RefreshConfigPanel();
 		}
 
+		public override void ClientDisconnect( Client client )
+		{
+			base.ClientDisconnect( client );
+
+			PlayingHudEntity.RefreshConfigPanel();
+		}
+
 		private void DoPostGameCleanup()
 		{
 			// Clear player list.
