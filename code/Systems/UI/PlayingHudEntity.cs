@@ -47,6 +47,12 @@ namespace ImposterSyndrome.Systems.UI
 		}
 
 		[ClientRpc]
+		public static void RefreshConfigPanel()
+		{
+			GameConfigPanel.Instance?.Refresh();
+		}
+
+		[ClientRpc]
 		public static void UpdateMenuColorUsage( int colorIndex, bool isUsable )
 		{
 			ColorSelectionPanel.Instance.MarkColorUsable( colorIndex, isUsable );
