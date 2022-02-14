@@ -32,6 +32,8 @@ namespace ImposterSyndrome
 			player.Respawn();
 
 			client.Pawn = player;
+
+			CurrentState?.ClientJoined( client );
 		}
 
 		public override void ClientDisconnect( Client cl, NetworkDisconnectionReason reason )

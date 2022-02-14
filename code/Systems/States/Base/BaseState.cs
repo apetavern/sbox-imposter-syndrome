@@ -15,6 +15,8 @@ namespace ImposterSyndrome.Systems.States
 
 		public virtual void OnStateEnded() { }
 
+		public virtual void ClientJoined( Client client ) { }
+
 		public virtual void OnSecond()
 		{
 			if ( !Host.IsServer )
