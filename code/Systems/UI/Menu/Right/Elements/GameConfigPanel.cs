@@ -1,13 +1,13 @@
-﻿using Sandbox.UI;
+﻿using Sandbox;
+using Sandbox.UI;
 using Sandbox.UI.Construct;
+using System;
 
 namespace ImposterSyndrome.Systems.UI.Menu
 {
 	public class GameConfigPanel : Panel
 	{
 		public static GameConfigPanel Instance { get; set; }
-
-		private Panel OptionsPanel { get; set; }
 
 		public SliderEntry NumberOfImposters;
 		public SliderEntry NumberOfTasks;
@@ -17,17 +17,17 @@ namespace ImposterSyndrome.Systems.UI.Menu
 			Instance = this;
 			StyleSheet.Load( "/Systems/UI/Menu/Right/Elements/GameConfigPanel.scss" );
 
-			Rebuild();
+			Refresh();
 		}
 
-		public void Rebuild()
+		public void Refresh()
 		{
 			DeleteChildren( true );
 
 			Add.Label( "Game Configuration", "title" );
 			Add.Label( "Various settings for gameplay.", "subtitle" );
 
-			AddOption( ref NumberOfImposters, "Number of Imposters", 1, 4, 2 );
+			AddOption( ref NumberOfImposters, "Number of Imposters", 1, Math.Clamp( Client.All.Count - 1, 1, 100 ), MathX.CeilToInt( Client.All.Count / 3 ) );
 			AddOption( ref NumberOfTasks, "Number of Tasks", 4, 6, 4 );
 		}
 

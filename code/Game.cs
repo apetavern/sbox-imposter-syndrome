@@ -36,11 +36,13 @@ namespace ImposterSyndrome
 			CurrentState?.ClientJoined( client );
 		}
 
-		public override void ClientDisconnect( Client cl, NetworkDisconnectionReason reason )
+		public override void ClientDisconnect( Client client, NetworkDisconnectionReason reason )
 		{
-			Players.Remove( cl.Pawn as ISPlayer );
+			Players.Remove( client.Pawn as ISPlayer );
 
-			base.ClientDisconnect( cl, reason );
+			CurrentState?.ClientDisconnect( client );
+
+			base.ClientDisconnect( client, reason );
 		}
 	}
 }
