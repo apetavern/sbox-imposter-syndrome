@@ -36,6 +36,9 @@ namespace ImposterSyndrome.Systems.Players
 		{
 			var controller = GetActiveController();
 			controller?.Simulate( cl, this, GetActiveAnimator() );
+
+			if ( Host.IsServer )
+				DebugOverlay.Text( EyePosition + Vector3.Up * 5, IsImposter ? "IMPOSTER" : "PLAYER" );
 		}
 
 		public void Eject()
