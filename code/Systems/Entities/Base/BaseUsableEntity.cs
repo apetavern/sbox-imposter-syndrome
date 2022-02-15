@@ -12,13 +12,16 @@ namespace ImposterSyndrome.Systems.Entities
 		[Net] public List<ISPlayer> UsedByPlayers { get; set; }
 		public virtual string UseName { get; set; } = "Use";
 		protected virtual string ModelPath { get; set; } = "models/citizen_props/cardboardbox01.vmdl";
+		public virtual bool HideWorldModel { get; set; }
 		private bool Debug { get; set; } = true;
 
 		public override void Spawn()
 		{
 			base.Spawn();
 
-			SetModel( ModelPath );
+			if ( !HideWorldModel )
+				SetModel( ModelPath );
+
 			SetupPhysicsFromModel( PhysicsMotionType.Static );
 		}
 
