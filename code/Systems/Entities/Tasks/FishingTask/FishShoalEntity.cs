@@ -12,7 +12,7 @@ namespace ImposterSyndrome.Systems.Entities
 	{
 		[Net] public override string UseName => "Fish";
 		public override bool HideWorldModel => true;
-		private int NumberOfFishInShoal { get; set; } = 5;
+		private int MaxNumberOfFishInShoal { get; set; } = 5;
 		private List<FishEntity> Fish { get; set; } = new();
 		private AnimEntity Bait { get; set; }
 
@@ -20,7 +20,9 @@ namespace ImposterSyndrome.Systems.Entities
 		{
 			base.Spawn();
 
-			for ( int i = 0; i < NumberOfFishInShoal; i++ )
+			var numberOfFishInShoal = Rand.Int( 2, MaxNumberOfFishInShoal );
+
+			for ( int i = 0; i < numberOfFishInShoal; i++ )
 			{
 				FishEntity fish = new FishEntity().AddToShoal( this );
 				Fish.Add( fish );
