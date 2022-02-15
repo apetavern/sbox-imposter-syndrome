@@ -42,7 +42,7 @@ namespace ImposterSyndrome.Systems.Entities
 			// Cast
 			if ( Bait is null || !Bait.IsValid )
 			{
-				Bait = new AnimEntity( "models/citizen_props/hotdog01.vmdl" )
+				Bait = new AnimEntity( "models/float/float.vmdl" )
 				{
 					Position = user.Position + user.Rotation.Forward * 80
 				};
