@@ -13,7 +13,7 @@ namespace ImposterSyndrome.Systems.Entities
 
 		public FishEntity AddToShoal( FishShoalEntity shoal )
 		{
-			SetModel( "models/citizen_props/sodacan01.vmdl" );
+			SetModel( "models/fish/fish.vmdl" );
 			ParentShoal = shoal;
 
 			TargetPosition = PickRandomPosition();
