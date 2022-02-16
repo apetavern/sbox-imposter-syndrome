@@ -2,6 +2,8 @@
 using System.Linq;
 using Sandbox;
 using System.Collections.Generic;
+using System;
+using ImposterSyndrome.Systems.Tasks;
 
 namespace ImposterSyndrome.Systems.Entities
 {
@@ -11,7 +13,8 @@ namespace ImposterSyndrome.Systems.Entities
 	public partial class FishShoalEntity : TaskEntity
 	{
 		[Net] public override string UseName => "Fish";
-		public override bool HideWorldModel => true;
+		protected override Type TargetTaskType => typeof( FindWilson );
+		protected override string ModelPath => "models/sphere.vmdl";
 		private int MaxNumberOfFishInShoal { get; set; } = 5;
 		private List<FishEntity> Fish { get; set; } = new();
 		private AnimEntity Bait { get; set; }
@@ -31,10 +34,15 @@ namespace ImposterSyndrome.Systems.Entities
 
 		public override bool IsUsable( ISPlayer user, UseType useType )
 		{
-			if ( useType != UseType.Use )
-				return false;
-
+			Log.Info( "calling" );
 			return true;
+		}
+
+		public override void OnTick()
+		{
+			base.OnTick();
+
+			//DebugOverlay.Sphere( Position, 90f, Color.Red );
 		}
 
 		public override bool OnUse( ISPlayer user, UseType useType )
