@@ -20,6 +20,8 @@ namespace ImposterSyndrome.Systems.Entities
 			SwimSpeed = DefaultSwimSpeed;
 			Scale = Rand.Float( 1, 1.5f );
 
+			CurrentSequence.Name = "swim";
+
 			Position = shoal.Position + Vector3.Random * 10;
 			return this;
 		}
