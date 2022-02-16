@@ -6,6 +6,7 @@ namespace ImposterSyndrome.Systems.Entities
 	{
 		private FishShoalEntity ParentShoal { get; set; }
 		public bool IsHooked { get; set; }
+		private FloatEntity TargetFloat { get; set; }
 		private Vector3 TargetPosition { get; set; }
 		private float DefaultSwimSpeed { get; set; } = 12f;
 		private float SwimSpeed { get; set; }
@@ -32,6 +33,9 @@ namespace ImposterSyndrome.Systems.Entities
 			if ( ParentShoal is null || !ParentShoal.IsValid )
 				Delete();
 
+			if ( IsHooked )
+				return;
+
 			var moveDir = (TargetPosition - Position).Normal;
 			var distance = Vector3.DistanceBetween( TargetPosition, Position );
 
@@ -41,14 +45,30 @@ namespace ImposterSyndrome.Systems.Entities
 					return;
 
 				Position += moveDir * Time.Delta * SwimSpeed;
-				Rotation = Rotation.LookAt( moveDir, Vector3.Up );
 
-				SwimSpeed = (SwimSpeed - (SwimSpeed / 500)).Clamp( 0.5f, DefaultSwimSpeed );
+				if ( TargetFloat is null )
+				{
+					Rotation = Rotation.LookAt( moveDir, Vector3.Up );
+					SwimSpeed = (SwimSpeed - (SwimSpeed / 500)).Clamp( 0.5f, DefaultSwimSpeed );
+				}
 
 				return;
 			}
 			else
 			{
+				if ( TargetFloat is not null )
+				{
+					var shouldBite = Rand.Int( 1, 5 ) == 3;
+
+					if ( shouldBite )
+						HookTo( TargetFloat );
+					else
+						TargetPosition = TargetPosition + (Position - TargetPosition).Normal * 20;
+
+					return;
+				}
+
+
 				TargetPosition = PickRandomPosition();
 				TimeUntilMovementPermitted = Rand.Float( 0.5f, 2.5f );
 				SwimSpeed = DefaultSwimSpeed;
@@ -62,9 +82,26 @@ namespace ImposterSyndrome.Systems.Entities
 			return (ParentShoal.Position + Vector3.Random + Vector3.Random * 50).WithZ( ParentShoal.Position.z + Rand.Int( -5, 5 ) );
 		}
 
-		private void HookTo()
+		public void NibbleAt( FloatEntity floatEntity )
 		{
+			TargetFloat = floatEntity;
+			TargetPosition = floatEntity.Position;
+			Rotation = Rotation.LookAt( (TargetPosition - Position).Normal, Vector3.Up );
+			SwimSpeed = 24;
+		}
 
+		public void Reset()
+		{
+			TargetFloat = null;
+			TargetPosition = PickRandomPosition();
+			SwimSpeed = DefaultSwimSpeed;
+			TimeUntilMovementPermitted = 0;
+		}
+
+		public void HookTo( FloatEntity floatEntity )
+		{
+			Log.Info( "HOOKED" );
+			IsHooked = true;
 		}
 	}
 }

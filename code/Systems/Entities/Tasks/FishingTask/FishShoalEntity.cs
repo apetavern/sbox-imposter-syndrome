@@ -16,8 +16,8 @@ namespace ImposterSyndrome.Systems.Entities
 		protected override Type TargetTaskType => typeof( FindWilson );
 		protected override string ModelPath => "models/sphere.vmdl";
 		private int MaxNumberOfFishInShoal { get; set; } = 5;
-		private List<FishEntity> Fish { get; set; } = new();
-		private AnimEntity Bait { get; set; }
+		public List<FishEntity> Fish { get; set; } = new();
+		private FloatEntity Bait { get; set; }
 
 		public override void Spawn()
 		{
@@ -30,19 +30,13 @@ namespace ImposterSyndrome.Systems.Entities
 				FishEntity fish = new FishEntity().AddToShoal( this );
 				Fish.Add( fish );
 			}
+
+			SetInteractsAs( CollisionLayer.Debris );
 		}
 
 		public override bool IsUsable( ISPlayer user, UseType useType )
 		{
-			Log.Info( "calling" );
 			return true;
-		}
-
-		public override void OnTick()
-		{
-			base.OnTick();
-
-			//DebugOverlay.Sphere( Position, 90f, Color.Red );
 		}
 
 		public override bool OnUse( ISPlayer user, UseType useType )
@@ -50,23 +44,28 @@ namespace ImposterSyndrome.Systems.Entities
 			// Cast
 			if ( Bait is null || !Bait.IsValid )
 			{
-				Bait = new AnimEntity( "models/float/float.vmdl" )
+				Bait = new FloatEntity()
 				{
-					Position = user.Position + user.Rotation.Forward * 80
+					Position = user.EyePosition + user.Rotation.Forward * 10,
+					Owner = user,
+					Shoal = this,
+					Speed = 1000
 				};
-
-				Log.Info( "Casting" );
 
 				UseName = "Reel";
 				return false;
 			}
 
+			var hookedFish = Fish.FirstOrDefault( x => x.IsHooked );
+
 			// Reel
-			if ( Fish.Any( x => x.IsHooked ) )
+			if ( hookedFish is not null )
 			{
 				// Caught
 				Log.Info( "Reeling | Caught a fish" );
 				GetTaskInstance( user )?.MarkAsCompleted();
+
+				hookedFish.Reset();
 			}
 			else
 			{
@@ -76,7 +75,7 @@ namespace ImposterSyndrome.Systems.Entities
 
 			// Reset
 			UseName = "Cast";
-			Bait?.Delete();
+			Bait?.Cleanup();
 			Bait = null;
 
 			return false;
