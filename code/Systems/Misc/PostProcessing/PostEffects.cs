@@ -32,11 +32,11 @@ namespace ImposterSyndrome.Systems.PostProcessing
 			Instance.Contrast.Enabled = true;
 
 			// Depth of field
-			Instance.DepthOfField.Radius = 13.12f;
-			Instance.DepthOfField.FStop = 0.333f;
-			Instance.DepthOfField.FocalLength = 82;
-			Instance.DepthOfField.FocalPoint = 700;
-			Instance.DepthOfField.Enabled = true;
+			// Instance.DepthOfField.Radius = 13.12f;
+			// Instance.DepthOfField.FStop = 0.333f;
+			// Instance.DepthOfField.FocalLength = 82;
+			// Instance.DepthOfField.FocalPoint = 700;
+			// Instance.DepthOfField.Enabled = true;
 		}
 
 		public static void DoDeath()
