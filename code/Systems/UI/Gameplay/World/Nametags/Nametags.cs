@@ -17,7 +17,7 @@ namespace ImposterSyndrome.Systems.UI
 		{
 			if ( Host.IsClient )
 			{
-				if ( ImposterSyndrome.Instance.Players is null )
+				if ( ImposterSyndrome.Instance?.Players is null )
 					return;
 
 				foreach ( var player in ImposterSyndrome.Instance.Players )
