@@ -19,7 +19,7 @@ namespace ImposterSyndrome.Systems.Entities
 
 		public void Cleanup()
 		{
-			AttractedFish.Reset();
+			AttractedFish?.Reset();
 			Delete();
 		}
 
