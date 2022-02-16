@@ -19,9 +19,10 @@ namespace ImposterSyndrome.Systems.Entities
 		{
 			base.Spawn();
 
-			if ( !HideWorldModel )
-				SetModel( ModelPath );
+			if ( HideWorldModel )
+				return;
 
+			SetModel( ModelPath );
 			SetupPhysicsFromModel( PhysicsMotionType.Static );
 		}
 
