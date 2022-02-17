@@ -15,15 +15,15 @@
 						[
 							{
 								from = "lambert1.vmat"
-								to = "materials/dev/primary_white.vmat"
+								to = "models/float/materials/base.vmat"
 							},
 							{
 								from = "lambert2.vmat"
-								to = "materials/dev/primary_red.vmat"
+								to = "models/float/materials/highlight.vmat"
 							},
 							{
 								from = "stake.vmat"
-								to = "materials/dev/black_cheap.vmat"
+								to = "models/float/materials/stake.vmat"
 							},
 						]
 						use_global_default = false
@@ -156,6 +156,21 @@
 					},
 				]
 				default_root_bone_name = ""
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "line"
+						parent_bone = "root"
+						relative_origin = [ -0.957456, 9.230919, 0.909824 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+				]
 			},
 		]
 		model_archetype = "animated_model"
