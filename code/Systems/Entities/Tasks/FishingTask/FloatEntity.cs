@@ -23,9 +23,11 @@ namespace ImposterSyndrome.Systems.Entities
 		{
 			IsReeling = true;
 			IsFloating = false;
-			AttractedFish.HookLocked = true;
 			Velocity = 0;
 			DeleteAsync( 1 );
+
+			if ( AttractedFish is not null )
+				AttractedFish.HookLocked = true;
 
 			return AttractedFish is null ? false : AttractedFish.IsHooked;
 		}
