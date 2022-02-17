@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using ImposterSyndrome.Systems.Players;
+using Sandbox;
 
 namespace ImposterSyndrome.Systems.Entities
 {
@@ -9,6 +10,7 @@ namespace ImposterSyndrome.Systems.Entities
 		public float Speed { get; set; }
 		public TimeUntil TimeUntilFishBite { get; set; }
 		public FishEntity AttractedFish { get; set; }
+		private bool IsReeling { get; set; }
 
 		public override void Spawn()
 		{
@@ -17,10 +19,19 @@ namespace ImposterSyndrome.Systems.Entities
 			SetModel( "models/float/float.vmdl" );
 		}
 
+		public bool Reel()
+		{
+			IsReeling = true;
+			IsFloating = false;
+			Velocity = 0;
+			DeleteAsync( 1 );
+
+			return AttractedFish is null ? false : AttractedFish.IsHooked;
+		}
+
 		public void Cleanup()
 		{
 			AttractedFish?.Reset();
-			Delete();
 		}
 
 		[Event.Tick.Server]
@@ -41,16 +52,29 @@ namespace ImposterSyndrome.Systems.Entities
 				return;
 			}
 
-			Velocity += Speed * Owner.Rotation.Forward * Time.Delta;
-			Velocity += PhysicsWorld.Gravity * 0.5f * Time.Delta;
+			var direction = IsReeling ? -Owner.Rotation.Forward : Owner.Rotation.Forward;
+			var gravity = IsReeling ? -PhysicsWorld.Gravity : PhysicsWorld.Gravity;
+
+			Velocity += Speed * direction * Time.Delta;
+			Velocity += gravity * 0.5f * Time.Delta;
 
 			var target = Position + Velocity * Time.Delta;
-			var tr = Trace.Ray( Position, target ).HitLayer( CollisionLayer.Water ).Ignore( Owner ).Ignore( Shoal ).Run();
+
+			TraceResult tr;
+
+			if ( !IsReeling )
+				tr = Trace.Ray( Position, target ).HitLayer( CollisionLayer.Water ).Ignore( Owner ).Ignore( Shoal ).Run();
+			else
+				tr = Trace.Ray( Position, target ).EntitiesOnly().Ignore( Shoal ).Ignore( AttractedFish ).Run();
 
 			if ( tr.Hit )
 			{
 				IsFloating = true;
 				TimeUntilFishBite = Rand.Float( 3, 5 );
+
+				if ( tr.Entity is ISPlayer )
+					Delete();
+
 				return;
 			}
 
