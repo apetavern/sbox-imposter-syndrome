@@ -21,6 +21,17 @@
 						use_global_default = false
 						global_default_material = ""
 					},
+					{
+						_class = "MaterialGroup"
+						name = "jwilson"
+						remaps = 
+						[
+							{
+								from = "models/wilson/materials/wilson.vmat"
+								to = "models/wilson/materials/jwilson.vmat"
+							},
+						]
+					},
 				]
 			},
 			{
@@ -43,6 +54,23 @@
 							exclude_by_default = false
 							exception_list = [  ]
 						}
+					},
+				]
+			},
+			{
+				_class = "PhysicsShapeList"
+				children = 
+				[
+					{
+						_class = "PhysicsShapeSphere"
+						parent_bone = ""
+						surface_prop = "default"
+						collision_group = ""
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						radius = 8.0
+						center = [ 0.0, 0.0, 0.0 ]
 					},
 				]
 			},

@@ -12,5 +12,13 @@ namespace ImposterSyndrome.Systems.Entities
 		public override string UseName => "Pickup";
 		protected override Type TargetTaskType => typeof( FindWilson );
 		protected override string ModelPath => "models/wilson/wilson.vmdl";
+
+		public override void Spawn()
+		{
+			base.Spawn();
+
+			if ( Rand.Int( 5 ) == 5 )
+				SetMaterialGroup( 1 );
+		}
 	}
 }
