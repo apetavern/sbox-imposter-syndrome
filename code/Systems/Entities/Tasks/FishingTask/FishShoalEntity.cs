@@ -13,7 +13,7 @@ namespace ImposterSyndrome.Systems.Entities
 	public partial class FishShoalEntity : TaskEntity
 	{
 		[Net] public override string UseName => "Fish";
-		protected override Type TargetTaskType => typeof( FindWilson );
+		protected override Type TargetTaskType => typeof( CatchFish );
 		protected override string ModelPath => "models/sphere.vmdl";
 		private int MaxNumberOfFishInShoal { get; set; } = 5;
 		public List<FishEntity> Fish { get; set; } = new();
@@ -56,26 +56,21 @@ namespace ImposterSyndrome.Systems.Entities
 				return false;
 			}
 
-			var hookedFish = Fish.FirstOrDefault( x => x.IsHooked );
-
 			// Reel
-			if ( hookedFish is not null )
+			if ( Bait.Reel() == true )
 			{
 				// Caught
 				Log.Info( "Reeling | Caught a fish" );
 				GetTaskInstance( user )?.MarkAsCompleted();
-
-				hookedFish.Reset();
 			}
 			else
 			{
 				// Didn't catch
 				Log.Info( "Reeling | Didn't catch anything" );
+				Bait?.Cleanup();
 			}
 
-			// Reset
 			UseName = "Cast";
-			Bait?.Cleanup();
 			Bait = null;
 
 			return false;
