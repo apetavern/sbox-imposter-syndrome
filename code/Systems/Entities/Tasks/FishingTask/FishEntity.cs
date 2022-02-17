@@ -35,6 +35,9 @@ namespace ImposterSyndrome.Systems.Entities
 			if ( ParentShoal is null || !ParentShoal.IsValid )
 				Delete();
 
+			var moveDir = (TargetPosition - Position).Normal;
+			var distance = Vector3.DistanceBetween( TargetPosition, Position );
+
 			if ( IsHooked )
 			{
 				if ( TimeSinceHooked > 1 && !HookLocked )
@@ -45,9 +48,6 @@ namespace ImposterSyndrome.Systems.Entities
 
 				return;
 			}
-
-			var moveDir = (TargetPosition - Position).Normal;
-			var distance = Vector3.DistanceBetween( TargetPosition, Position );
 
 			if ( distance > 4 )
 			{
@@ -80,7 +80,6 @@ namespace ImposterSyndrome.Systems.Entities
 
 					return;
 				}
-
 
 				TargetPosition = PickRandomPosition();
 				TimeUntilMovementPermitted = Rand.Float( 0.5f, 2.5f );

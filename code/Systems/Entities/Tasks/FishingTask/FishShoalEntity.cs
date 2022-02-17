@@ -71,6 +71,7 @@ namespace ImposterSyndrome.Systems.Entities
 			}
 
 			UseName = "Cast";
+
 			Bait = null;
 
 			return false;

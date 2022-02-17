@@ -125,7 +125,7 @@
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "nibble"
-				m_playbackSpeed = 1.0
+				m_playbackSpeed = 1.5
 				m_bLoop = false
 			}
 		},
@@ -169,7 +169,7 @@
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "bite"
-				m_playbackSpeed = 1.0
+				m_playbackSpeed = 1.5
 				m_bLoop = false
 			}
 		},

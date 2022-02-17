@@ -11,6 +11,7 @@ namespace ImposterSyndrome.Systems.Entities
 		public TimeUntil TimeUntilFishBite { get; set; }
 		public FishEntity AttractedFish { get; set; }
 		private bool IsReeling { get; set; }
+		private Particles FishingLine { get; set; }
 
 		public override void Spawn()
 		{
@@ -24,7 +25,7 @@ namespace ImposterSyndrome.Systems.Entities
 			IsReeling = true;
 			IsFloating = false;
 			Velocity = 0;
-			DeleteAsync( 1 );
+			RemoveAsync( 1 );
 
 			if ( AttractedFish is not null )
 				AttractedFish.HookLocked = true;
@@ -37,9 +38,19 @@ namespace ImposterSyndrome.Systems.Entities
 			AttractedFish?.Reset();
 		}
 
+		private void CreateLine()
+		{
+			FishingLine = Particles.Create( "particles/fishingline.vpcf" );
+			FishingLine.SetEntity( 0, Owner, Vector3.Up * 28, true );
+			FishingLine.SetEntityAttachment( 1, this, "line", true );
+		}
+
 		[Event.Tick.Server]
 		public void Tick()
 		{
+			if ( FishingLine is null )
+				CreateLine();
+
 			if ( IsFloating )
 			{
 				// Do some bobbing?
@@ -76,12 +87,25 @@ namespace ImposterSyndrome.Systems.Entities
 				TimeUntilFishBite = Rand.Float( 3, 5 );
 
 				if ( tr.Entity is ISPlayer )
-					Delete();
+					Remove();
 
 				return;
 			}
 
 			Position = target;
+		}
+
+		public async void RemoveAsync( int secondsDelay )
+		{
+			await GameTask.DelaySeconds( secondsDelay );
+			FishingLine?.Destroy( true );
+			Delete();
+		}
+
+		public void Remove()
+		{
+			FishingLine?.Destroy( true );
+			Delete();
 		}
 
 		[ClientRpc]
