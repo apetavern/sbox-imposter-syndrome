@@ -6,6 +6,7 @@ namespace ImposterSyndrome.Systems.Entities
 	{
 		private FishShoalEntity ParentShoal { get; set; }
 		public bool IsHooked { get; set; }
+		public bool HookLocked { get; set; }
 		private FloatEntity TargetFloat { get; set; }
 		private Vector3 TargetPosition { get; set; }
 		private float DefaultSwimSpeed { get; set; } = 12f;
@@ -36,9 +37,9 @@ namespace ImposterSyndrome.Systems.Entities
 
 			if ( IsHooked )
 			{
-				if ( TimeSinceHooked > 1 )
+				if ( TimeSinceHooked > 1 && !HookLocked )
 				{
-					Log.Info( "letting loose" );
+					TargetFloat?.SetAnimBool( "bite", false );
 					Reset();
 				}
 
@@ -72,7 +73,10 @@ namespace ImposterSyndrome.Systems.Entities
 					if ( shouldBite )
 						HookTo( TargetFloat );
 					else
+					{
+						TargetFloat?.NibbleEffects();
 						TargetPosition = TargetPosition + (Position - TargetPosition).Normal * 20;
+					}
 
 					return;
 				}
@@ -99,7 +103,9 @@ namespace ImposterSyndrome.Systems.Entities
 
 		public void Reset()
 		{
+			TargetFloat?.HookedEffects( false );
 			IsHooked = false;
+			HookLocked = false;
 			TargetFloat = null;
 			Parent = null;
 			TargetPosition = PickRandomPosition();
@@ -112,6 +118,7 @@ namespace ImposterSyndrome.Systems.Entities
 			Parent = floatEntity;
 			IsHooked = true;
 			TimeSinceHooked = 0;
+			TargetFloat.HookedEffects( true );
 		}
 	}
 }

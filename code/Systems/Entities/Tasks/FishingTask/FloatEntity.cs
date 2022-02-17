@@ -23,6 +23,7 @@ namespace ImposterSyndrome.Systems.Entities
 		{
 			IsReeling = true;
 			IsFloating = false;
+			AttractedFish.HookLocked = true;
 			Velocity = 0;
 			DeleteAsync( 1 );
 
@@ -79,6 +80,18 @@ namespace ImposterSyndrome.Systems.Entities
 			}
 
 			Position = target;
+		}
+
+		[ClientRpc]
+		public void HookedEffects( bool isHooked )
+		{
+			SetAnimBool( "bite", isHooked );
+		}
+
+		[ClientRpc]
+		public void NibbleEffects()
+		{
+			SetAnimBool( "nibble", true );
 		}
 	}
 }
