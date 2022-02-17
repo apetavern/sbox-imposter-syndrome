@@ -11,6 +11,7 @@ namespace ImposterSyndrome.Systems.Entities
 		private float DefaultSwimSpeed { get; set; } = 12f;
 		private float SwimSpeed { get; set; }
 		private TimeUntil TimeUntilMovementPermitted { get; set; }
+		private TimeSince TimeSinceHooked { get; set; }
 
 		public FishEntity AddToShoal( FishShoalEntity shoal )
 		{
@@ -34,7 +35,15 @@ namespace ImposterSyndrome.Systems.Entities
 				Delete();
 
 			if ( IsHooked )
+			{
+				if ( TimeSinceHooked > 1 )
+				{
+					Log.Info( "letting loose" );
+					Reset();
+				}
+
 				return;
+			}
 
 			var moveDir = (TargetPosition - Position).Normal;
 			var distance = Vector3.DistanceBetween( TargetPosition, Position );
@@ -73,8 +82,6 @@ namespace ImposterSyndrome.Systems.Entities
 				TimeUntilMovementPermitted = Rand.Float( 0.5f, 2.5f );
 				SwimSpeed = DefaultSwimSpeed;
 			}
-
-			// TODO: Lookout for bait in the water, rotate towards and nibble if found
 		}
 
 		private Vector3 PickRandomPosition()
@@ -87,12 +94,14 @@ namespace ImposterSyndrome.Systems.Entities
 			TargetFloat = floatEntity;
 			TargetPosition = floatEntity.Position;
 			Rotation = Rotation.LookAt( (TargetPosition - Position).Normal, Vector3.Up );
-			SwimSpeed = 24;
+			SwimSpeed = 16;
 		}
 
 		public void Reset()
 		{
+			IsHooked = false;
 			TargetFloat = null;
+			Parent = null;
 			TargetPosition = PickRandomPosition();
 			SwimSpeed = DefaultSwimSpeed;
 			TimeUntilMovementPermitted = 0;
@@ -100,8 +109,9 @@ namespace ImposterSyndrome.Systems.Entities
 
 		public void HookTo( FloatEntity floatEntity )
 		{
-			Log.Info( "HOOKED" );
+			Parent = floatEntity;
 			IsHooked = true;
+			TimeSinceHooked = 0;
 		}
 	}
 }
