@@ -42,7 +42,7 @@ namespace ImposterSyndrome.Systems.Entities
 			{
 				if ( TimeSinceHooked > 1 && !HookLocked )
 				{
-					TargetFloat?.SetAnimBool( "bite", false );
+					TargetFloat?.SetAnimParameter( "bite", false );
 					Reset();
 				}
 

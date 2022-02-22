@@ -2,7 +2,7 @@
 
 namespace ImposterSyndrome.Systems.UI
 {
-	public class SceneAnimChild : AnimSceneObject
+	public class SceneAnimChild : SceneModel
 	{
 		private TimeUntil TimeUntilMovementAllowed { get; set; }
 		private float MovementSpeed { get; set; } = 60f;
@@ -11,14 +11,13 @@ namespace ImposterSyndrome.Systems.UI
 		private bool IsMoving { get; set; }
 		private bool NeedsToReturn { get; set; }
 		private Vector3 EndPosition { get; set; }
-		public AnimSceneObject Backpack { get; set; }
+		public SceneModel Backpack { get; set; }
 
-		public SceneAnimChild( Model model, Transform transform ) : base( model, transform )
+		public SceneAnimChild( SceneWorld sceneWorld, string model, Transform transform ) : base( sceneWorld, model, transform )
 		{
-			if ( model.Name == "models/playermodel/terrysus.vmdl" )
+			if ( model == "models/playermodel/terrysus.vmdl" )
 			{
-				var backbackModel = Model.Load( "models/backpacks/business/susbusinessbackpack.vmdl" );
-				Backpack = new AnimSceneObject( backbackModel, Transform );
+				Backpack = new SceneModel( sceneWorld, "models/backpacks/business/susbusinessbackpack.vmdl", Transform );
 				AddChild( "clothing", Backpack );
 			}
 		}
@@ -101,8 +100,9 @@ namespace ImposterSyndrome.Systems.UI
 		public void Animate()
 		{
 			Update( Time.Delta );
-			SetAnimBool( "grounded", true );
-			SetAnimBool( "walking", IsMoving );
+
+			SetAnimParameter( "grounded", true );
+			SetAnimParameter( "walking", IsMoving );
 		}
 	}
 }

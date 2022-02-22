@@ -9,7 +9,7 @@ namespace ImposterSyndrome.Systems.Entities
 {
 	[Library( "is_tasks_fishshoal" )]
 	[Hammer.EntityTool( "Fish Shoal", "ImposterSyndrome", "A group of fish to fish in." )]
-	[Hammer.EditorModel( "models/sphere.vmdl" )]
+	[Hammer.EditorModel( "models/float/float.vmdl" )]
 	public partial class FishShoalEntity : TaskEntity
 	{
 		[Net] public override string UseName => "Fish";

@@ -24,7 +24,7 @@ namespace ImposterSyndrome.Systems.Players
 
 		public static float GetAllPlayersTaskProgress()
 		{
-			var players = Entity.All.OfType<ISPlayer>();
+			var players = All.OfType<ISPlayer>();
 
 			float totalTaskAmount = players.Select( player => player.AssignedTasks.Count() ).Sum();
 

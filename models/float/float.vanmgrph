@@ -350,14 +350,61 @@
 									{
 										_class = "CFinishedCondition"
 										m_comparisonOp = 0
-										m_option = "FinishedConditionOption_OnAlmostFinished"
+										m_option = "FinishedConditionOption_OnFinished"
 										m_bIsFinished = true
+									},
+									{
+										_class = "CParameterAnimCondition"
+										m_comparisonOp = 1
+										m_paramID = 
+										{
+											m_id = 97804212
+										}
+										m_comparisonValue = 
+										{
+											m_nType = 1
+											m_data = true
+										}
 									},
 								]
 								m_blendDuration = 0.2
 								m_destState = 
 								{
 									m_id = 890221791
+								}
+								m_bReset = true
+								m_resetCycleOption = "Beginning"
+								m_flFixedCycleValue = 0.0
+								m_blendCurve = 
+								{
+									m_vControlPoint1 = [ 0.5, 0.0 ]
+									m_vControlPoint2 = [ 0.5, 1.0 ]
+								}
+								m_bForceFootPlant = false
+								m_bDisabled = false
+							},
+							{
+								_class = "CAnimStateTransition"
+								m_conditions = 
+								[
+									{
+										_class = "CParameterAnimCondition"
+										m_comparisonOp = 0
+										m_paramID = 
+										{
+											m_id = 97804212
+										}
+										m_comparisonValue = 
+										{
+											m_nType = 1
+											m_data = true
+										}
+									},
+								]
+								m_blendDuration = 0.2
+								m_destState = 
+								{
+									m_id = 16091428
 								}
 								m_bReset = true
 								m_resetCycleOption = "Beginning"
@@ -382,7 +429,7 @@
 						{
 							m_id = 1241471502
 						}
-						m_position = [ 16.0, 80.0 ]
+						m_position = [ 48.0, 80.0 ]
 						m_bIsStartState = false
 						m_bIsEndtState = false
 						m_bIsPassthrough = false

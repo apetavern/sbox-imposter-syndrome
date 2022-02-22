@@ -73,16 +73,16 @@ namespace ImposterSyndrome.Systems.Players
 		{
 			base.FrameSimulate();
 
-			EyeRot = Input.Rotation;
+			EyeRotation = Input.Rotation;
 		}
 
 		public override void Simulate()
 		{
-			EyePosLocal = Vector3.Up * (EyeHeight * Pawn.Scale);
+			EyeLocalPosition = Vector3.Up * (EyeHeight * Pawn.Scale);
 			UpdateBBox();
 
-			EyePosLocal += TraceOffset;
-			EyeRot = Input.Rotation;
+			EyeLocalPosition += TraceOffset;
+			EyeRotation = Input.Rotation;
 
 			RestoreGroundPos();
 
@@ -209,7 +209,7 @@ namespace ImposterSyndrome.Systems.Players
 
 				if ( pm.Fraction == 1 )
 				{
-					Position = pm.EndPos;
+					Position = pm.EndPosition;
 					StayOnGround();
 					return;
 				}
@@ -428,7 +428,7 @@ namespace ImposterSyndrome.Systems.Players
 
 			if ( bMoveToEndPos && !pm.StartedSolid && pm.Fraction > 0.0f && pm.Fraction < 1.0f )
 			{
-				Position = pm.EndPos;
+				Position = pm.EndPosition;
 			}
 
 		}
@@ -493,7 +493,7 @@ namespace ImposterSyndrome.Systems.Players
 
 			// See how far up we can go without getting stuck
 			var trace = TraceBBox( Position, start );
-			start = trace.EndPos;
+			start = trace.EndPosition;
 
 			// Now trace down from a known safe position
 			trace = TraceBBox( start, end );
@@ -503,7 +503,7 @@ namespace ImposterSyndrome.Systems.Players
 			if ( trace.StartedSolid ) return;
 			if ( Vector3.GetAngle( Vector3.Up, trace.Normal ) > GroundAngle ) return;
 
-			Position = trace.EndPos;
+			Position = trace.EndPosition;
 		}
 
 		void RestoreGroundPos()

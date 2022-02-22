@@ -14,7 +14,7 @@ namespace ImposterSyndrome.Systems.Players
 
 			Controller = new ISController();
 			Animator = new ISAnimator();
-			Camera = new ISCamera();
+			CameraMode = new ISCamera();
 
 			Backpack = new AnimEntity();
 			Backpack.SetModel( "models/backpacks/business/susbusinessbackpack.vmdl" );

@@ -2,7 +2,7 @@
 
 namespace ImposterSyndrome.Systems.Players
 {
-	public partial class ISCamera : Camera
+	public partial class ISCamera : CameraMode
 	{
 		private Angles orbitAngles;
 		private float orbitDistance = 200;
@@ -23,7 +23,7 @@ namespace ImposterSyndrome.Systems.Players
 				.Radius( 1 )
 				.Run();
 
-			Position = tr.EndPos;
+			Position = tr.EndPosition;
 			FieldOfView = 90;
 
 			Viewer = null;

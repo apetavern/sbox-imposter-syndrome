@@ -15,7 +15,7 @@ namespace ImposterSyndrome.Systems.Players
 	{
 		public IEntityUse GetNearestUsable( UseType useType )
 		{
-			var ents = Physics.GetEntitiesInSphere( Position, GameConfig.InteractionRadius )
+			var ents = Entity.FindInSphere( Position, GameConfig.InteractionRadius )
 				.Where( ent => ent.Owner != Owner )
 				.OrderBy( ent => Vector3.DistanceBetween( ent.Position, Position ) )
 				.OfType<IEntityUse>()

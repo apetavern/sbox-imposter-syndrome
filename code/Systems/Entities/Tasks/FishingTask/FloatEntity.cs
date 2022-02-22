@@ -67,7 +67,7 @@ namespace ImposterSyndrome.Systems.Entities
 			}
 
 			var direction = IsReeling ? -Owner.Rotation.Forward : Owner.Rotation.Forward;
-			var gravity = IsReeling ? -PhysicsWorld.Gravity : PhysicsWorld.Gravity;
+			var gravity = IsReeling ? -Map.Physics.Gravity : Map.Physics.Gravity;
 
 			Velocity += Speed * direction * Time.Delta;
 			Velocity += gravity * 0.5f * Time.Delta;
@@ -111,13 +111,13 @@ namespace ImposterSyndrome.Systems.Entities
 		[ClientRpc]
 		public void HookedEffects( bool isHooked )
 		{
-			SetAnimBool( "bite", isHooked );
+			SetAnimParameter( "bite", isHooked );
 		}
 
 		[ClientRpc]
 		public void NibbleEffects()
 		{
-			SetAnimBool( "nibble", true );
+			SetAnimParameter( "nibble", true );
 		}
 	}
 }

@@ -2,7 +2,6 @@
 using ImposterSyndrome.Systems.Players;
 using ImposterSyndrome.Systems.UI;
 using Sandbox;
-using Sandbox.UI;
 using System.Linq;
 
 namespace ImposterSyndrome.Systems.States
@@ -15,8 +14,10 @@ namespace ImposterSyndrome.Systems.States
 
 		public override void OnStateStarted()
 		{
-			foreach ( var player in Client.All.Select( cl => cl.Pawn as ISBasePlayer ) )
+			foreach ( var player in Client.All.Select( x => x.Pawn as ISBasePlayer ) )
+			{
 				player.UpdatePawn( new ISSpectator() );
+			}
 
 			PlayingHudEntity.Rebuild();
 			DoPostGameCleanup();
@@ -45,6 +46,10 @@ namespace ImposterSyndrome.Systems.States
 		public override void ClientJoined( Client client )
 		{
 			base.ClientJoined( client );
+
+			var player = new ISSpectator();
+			player.Respawn();
+			client.Pawn = player;
 
 			PlayingHudEntity.RefreshConfigPanel();
 		}

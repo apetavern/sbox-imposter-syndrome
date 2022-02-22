@@ -13,7 +13,7 @@ namespace ImposterSyndrome.Systems.Players
 			// TODO: A noclip walk controller?
 			Controller = new ISController();
 			Animator = new ISAnimator();
-			Camera = new ISCamera();
+			CameraMode = new ISCamera();
 
 			UpdateRenderAlpha();
 		}

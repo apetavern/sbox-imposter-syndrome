@@ -21,7 +21,7 @@ namespace ImposterSyndrome.Systems.UI
 			float height = 250;
 			PanelBounds = new Rect( -width / 2, -height / 2, width, height );
 
-			SceneObject.ZBufferMode = ZBufferMode.None;
+			//SceneObject.ZBufferMode = ZBufferMode.None;
 			SceneObject.Flags.BloomLayer = false;
 		}
 

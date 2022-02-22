@@ -23,9 +23,9 @@ namespace ImposterSyndrome.Systems.Players
 
 			AnimPawn.SetBodyGroup( 0, IsTouchingLadder ? 1 : 0 );
 
-			SetParam( "onladder", IsTouchingLadder );
+			SetAnimParameter( "onladder", IsTouchingLadder );
 
-			SetParam( "walking", Velocity.WithZ( 0 ).Length > 1.5f );
+			SetAnimParameter( "walking", Velocity.WithZ( 0 ).Length > 1.5f );
 		}
 
 		public void CheckLadder()
