@@ -33,7 +33,7 @@ namespace ImposterSyndrome.Systems.UI
 			_ = new Nametags();
 		}
 
-		[ServerCmd]
+		[ConCmd.Server]
 		public static void Rebuild()
 		{
 			Instance?.Delete();

@@ -1,12 +1,13 @@
 ﻿using ImposterSyndrome.Systems.Tasks;
 using Sandbox;
+using SandboxEditor;
 using System;
 
 namespace ImposterSyndrome.Systems.Entities
 {
-	[Library( "is_task_drink_waterpurifier" )]
-	[Hammer.EntityTool( "Water Purifier", "ImposterSyndrome", "The water purifier entity for the 'Drink' task." )]
-	[Hammer.EditorModel( "models/citizen_props/crate01.vmdl" )]
+	[Library( "The water purifier entity for the 'Drink' task." )]
+	[HammerEntity]
+	[EditorModel( "models/citizen_props/crate01.vmdl" )]
 	public class WaterPurifierEntity : MultipleTaskEntity
 	{
 		public override string UseName => "Purify";

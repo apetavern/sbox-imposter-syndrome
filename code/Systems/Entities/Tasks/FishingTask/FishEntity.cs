@@ -2,7 +2,7 @@
 
 namespace ImposterSyndrome.Systems.Entities
 {
-	public partial class FishEntity : AnimEntity
+	public partial class FishEntity : AnimatedEntity
 	{
 		private FishShoalEntity ParentShoal { get; set; }
 		public bool IsHooked { get; set; }

@@ -25,7 +25,7 @@ namespace ImposterSyndrome.Systems.Players
 			return ents.FirstOrDefault();
 		}
 
-		[ServerCmd]
+		[ConCmd.Server]
 		public static void UseNearestEntity( UseType entityUseType )
 		{
 			if ( Host.IsClient )

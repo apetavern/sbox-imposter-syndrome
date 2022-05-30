@@ -1,12 +1,13 @@
 ﻿using ImposterSyndrome.Systems.Tasks;
 using Sandbox;
+using SandboxEditor;
 using System;
 
 namespace ImposterSyndrome.Systems.Entities
 {
-	[Library( "is_task_drink_cup" )]
-	[Hammer.EntityTool( "Cup", "ImposterSyndrome", "The cup entity for the 'Drink' task." )]
-	[Hammer.EditorModel( "models/citizen_props/coffeemug01.vmdl" )]
+	[Library( "A cup entity for the 'Drink' task." )]
+	[HammerEntity]
+	[EditorModel( "models/citizen_props/coffeemug01.vmdl" )]
 	public class CupEntity : MultipleTaskEntity
 	{
 		public override string UseName => "Pickup";

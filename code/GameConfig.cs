@@ -11,7 +11,7 @@ namespace ImposterSyndrome
 			Instance = this;
 		}
 
-		[ServerCmd]
+		[ConCmd.Server]
 		public static void ReceiveMenuConfig( int imposterCount, int numOfTasks )
 		{
 			// TODO: Make this better when we have more config. options

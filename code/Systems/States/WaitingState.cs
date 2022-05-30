@@ -76,7 +76,7 @@ namespace ImposterSyndrome.Systems.States
 			BaseUsableEntity.ResetAll();
 		}
 
-		[ServerCmd]
+		[ConCmd.Server]
 		public static void Startup( bool shouldStartup )
 		{
 			if ( Host.IsClient )

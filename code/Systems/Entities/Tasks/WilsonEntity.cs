@@ -1,12 +1,13 @@
 ﻿using ImposterSyndrome.Systems.Tasks;
 using Sandbox;
+using SandboxEditor;
 using System;
 
 namespace ImposterSyndrome.Systems.Entities
 {
-	[Library( "is_task_wilson" )]
-	[Hammer.EntityTool( "Wilson", "ImposterSyndrome", "The entity for the 'Find Wilson' task." )]
-	[Hammer.EditorModel( "models/wilson/wilson.vmdl" )]
+	[Library( "The entity for the 'Find Wilson' task." )]
+	[HammerEntity]
+	[EditorModel( "models/wilson/wilson.vmdl" )]
 	public class WilsonEntity : TaskEntity
 	{
 		public override string UseName => "Pickup";

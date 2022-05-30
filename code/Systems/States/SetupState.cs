@@ -40,9 +40,9 @@ namespace ImposterSyndrome.Systems.States
 		{
 			foreach ( var player in ImposterSyndrome.Instance.Players )
 			{
-				foreach ( var task in Library.GetAll<BaseTask>().Where( x => !x.IsAbstract && x.BaseType != typeof( SubTask ) ).OrderBy( _ => Guid.NewGuid() ).Take( GameConfig.Instance.NumberOfTasks ) )
+				foreach ( var task in TypeLibrary.GetTypes<BaseTask>().Where( x => !x.IsAbstract && x.BaseType != typeof( SubTask ) ).OrderBy( _ => Guid.NewGuid() ).Take( GameConfig.Instance.NumberOfTasks ) )
 				{
-					var taskInstance = Library.Create<BaseTask>( task ).FlagAsFake( player.IsImposter );
+					var taskInstance = TypeLibrary.Create<BaseTask>( task ).FlagAsFake( player.IsImposter );
 
 					player.AssignedTasks.Add( taskInstance );
 				}

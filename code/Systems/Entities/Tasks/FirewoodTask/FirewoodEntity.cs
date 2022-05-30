@@ -1,13 +1,14 @@
 ﻿using ImposterSyndrome.Systems.Players;
 using ImposterSyndrome.Systems.Tasks;
 using Sandbox;
+using SandboxEditor;
 using System;
 
 namespace ImposterSyndrome.Systems.Entities
 {
-	[Library( "is_task_firewood_wood" )]
-	[Hammer.EntityTool( "Wood", "ImposterSyndrome", "Wood entity for the 'Gather Firewood' task." )]
-	[Hammer.EditorModel( "models/sbox_props/low_wood_fence/low_wood_fence_beam_1_gib2.vmdl" )]
+	[Library( "Wood entity for the 'Gather Firewood' task." )]
+	[HammerEntity]
+	[EditorModel( "models/sbox_props/low_wood_fence/low_wood_fence_beam_1_gib2.vmdl" )]
 	public class FirewoodEntity : MultipleTaskEntity
 	{
 		public override string UseName => "Pickup";

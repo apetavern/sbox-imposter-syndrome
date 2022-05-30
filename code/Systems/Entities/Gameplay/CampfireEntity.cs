@@ -1,12 +1,13 @@
 ﻿using ImposterSyndrome.Systems.Players;
 using ImposterSyndrome.Systems.States;
 using Sandbox;
+using SandboxEditor;
 
 namespace ImposterSyndrome.Systems.Entities
 {
-	[Library( "is_gameplay_campfire" )]
-	[Hammer.EntityTool( "Campfire", "ImposterSyndrome", "Where the players will be teleported to at the start of a new playing round." )]
-	[Hammer.EditorModel( "models/sbox_props/burger_box/burger_box.vmdl" )]
+	[Library( "Where the players will be teleported to at the start of a new playing round." )]
+	[HammerEntity]
+	[EditorModel( "models/sbox_props/burger_box/burger_box.vmdl" )]
 	public class CampfireEntity : BaseUsableEntity
 	{
 		protected override string ModelPath => "models/sbox_props/burger_box/burger_box.vmdl";

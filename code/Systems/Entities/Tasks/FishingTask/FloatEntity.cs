@@ -3,7 +3,7 @@ using Sandbox;
 
 namespace ImposterSyndrome.Systems.Entities
 {
-	public partial class FloatEntity : AnimEntity
+	public partial class FloatEntity : AnimatedEntity
 	{
 		public bool IsFloating { get; set; }
 		public FishShoalEntity Shoal { get; set; }

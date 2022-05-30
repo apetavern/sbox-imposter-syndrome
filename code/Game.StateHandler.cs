@@ -9,7 +9,7 @@ namespace ImposterSyndrome
 {
 	public partial class ImposterSyndrome
 	{
-		[Net] public List<ISPlayer> Players { get; set; }
+		[Net] public IList<ISPlayer> Players { get; set; }
 		[Net] public BaseState CurrentState { get; set; }
 		private TimeSince TimeSinceLastSecond { get; set; }
 

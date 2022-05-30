@@ -1,14 +1,15 @@
 ﻿using ImposterSyndrome.Systems.Players;
 using ImposterSyndrome.Systems.Tasks;
 using Sandbox;
+using SandboxEditor;
 using System;
 using System.Collections.Generic;
 
 namespace ImposterSyndrome.Systems.Entities
 {
 	[Library( "is_task_firewood_stockpile" )]
-	[Hammer.EntityTool( "Wood Stockpile", "ImposterSyndrome", "The wood stock pile for the 'Gather Firewood' task." )]
-	[Hammer.EditorModel( "models/citizen_props/newspaper01.vmdl" )]
+	[HammerEntity]
+	[EditorModel( "models/citizen_props/newspaper01.vmdl" )]
 	public class WoodStockpileEntity : MultipleTaskEntity
 	{
 		public override string UseName => "Place";

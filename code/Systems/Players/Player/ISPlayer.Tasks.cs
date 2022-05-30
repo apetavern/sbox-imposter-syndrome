@@ -8,7 +8,7 @@ namespace ImposterSyndrome.Systems.Players
 {
 	public partial class ISPlayer
 	{
-		[Net] public List<BaseTask> AssignedTasks { get; set; }
+		[Net] public IList<BaseTask> AssignedTasks { get; set; }
 
 		public float GetTotalTaskProgress()
 		{

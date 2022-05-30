@@ -6,7 +6,7 @@ namespace ImposterSyndrome.Systems.Players
 {
 	public partial class ISBasePlayer : Player
 	{
-		public AnimEntity Backpack { get; set; }
+		public AnimatedEntity Backpack { get; set; }
 
 		public override void Respawn()
 		{
@@ -16,7 +16,7 @@ namespace ImposterSyndrome.Systems.Players
 			Animator = new ISAnimator();
 			CameraMode = new ISCamera();
 
-			Backpack = new AnimEntity();
+			Backpack = new AnimatedEntity();
 			Backpack.SetModel( "models/backpacks/business/susbusinessbackpack.vmdl" );
 			Backpack.SetParent( this, true );
 
@@ -66,7 +66,7 @@ namespace ImposterSyndrome.Systems.Players
 				child.RenderColor = Color.White.WithAlpha( 0.4f );
 		}
 
-		[ServerCmd]
+		[ConCmd.Server]
 		public static void KillTarget( string name )
 		{
 			var player = Client.All.FirstOrDefault( x => x.Name == name ).Pawn;

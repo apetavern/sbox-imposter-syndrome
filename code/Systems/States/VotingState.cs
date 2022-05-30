@@ -13,7 +13,7 @@ namespace ImposterSyndrome.Systems.States
 		[Net] public override string StateName => "Voting";
 
 		// Voting player, voted for player
-		[Net] public Dictionary<ISPlayer, ISPlayer> PlayerVotes { get; set; }
+		[Net] public IDictionary<ISPlayer, ISPlayer> PlayerVotes { get; set; }
 		public override float StateDuration { get; set; } = 10;
 		public int CalledByPlayerNetIdent { get; set; } = -1;
 
@@ -60,7 +60,7 @@ namespace ImposterSyndrome.Systems.States
 				highestVotedPlayer?.Eject();
 		}
 
-		[ServerCmd]
+		[ConCmd.Server]
 		public static void ReceiveVote( int voteToPlayerNetId )
 		{
 			Host.AssertServer();

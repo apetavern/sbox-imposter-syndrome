@@ -9,7 +9,7 @@ namespace ImposterSyndrome.Systems.Players
 
 		public override void Update()
 		{
-			var pawn = Local.Pawn as AnimEntity;
+			var pawn = Local.Pawn as AnimatedEntity;
 
 			Position = pawn.Position;
 			Vector3 targetPos;

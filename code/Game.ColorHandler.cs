@@ -8,7 +8,7 @@ namespace ImposterSyndrome
 {
 	public partial class ImposterSyndrome
 	{
-		[Net] public Dictionary<Client, int> AssignedColors { get; set; }
+		[Net] public IDictionary<Client, int> AssignedColors { get; set; }
 
 		public static void AssignColorToClient( Client client, int colorIndex )
 		{
@@ -66,7 +66,7 @@ namespace ImposterSyndrome
 			}
 		}
 
-		[ServerCmd]
+		[ConCmd.Server]
 		public static void SelectColor( int indexOfColor )
 		{
 			if ( !Host.IsServer )

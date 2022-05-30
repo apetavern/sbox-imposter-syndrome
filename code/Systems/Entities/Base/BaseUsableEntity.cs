@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace ImposterSyndrome.Systems.Entities
 {
-	public partial class BaseUsableEntity : AnimEntity, IEntityUse
+	public partial class BaseUsableEntity : AnimatedEntity, IEntityUse
 	{
 		[Net] public List<ISPlayer> UsedByPlayers { get; set; }
 		public virtual string UseName { get; set; } = "Use";
@@ -41,7 +41,7 @@ namespace ImposterSyndrome.Systems.Entities
 		[Event.Tick.Server]
 		public virtual void OnTick()
 		{
-			DebugOverlay.Text( Position + Vector3.Up * 40f, Name );
+			DebugOverlay.Text( Name, Position + Vector3.Up * 40f );
 		}
 
 		public virtual void Reset()

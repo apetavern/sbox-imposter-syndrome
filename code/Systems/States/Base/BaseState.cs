@@ -38,7 +38,7 @@ namespace ImposterSyndrome.Systems.States
 			return ImposterSyndrome.Instance.Players.Count >= GameConfig.MinimumPlayers;
 		}
 
-		[ServerCmd]
+		[ConCmd.Server]
 		public static void UpdateState( string statename )
 		{
 			switch ( statename )

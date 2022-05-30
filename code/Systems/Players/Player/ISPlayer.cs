@@ -38,7 +38,7 @@ namespace ImposterSyndrome.Systems.Players
 			controller?.Simulate( cl, this, GetActiveAnimator() );
 
 			if ( Host.IsServer )
-				DebugOverlay.Text( EyePosition + Vector3.Up * 5, IsImposter ? "IMPOSTER" : "PLAYER" );
+				DebugOverlay.Text( IsImposter ? "IMPOSTER" : "PLAYER", EyePosition + Vector3.Up * 5 );
 		}
 
 		public void Eject()
@@ -86,7 +86,7 @@ namespace ImposterSyndrome.Systems.Players
 			IsImposter = isImposter;
 		}
 
-		[ServerCmd]
+		[ConCmd.Server]
 		public static void ForceImposter( bool imposterStatus )
 		{
 			if ( ConsoleSystem.Caller.Pawn is not ISPlayer player )
